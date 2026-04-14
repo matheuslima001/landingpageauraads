@@ -167,7 +167,7 @@
             font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
-            max-width: 800px;
+            max-width: 820px;
             letter-spacing: -1.5px;
             margin-bottom: 20px;
         }
@@ -195,17 +195,18 @@
             margin-bottom: 60px;
         }
 
-        /* Bot panel simulation */
+        /* Bot panel */
         .bot-panel {
             width: 100%;
-            max-width: 700px;
-            background: var(--surface-2);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            max-width: 860px;
             border-radius: 16px;
-            padding: 24px;
-            text-align: left;
-            font-family: 'Inter', monospace;
-            font-size: 0.82rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .bot-panel img {
+            width: 100%;
+            display: block;
         }
 
         .bot-panel-header {
@@ -267,6 +268,31 @@
         .bot-line .status-open { color: var(--green); font-weight: 600; }
         .bot-line .status-closed { color: var(--text-secondary); }
         .bot-line .profit { color: var(--green); font-weight: 600; }
+
+        /* Magic text block */
+        .magic-block {
+            background: var(--surface-1);
+            padding: 72px 40px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .magic-block-inner {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .magic-block p {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: -0.3px;
+            color: var(--text);
+        }
+
+        .magic-block p span {
+            color: var(--green);
+        }
 
         /* Social proof bar */
         .proof-bar {
@@ -387,14 +413,128 @@
             flex-shrink: 0;
         }
 
-        /* Testimonials */
-        .testimonials-grid {
+        /* Risk section */
+        .risk-section {
+            background: var(--surface-1);
+            padding: 72px 40px;
+            max-width: 100%;
+        }
+
+        .risk-section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .risk-section .section-title {
+            margin-bottom: 12px;
+        }
+
+        .risk-section .section-subtitle {
+            margin-bottom: 48px;
+        }
+
+        .risk-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 24px;
         }
 
+        .risk-card {
+            background: var(--surface-2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .risk-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .risk-card-content h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .risk-card-content p {
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+
+        /* Exchanges bar */
+        .exchanges-bar {
+            background: var(--bg);
+            padding: 48px 40px;
+            max-width: 100%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .exchanges-bar-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+        }
+
+        .exchanges-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .exchange-chip {
+            background: var(--surface-2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            padding: 10px 22px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .exchange-chip:hover {
+            color: var(--green);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        /* Testimonials carousel */
+        .carousel-wrapper {
+            position: relative;
+        }
+
+        .carousel-track-outer {
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
         .testimonial-card {
+            flex: 0 0 calc((100% - 40px) / 3);
             background: var(--surface-2);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
@@ -413,6 +553,59 @@
             font-weight: 500;
             margin-top: 10px;
             text-align: center;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 36px;
+        }
+
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface-2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .carousel-dot.active {
+            background: var(--green);
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 85%;
+            }
         }
 
         /* Features */
@@ -608,7 +801,7 @@
         }
 
         .faq-item.open .faq-answer {
-            max-height: 300px;
+            max-height: 400px;
         }
 
         .faq-answer p {
@@ -718,7 +911,8 @@
             }
 
             .problem-grid,
-            .features-grid {
+            .features-grid,
+            .risk-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -756,12 +950,29 @@
 
             .footer-links {
                 flex-direction: column;
-                gap: 8px;
+                align-items: center;
+                gap: 12px;
             }
 
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .magic-block {
+                padding: 48px 20px;
+            }
+
+            .magic-block p {
+                font-size: 1.2rem;
+            }
+
+            .risk-section {
+                padding: 48px 20px;
+            }
+
+            .exchanges-bar {
+                padding: 40px 20px;
             }
         }
     </style>
@@ -776,63 +987,37 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge fade-in">Disponível para Gate · BingX · MEXC · Bitget</div>
-        <h1 class="fade-in">O bot que lucra na diferença enquanto você vive sua vida</h1>
-        <p class="hero-sub fade-in">O AuraBot identifica automaticamente a diferença de preço de um ativo entre corretoras e executa a compra e venda em milissegundos — antes que a janela feche. Sem precisar entender de cripto. Sem monitorar telas.</p>
-        <div class="hero-stat fade-in">▲ Mais de 1.200 operações executadas esta semana</div>
+        <div class="hero-badge fade-in">✦ Bot de Arbitragem de Criptomoedas, Automatizado</div>
+        <h1 class="fade-in">Nunca mais perca uma janela de arbitragem</h1>
+        <p class="hero-sub fade-in">O AuraBot monitora Gate, BingX, MEXC e Bitget simultaneamente e executa operações em milissegundos assim que detecta uma diferença lucrativa de preço. Você não precisa entender de trading, e nem estar acordado.</p>
+        <div class="hero-stat fade-in">● Mais de 1.200 operações executadas nos últimos 7 dias</div>
         <div class="hero-buttons fade-in">
-            <a href="#pricing" class="btn btn-primary btn-large">Começar agora — R$197/mês</a>
+            <a href="#pricing" class="btn btn-primary btn-large">Começar agora, R$197/mês</a>
             <a href="#mecanismo" class="btn btn-outline btn-large">Ver como funciona</a>
         </div>
 
         <div class="bot-panel fade-in">
-            <div class="bot-panel-header">
-                <span class="bot-panel-title">AuraBot — Painel de Operações</span>
-                <span class="bot-panel-status"><span class="pulse"></span> Operando</span>
-            </div>
-            <div class="bot-line">
-                <span class="pair">BTC/USDT</span>
-                <span>Gate → BingX</span>
-                <span class="status-open">● Aberta</span>
-                <span class="profit">+0.38%</span>
-            </div>
-            <div class="bot-line">
-                <span class="pair">ETH/USDT</span>
-                <span>MEXC → Bitget</span>
-                <span class="status-closed">● Fechada</span>
-                <span class="profit">+0.52%</span>
-            </div>
-            <div class="bot-line">
-                <span class="pair">SOL/USDT</span>
-                <span>Bitget → Gate</span>
-                <span class="status-open">● Aberta</span>
-                <span class="profit">+0.27%</span>
-            </div>
-            <div class="bot-line">
-                <span class="pair">XRP/USDT</span>
-                <span>BingX → MEXC</span>
-                <span class="status-closed">● Fechada</span>
-                <span class="profit">+0.41%</span>
-            </div>
-            <div class="bot-line">
-                <span class="pair">ARB/USDT</span>
-                <span>Gate → MEXC</span>
-                <span class="status-open">● Aberta</span>
-                <span class="profit">+0.19%</span>
-            </div>
+            <img src="images/dashboard-aura.png" alt="Painel de Operações do AuraBot">
         </div>
     </section>
+
+    <!-- Magic text block -->
+    <div class="magic-block">
+        <div class="magic-block-inner fade-in">
+            <p>Enquanto você trabalha, dorme ou viaja, o AuraBot <span>já identificou e executou dezenas de operações</span>. Sem você precisar abrir uma exchange. Sem acompanhar gráfico. Sem depender de previsão de mercado.</p>
+        </div>
+    </div>
 
     <!-- Social proof bar -->
     <div class="proof-bar">
         <div class="proof-bar-inner fade-in">
             <div class="proof-item">
-                <div class="proof-number">7</div>
-                <div class="proof-label">Clientes ativos</div>
-            </div>
-            <div class="proof-item">
                 <div class="proof-number">1.200+</div>
                 <div class="proof-label">Operações esta semana</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-number">&lt; 300ms</div>
+                <div class="proof-label">Tempo de execução</div>
             </div>
             <div class="proof-item">
                 <div class="proof-number">4</div>
@@ -840,30 +1025,30 @@
             </div>
             <div class="proof-item">
                 <div class="proof-number">24/7</div>
-                <div class="proof-label">Operando</div>
+                <div class="proof-label">Operando sem parar</div>
             </div>
         </div>
     </div>
 
     <!-- Problema -->
     <section id="problema">
-        <h2 class="section-title fade-in">Por que a maioria perde oportunidades no mercado cripto</h2>
-        <div class="section-subtitle fade-in"></div>
+        <h2 class="section-title fade-in">Por que a maioria perde dinheiro tentando arbitrar manualmente</h2>
+        <p class="section-subtitle fade-in">Não é falta de capital. É falta de velocidade e disponibilidade.</p>
         <div class="problem-grid">
             <div class="problem-card fade-in">
                 <div class="problem-icon">⚡</div>
-                <h3>O mercado não espera</h3>
-                <p>Janelas de arbitragem duram segundos. Operar manualmente significa chegar tarde.</p>
+                <h3>Janelas duram segundos</h3>
+                <p>A diferença de preço entre corretoras some antes de você conseguir executar. Operar manualmente significa sempre chegar tarde.</p>
             </div>
             <div class="problem-card fade-in">
                 <div class="problem-icon">🕐</div>
-                <h3>Monitorar 24h é impossível</h3>
-                <p>Você dorme, trabalha, vive. O mercado não para.</p>
+                <h3>Você não pode monitorar 24h</h3>
+                <p>As melhores oportunidades aparecem de madrugada, no fim de semana, enquanto você trabalha. O mercado não tem horário.</p>
             </div>
             <div class="problem-card fade-in">
                 <div class="problem-icon">🔒</div>
                 <h3>Complexidade afasta quem poderia lucrar</h3>
-                <p>A maioria desiste antes de entender o mecanismo.</p>
+                <p>Calcular taxas, spreads e timing em tempo real é impossível sem automação. A maioria desiste antes de entender o mecanismo.</p>
             </div>
         </div>
     </section>
@@ -876,152 +1061,210 @@
             <div class="mech-step fade-in">
                 <div class="mech-step-number">1</div>
                 <h3>Identificação</h3>
-                <p>O bot monitora o preço do mesmo ativo em múltiplas exchanges simultaneamente.</p>
+                <p>O bot monitora o preço do mesmo ativo em Gate, BingX, MEXC e Bitget ao mesmo tempo, em tempo real.</p>
             </div>
             <div class="mech-arrow fade-in">→</div>
             <div class="mech-step fade-in">
                 <div class="mech-step-number">2</div>
                 <h3>Execução</h3>
-                <p>Ao detectar diferença lucrativa, compra na exchange mais barata e vende na mais cara.</p>
+                <p>Ao detectar uma diferença lucrativa acima das taxas, compra na exchange mais barata e vende na mais cara, em milissegundos.</p>
             </div>
             <div class="mech-arrow fade-in">→</div>
             <div class="mech-step fade-in">
                 <div class="mech-step-number">3</div>
                 <h3>Resultado</h3>
-                <p>A diferença entre os preços, menos taxas, é o lucro. Tudo em milissegundos.</p>
+                <p>A diferença de preço, descontadas as taxas, vai direto para o seu saldo. Repetido centenas de vezes por semana.</p>
             </div>
         </div>
     </section>
 
-    <!-- Prova social (imagens) -->
-    <section id="depoimentos">
-        <h2 class="section-title fade-in">Operações reais, clientes reais</h2>
-        <p class="section-subtitle fade-in">Depoimentos enviados espontaneamente pelos nossos clientes</p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.39.44.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.41.27.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.41.58.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.42.21.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.42.48.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.43.06.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.43.39.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.43.49.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.44.14.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.44.46.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.45.10.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.45.23.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.45.38.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.45.48.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/Captura de Tela 2026-04-07 às 06.46.11.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
-            </div>
-            <div class="testimonial-card fade-in">
-                <img src="images/depoimento 04.png" alt="Depoimento de cliente" loading="lazy">
-                <div class="testimonial-label">Depoimento real · AuraBot</div>
+    <!-- Por que é diferente de especulação -->
+    <div class="risk-section">
+        <div class="risk-section-inner">
+            <h2 class="section-title fade-in">Uma das estratégias de menor risco no mercado cripto</h2>
+            <p class="section-subtitle fade-in">Você não está apostando na alta ou na queda de nenhum ativo. Está capturando ineficiências de mercado que existem independente da direção do preço.</p>
+            <div class="risk-grid">
+                <div class="risk-card fade-in">
+                    <div class="risk-card-icon">📊</div>
+                    <div class="risk-card-content">
+                        <h3>Sem dependência de direção de mercado</h3>
+                        <p>O lucro vem da diferença entre corretoras, não da valorização do ativo. Bitcoin subindo ou caindo não importa, a diferença de preço entre exchanges sempre existe.</p>
+                    </div>
+                </div>
+                <div class="risk-card fade-in">
+                    <div class="risk-card-icon">⚡</div>
+                    <div class="risk-card-content">
+                        <h3>Operações rápidas e fechadas</h3>
+                        <p>Cada operação abre e fecha em questão de segundos. Você não fica exposto ao mercado por horas ou dias esperando o preço mover.</p>
+                    </div>
+                </div>
+                <div class="risk-card fade-in">
+                    <div class="risk-card-icon">🧮</div>
+                    <div class="risk-card-content">
+                        <h3>Cálculo automático de taxas</h3>
+                        <p>O bot só executa quando o lucro supera todas as taxas envolvidas, comissões das exchanges e custos de transferência calculados automaticamente.</p>
+                    </div>
+                </div>
+                <div class="risk-card fade-in">
+                    <div class="risk-card-icon">🛡️</div>
+                    <div class="risk-card-content">
+                        <h3>Controle total do seu capital</h3>
+                        <p>Seu dinheiro fica nas suas próprias contas nas exchanges. O AuraBot opera via API, sem nunca ter acesso ao seu saldo diretamente.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Exchanges -->
+    <div class="exchanges-bar">
+        <div class="exchanges-bar-label fade-in">Exchanges monitoradas simultaneamente</div>
+        <div class="exchanges-row fade-in">
+            <div class="exchange-chip">Gate.io</div>
+            <div class="exchange-chip">BingX</div>
+            <div class="exchange-chip">MEXC</div>
+            <div class="exchange-chip">Bitget</div>
+        </div>
+    </div>
 
     <!-- Funcionalidades -->
     <section id="funcionalidades">
-        <h2 class="section-title fade-in">Tudo que você precisa, nada que você não precisa</h2>
-        <div class="section-subtitle fade-in"></div>
+        <h2 class="section-title fade-in">Construído para não perder nenhuma janela</h2>
+        <p class="section-subtitle fade-in">Cada funcionalidade existe para que o bot seja mais rápido e preciso do que qualquer operador humano.</p>
         <div class="features-grid">
             <div class="feature-card fade-in">
                 <div class="feature-icon">⚙️</div>
                 <h3>Operação autônoma 24/7</h3>
-                <p>Trabalha enquanto você dorme, viaja ou descansa.</p>
+                <p>Roda em servidor próprio, independente do seu dispositivo. Trabalha enquanto você dorme, viaja ou descansa.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">🔗</div>
                 <h3>4 exchanges simultâneas</h3>
-                <p>Gate, BingX, MEXC e Bitget cobertas ao mesmo tempo.</p>
+                <p>Gate, BingX, MEXC e Bitget monitoradas ao mesmo tempo. Mais pares, mais oportunidades identificadas por hora.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">🚀</div>
-                <h3>Configuração em minutos</h3>
-                <p>Conecte sua API e o bot já está operando.</p>
+                <h3>Setup em menos de 20 minutos</h3>
+                <p>Gere as chaves de API nas corretoras, cole no painel do AuraBot e o bot já começa a operar. Passo a passo guiado.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">🛡️</div>
                 <h3>Estratégia de baixo risco</h3>
-                <p>Arbitragem não depende de previsão de mercado.</p>
+                <p>Arbitragem não depende de previsão de mercado. O lucro vem da diferença matemática de preço entre corretoras.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">⚡</div>
-                <h3>Alta precisão de execução</h3>
-                <p>Velocidade de milissegundos para não perder a janela.</p>
+                <h3>Execução em menos de 300ms</h3>
+                <p>Velocidade de milissegundos para não perder a janela. A diferença entre lucrar e chegar tarde é o tempo de reação.</p>
             </div>
             <div class="feature-card fade-in">
                 <div class="feature-icon">👤</div>
-                <h3>Sem necessidade de conhecimento técnico</h3>
-                <p>Feito para quem quer resultado, não complexidade.</p>
+                <h3>Sem conhecimento técnico</h3>
+                <p>Feito para quem quer resultado, não para desenvolvedores. Você configura uma vez e o bot faz o resto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prova social (carrossel) -->
+    <section id="depoimentos">
+        <h2 class="section-title fade-in">Resultados reais, clientes reais</h2>
+        <p class="section-subtitle fade-in">Depoimentos enviados espontaneamente pelos nossos clientes</p>
+        <div class="carousel-wrapper fade-in">
+            <div class="carousel-track-outer">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.39.44.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.41.27.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.41.58.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.42.21.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.42.48.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.43.06.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.43.39.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.43.49.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.44.14.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.44.46.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.45.10.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.45.23.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.45.38.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.45.48.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/Captura de Tela 2026-04-07 às 06.46.11.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="images/depoimento 04.png" alt="Depoimento de cliente" loading="lazy">
+                        <div class="testimonial-label">Depoimento real · AuraBot</div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn" aria-label="Anterior">&#8592;</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+                <button class="carousel-btn" id="nextBtn" aria-label="Próximo">&#8594;</button>
             </div>
         </div>
     </section>
 
     <!-- Como começar -->
     <section id="como-comecar">
-        <h2 class="section-title fade-in" style="text-align:center;">Comece em 3 passos</h2>
-        <div class="section-subtitle fade-in" style="text-align:center; margin-left:auto; margin-right:auto;"></div>
+        <h2 class="section-title fade-in" style="text-align:center;">Do zero ao bot operando em 3 passos</h2>
+        <p class="section-subtitle fade-in" style="text-align:center; margin-left:auto; margin-right:auto;">Em menos de 20 minutos você já está com o AuraBot rodando nas suas exchanges.</p>
         <div class="steps-row">
             <div class="step-card fade-in">
                 <div class="step-number">1</div>
                 <h3>Assine o plano</h3>
-                <p>Acesso imediato após a confirmação do pagamento.</p>
+                <p>Acesso imediato ao painel após a confirmação do pagamento. Sem espera.</p>
             </div>
             <div class="step-card fade-in">
                 <div class="step-number">2</div>
                 <h3>Conecte suas exchanges</h3>
-                <p>Gere as chaves de API nas corretoras e cole no painel.</p>
+                <p>Gere as chaves de API nas corretoras e cole no painel do AuraBot. Guia passo a passo incluso.</p>
             </div>
             <div class="step-card fade-in">
                 <div class="step-number">3</div>
                 <h3>O bot opera por você</h3>
-                <p>A partir daí, é só acompanhar os resultados.</p>
+                <p>A partir daí é só acompanhar os resultados. O bot identifica e executa as operações automaticamente.</p>
             </div>
         </div>
     </section>
@@ -1029,19 +1272,21 @@
     <!-- Preço -->
     <section id="pricing">
         <h2 class="section-title fade-in">Um plano. Sem surpresas.</h2>
-        <div class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;"></div>
+        <p class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;">Acesso completo a tudo que o AuraBot oferece, sem taxas sobre lucros, sem cobranças extras.</p>
         <div class="pricing-card fade-in">
-            <div class="pricing-label">Mais popular</div>
+            <div class="pricing-label">Acesso completo</div>
             <div class="pricing-price">R$197</div>
             <div class="pricing-period">/mês</div>
             <ul class="pricing-features">
-                <li>Bot operando 24/7</li>
-                <li>4 exchanges conectadas</li>
-                <li>Suporte via Discord</li>
-                <li>Atualizações incluídas</li>
-                <li>Sem taxa sobre lucros</li>
+                <li>Bot operando 24/7 em servidor próprio</li>
+                <li>4 exchanges conectadas simultaneamente</li>
+                <li>Execução em menos de 300ms</li>
+                <li>Cálculo automático de taxas e spreads</li>
+                <li>Suporte via Discord com setup incluso</li>
+                <li>Atualizações incluídas sem custo adicional</li>
+                <li>Sem taxa sobre os seus lucros</li>
             </ul>
-            <div class="pricing-guarantee">7 dias de garantia. Se não gostar, devolvemos tudo.</div>
+            <div class="pricing-guarantee">Garantia de 7 dias. Se não gostar, devolvemos tudo, sem perguntas.</div>
             <a href="#pricing" class="btn btn-primary btn-large" style="width:100%;">Começar agora</a>
             <div class="pricing-note">Cancele quando quiser. Sem multa, sem burocracia.</div>
         </div>
@@ -1050,15 +1295,24 @@
     <!-- FAQ -->
     <section id="faq">
         <h2 class="section-title fade-in" style="text-align:center;">Perguntas frequentes</h2>
-        <div class="section-subtitle fade-in" style="text-align:center; margin-left:auto; margin-right:auto;"></div>
+        <p class="section-subtitle fade-in" style="text-align:center; margin-left:auto; margin-right:auto;">Tudo que você precisa saber antes de começar.</p>
         <div class="faq-list">
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    O que é arbitragem de criptomoedas?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Arbitragem consiste em comprar um ativo em uma exchange onde o preço está mais baixo e vender em outra onde está mais alto, lucrando com a diferença. O AuraBot monitora essa diferença em tempo real e executa as operações automaticamente em milissegundos, antes que a janela feche.</p>
+                </div>
+            </div>
             <div class="faq-item fade-in">
                 <button class="faq-question">
                     Preciso entender de criptomoedas para usar?
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Não. O bot opera de forma totalmente autônoma. Você só precisa ter conta nas exchanges e seguir o passo a passo de configuração.</p>
+                    <p>Não. O bot opera de forma totalmente autônoma. Você só precisa ter conta nas exchanges, gerar as chaves de API e seguir o passo a passo de configuração, que leva menos de 20 minutos. Nosso suporte via Discord acompanha você em cada etapa.</p>
                 </div>
             </div>
             <div class="faq-item fade-in">
@@ -1067,16 +1321,25 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, pois o lucro vem da diferença de preço entre corretoras, não da especulação sobre valorização de ativos.</p>
+                    <p>Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, pois o lucro vem da diferença de preço entre corretoras, não da especulação sobre valorização de ativos. Você não está apostando na alta ou queda de nenhuma moeda. Como em qualquer investimento, riscos existem, mas são consideravelmente menores do que day trade ou compra direcional.</p>
                 </div>
             </div>
             <div class="faq-item fade-in">
                 <button class="faq-question">
-                    Quanto tempo leva para configurar?
+                    O AuraBot executa as operações automaticamente?
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Em média 15 a 20 minutos. O processo é guiado e não exige conhecimento técnico.</p>
+                    <p>Sim. O AuraBot identifica e executa as operações de forma totalmente autônoma, sem precisar de nenhuma ação sua. Diferente de ferramentas de monitoramento que apenas alertam o usuário, o AuraBot age diretamente via API nas suas exchanges assim que detecta uma oportunidade lucrativa.</p>
+                </div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    Meu capital fica seguro? Vocês têm acesso ao meu dinheiro?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Não. Seu capital permanece nas suas próprias contas nas exchanges. O AuraBot opera via chaves de API com permissão apenas para executar ordens, sem permissão de saque. Você mantém controle total do seu dinheiro em todo momento.</p>
                 </div>
             </div>
             <div class="faq-item fade-in">
@@ -1085,7 +1348,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Sim. O bot roda em servidor próprio, 24 horas por dia, independente do seu dispositivo.</p>
+                    <p>Sim. O AuraBot roda em servidor próprio 24 horas por dia, 7 dias por semana, independente do seu dispositivo. Você pode fechar o computador, sair de viagem e o bot continua operando normalmente.</p>
                 </div>
             </div>
             <div class="faq-item fade-in">
@@ -1094,7 +1357,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Gate, BingX, MEXC e Bitget. Você pode conectar uma ou todas simultaneamente.</p>
+                    <p>Gate.io, BingX, MEXC e Bitget. Você pode conectar uma ou todas simultaneamente. Quanto mais exchanges conectadas, mais pares monitorados e mais oportunidades identificadas por hora.</p>
                 </div>
             </div>
             <div class="faq-item fade-in">
@@ -1103,7 +1366,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Sim, sem multa e sem burocracia. Você cancela quando quiser direto no painel.</p>
+                    <p>Sim, sem multa e sem burocracia. Você cancela quando quiser direto no painel. E se cancelar nos primeiros 7 dias, devolvemos o valor integral, sem perguntas.</p>
                 </div>
             </div>
         </div>
@@ -1112,10 +1375,10 @@
     <!-- CTA final -->
     <section class="cta-section">
         <h2 class="section-title fade-in">Seu bot já poderia estar operando agora</h2>
-        <p class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;">Cada hora sem o AuraBot é uma janela de arbitragem que passa sem você.</p>
+        <p class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;">Cada hora sem o AuraBot é uma janela de arbitragem que passa sem você. Configure em menos de 20 minutos.</p>
         <div class="fade-in">
-            <a href="#pricing" class="btn btn-primary btn-large">Começar agora — R$197/mês</a>
-            <div class="cta-note">Garantia de 7 dias · Cancele quando quiser</div>
+            <a href="#pricing" class="btn btn-primary btn-large">Começar agora, R$197/mês</a>
+            <div class="cta-note">Garantia de 7 dias · Cancele quando quiser · Sem taxas sobre lucros</div>
         </div>
     </section>
 
@@ -1123,7 +1386,7 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-logo"><span class="dot">●</span> AuraBot</div>
-            <div class="footer-copy">&copy; 2025 AuraBot. Todos os direitos reservados.</div>
+            <div class="footer-copy">&copy; 2026 AuraBot. Todos os direitos reservados.</div>
             <div class="footer-links">
                 <a href="#">Termos de uso</a>
                 <a href="#">Política de privacidade</a>
@@ -1149,6 +1412,70 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+        // Testimonials carousel
+        (function () {
+            const track = document.getElementById('testimonialsTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const cards = track.querySelectorAll('.testimonial-card');
+            const total = cards.length;
+
+            function getVisible() {
+                return window.innerWidth <= 768 ? 1 : 3;
+            }
+
+            let visible = getVisible();
+            let current = 0;
+            let pages = Math.ceil(total / visible);
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                pages = Math.ceil(total / visible);
+                for (let i = 0; i < pages; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot' + (i === current ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Página ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function goTo(page) {
+                current = Math.max(0, Math.min(page, pages - 1));
+                const cardWidth = cards[0].getBoundingClientRect().width;
+                const gap = 20;
+                const offset = current * visible * (cardWidth + gap);
+                track.style.transform = 'translateX(-' + offset + 'px)';
+                dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === current);
+                });
+                prevBtn.style.opacity = current === 0 ? '0.3' : '1';
+                nextBtn.style.opacity = current === pages - 1 ? '0.3' : '1';
+            }
+
+            prevBtn.addEventListener('click', () => goTo(current - 1));
+            nextBtn.addEventListener('click', () => goTo(current + 1));
+
+            // Touch/swipe support
+            let startX = 0;
+            track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+            track.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+            });
+
+            window.addEventListener('resize', () => {
+                visible = getVisible();
+                current = 0;
+                buildDots();
+                goTo(0);
+            });
+
+            buildDots();
+            goTo(0);
+        })();
+
         // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1159,5 +1486,6 @@
             });
         });
     </script>
+
 </body>
 </html>
