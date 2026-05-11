@@ -976,6 +976,13 @@
             }
         }
     </style>
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
 </head>
 <body>
 
@@ -1102,7 +1109,7 @@
     <!-- CTA pós-depoimentos -->
     <section style="text-align: center; padding-top: 40px; padding-bottom: 80px;">
         <div class="hero-buttons fade-in" style="margin-bottom: 14px;">
-            <a href="#pricing" class="btn btn-primary btn-large">Testar por 7 dias — R$49,90</a>
+            <a href="#" data-checkout class="btn btn-primary btn-large">Testar por 7 dias — R$49,90</a>
             <a href="#mecanismo" class="btn btn-outline btn-large">Ver como funciona</a>
         </div>
         <div class="fade-in" style="color: var(--text-secondary); font-size: 0.85rem;">Após o teste, mensalidade de R$197/mês. Cancele quando quiser.</div>
@@ -1274,7 +1281,7 @@
                 <li>Mentoria comigo após o setup</li>
             </ul>
             <div class="pricing-guarantee">Após os 7 dias, mensalidade de R$197 pra continuar usando o bot. Cancele quando quiser, sem multa.</div>
-            <a href="#pricing" class="btn btn-primary btn-large" style="width:100%;">Começar agora por R$49,90</a>
+            <a href="#" data-checkout class="btn btn-primary btn-large" style="width:100%;">Começar agora por R$49,90</a>
             <div class="pricing-note">Acesso liberado em até 5 minutos após o pagamento.</div>
         </div>
     </section>
@@ -1391,7 +1398,7 @@
         <h2 class="section-title fade-in">Seu bot já poderia estar operando agora</h2>
         <p class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;">Cada hora sem o AURA é uma janela de arbitragem que passa sem você. Configure em menos de 20 minutos.</p>
         <div class="fade-in">
-            <a href="#pricing" class="btn btn-primary btn-large">Começar agora por R$49,90</a>
+            <a href="#" data-checkout class="btn btn-primary btn-large">Começar agora por R$49,90</a>
             <div class="cta-note">7 dias de acesso completo · Após o teste, R$197/mês · Cancele quando quiser</div>
         </div>
     </section>
@@ -1409,6 +1416,14 @@
     </footer>
 
     <script>
+        // Checkout URL — atualize aqui pra mudar em todos os CTAs de compra
+        const CHECKOUT_URL = 'https://pay.kirvano.com/1bac6fe8-7b87-4c81-a80e-fef8de4db39d';
+        document.querySelectorAll('a[data-checkout]').forEach(el => {
+            el.href = CHECKOUT_URL;
+            el.target = '_blank';
+            el.rel = 'noopener noreferrer';
+        });
+
         // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
