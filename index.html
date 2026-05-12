@@ -1696,6 +1696,8 @@
         (function () {
             const track = document.querySelector('.testimonials-track');
             if (!track) return;
+            if (track.dataset.cloned) return;
+            track.dataset.cloned = 'true';
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             Array.from(track.children).forEach(child => {
                 const clone = child.cloneNode(true);
@@ -1703,75 +1705,6 @@
                 track.appendChild(clone);
             });
         })();
-
-        // DEBUG TEMPORÁRIO v3 — investigando por que .fade-in não revela o carousel-wrapper
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            const wrapper = document.querySelector('.carousel-wrapper');
-            const outer = document.querySelector('.carousel-track-outer');
-            const track = document.querySelector('.testimonials-track');
-            const firstCard = track && track.querySelector('.testimonial-card');
-            const allFadeIns = document.querySelectorAll('.fade-in');
-            const inObserved = Array.from(allFadeIns).includes(wrapper);
-
-            if (wrapper && outer && track && firstCard) {
-                const debugBox = document.createElement('div');
-                debugBox.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#000;color:#0f0;font:10px monospace;padding:8px;z-index:99999;white-space:pre-wrap;border-bottom:1px solid #0f0;max-height:60vh;overflow:auto;';
-                document.body.appendChild(debugBox);
-
-                debugBox.textContent = '[REVEAL CHECK]\n' +
-                    '  Total .fade-in: ' + allFadeIns.length + '\n' +
-                    '  Wrapper exists: ' + !!wrapper + '\n' +
-                    '  Wrapper has .fade-in class: ' + wrapper.classList.contains('fade-in') + '\n' +
-                    '  Wrapper in querySelectorAll: ' + inObserved + '\n\n';
-
-                const mo = new MutationObserver((mutations) => {
-                    mutations.forEach(m => {
-                        if (m.attributeName === 'class') {
-                            debugBox.textContent += '[CLASS CHANGE @' + (Date.now() % 100000) + '] ' + wrapper.className + '\n';
-                        }
-                    });
-                });
-                mo.observe(wrapper, { attributes: true, attributeFilter: ['class'] });
-
-                const log = (label) => {
-                    const csW = getComputedStyle(wrapper);
-                    const csO = getComputedStyle(outer);
-                    const csT = getComputedStyle(track);
-                    const csC = getComputedStyle(firstCard);
-                    const rectW = wrapper.getBoundingClientRect();
-                    const rectO = outer.getBoundingClientRect();
-                    const rectC = firstCard.getBoundingClientRect();
-
-                    debugBox.textContent += '[' + label + ']\n' +
-                        ' WRAPPER:\n' +
-                        '  opacity: ' + csW.opacity + '\n' +
-                        '  visibility: ' + csW.visibility + '\n' +
-                        '  display: ' + csW.display + '\n' +
-                        '  height: ' + csW.height + '\n' +
-                        '  rect: ' + Math.round(rectW.top) + ',' + Math.round(rectW.left) + ' ' + Math.round(rectW.width) + 'x' + Math.round(rectW.height) + '\n' +
-                        '  classes: ' + wrapper.className + '\n' +
-                        ' OUTER:\n' +
-                        '  opacity: ' + csO.opacity + '\n' +
-                        '  overflow: ' + csO.overflow + '\n' +
-                        '  height: ' + csO.height + '\n' +
-                        '  mask: ' + (csO.maskImage || csO.webkitMaskImage || 'none') + '\n' +
-                        '  rect: ' + Math.round(rectO.top) + ',' + Math.round(rectO.left) + ' ' + Math.round(rectO.width) + 'x' + Math.round(rectO.height) + '\n' +
-                        ' TRACK:\n' +
-                        '  opacity: ' + csT.opacity + '\n' +
-                        '  width: ' + csT.width + '\n' +
-                        '  height: ' + csT.height + '\n' +
-                        '  transform: ' + csT.transform + '\n' +
-                        ' FIRST CARD:\n' +
-                        '  opacity: ' + csC.opacity + '\n' +
-                        '  visibility: ' + csC.visibility + '\n' +
-                        '  rect: ' + Math.round(rectC.top) + ',' + Math.round(rectC.left) + ' ' + Math.round(rectC.width) + 'x' + Math.round(rectC.height) + '\n\n';
-                };
-
-                log('T+0s');
-                setTimeout(() => log('T+3s'), 3000);
-                setTimeout(() => log('T+10s'), 10000);
-            }
-        }
 
         // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(btn => {
