@@ -42,7 +42,6 @@ landingpageauraads/
 │       ├── animations.js       # IntersectionObserver para .fade-in (com stagger por irmãos), above-fold imediato
 │       ├── navbar.js           # Aplica .scrolled na navbar via scroll listener (glassmorphism)
 │       ├── faq.js              # Acordeão exclusivo (abre um, fecha os outros) com grid-row transition
-│       └── variant.js          # Toggle A/B do hero (tagline-led vs outcome-led), persiste em localStorage
 ├── images/
 │   ├── testimonials/           # testimonial-01..16.{png,webp,avif} — prints de clientes
 │   └── product/                # mockupoficial.{png,webp,avif} — mockup do hero (LCP)
@@ -90,7 +89,7 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
 | ID / classe         | Descrição                                                          |
 |---------------------|--------------------------------------------------------------------|
 | `.navbar`           | Navbar fixa, glassmorphism ao rolar (classe `.scrolled`)           |
-| `.hero`             | Headline (variant A/B) + mockup do scanner + card de notificação   |
+| `.hero`             | Headline + card de notificação + CTA                               |
 | `.tagline-block`    | Manifesto centralizado: "O Método é nosso. A Aura executa…"        |
 | `.proof-bar`        | KPIs com counters animados (`data-target`, `data-suffix`, etc.)    |
 | `#problema`         | Por que arbitrar manualmente é inviável (grid 3 cards)             |
@@ -123,7 +122,6 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
   - Sem libs externas. Sem npm. Só APIs nativas do browser.
 - **Animações:** `.fade-in` + IntersectionObserver em `animations.js`, com stagger automático por ordem entre irmãos. Above-fold revela imediatamente; resto observa scroll com fallback de 3s. Não criar mecanismos paralelos. Respeitar `prefers-reduced-motion`.
 - **Botões:** classe base `.btn`, combinando com `.btn-primary` (verde, gradiente, glow), `.btn-outline` (transparente, borda) e/ou `.btn-large`/`.btn-block`. CTAs de checkout usam `data-checkout` — o JS injeta a URL central e `target="_blank"`.
-- **Variant toggle (A/B) do hero:** o `<h1>` e `<p>` do hero têm `data-variant-a`/`data-variant-b` com a copy de cada versão. `variant.js` aplica a escolha e persiste em `localStorage["aura.hero.variant"]`. Para fixar uma das versões antes do deploy, remova o toggle e os atributos `data-variant-*`.
 - **Responsividade:** mobile-first. Breakpoint geral `@media (max-width: 768px)`.
 - **Acessibilidade:**
   - `alt` descritivo em toda imagem.

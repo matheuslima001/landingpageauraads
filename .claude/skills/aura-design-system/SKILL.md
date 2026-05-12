@@ -75,7 +75,7 @@ Catálogo dos componentes que já existem — referencie e estenda, não recrie:
 
 - `.btn` + variantes (`.btn-primary` verde glow, `.btn-outline` ghost, `.btn-large`, `.btn-block`).
 - `.navbar` — fixa, glassmorphism ao scroll (classe `.scrolled`).
-- `.hero` — com variant toggle A/B controlado por `assets/js/variant.js` (atributos `data-variant-a` / `data-variant-b` no `<h1>` e `<p>`).
+- `.hero` — headline + card flow-diagram + CTA primário, sem toggle de variação.
 - `.flow-diagram` — fluxo Bitget → Aura → OurBit no hero. Ver [`mechanism-diagrams`](../mechanism-diagrams/SKILL.md).
 - `.tagline-block` — manifesto centralizado.
 - `.proof-bar` — KPIs com counters animados (`data-target`, `data-suffix`, `data-format`).

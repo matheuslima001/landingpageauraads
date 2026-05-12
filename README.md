@@ -35,7 +35,6 @@ landingpageauraads/
 │       ├── animations.js   # IntersectionObserver para .fade-in, marquee, contadores
 │       ├── navbar.js       # Efeito glassmorphism ao rolar
 │       ├── faq.js          # Acordeão com aria-expanded/aria-controls
-│       └── variant.js      # Toggle A/B do hero, persiste em localStorage
 ├── images/
 │   ├── product/            # mockupoficial.{png,webp,avif} — mockup do hero (LCP)
 │   └── testimonials/       # testimonial-01..16.{png,webp,avif} — prints de clientes

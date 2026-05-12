@@ -117,28 +117,17 @@
         <div class="hero-grid"></div>
       </div>
 
-      <!-- Toggle pra comparar 2 variações de hero. Persiste em localStorage. -->
-      <div class="hero-variant-toggle" role="group" aria-label="Comparar variações da headline">
-        <span class="hero-variant-label" aria-hidden="true">VARIAÇÃO</span>
-        <button type="button" data-variant="a" aria-pressed="true">A</button>
-        <button type="button" data-variant="b" aria-pressed="false">B</button>
-      </div>
-
       <div class="container">
         <div class="hero-inner">
           <div>
             <div class="hero-eyebrow-row fade-in">
               <span class="eyebrow">Método Dólar Automático</span>
             </div>
-            <h1 id="hero-title" class="fade-in"
-                data-variant-a='O Método é nosso. <span class="text-green">A Aura executa.</span>'
-                data-variant-b='Acumule dólar <span class="text-green">no piloto automático.</span>'>
-              O Método é nosso. <span class="text-green">A Aura executa.</span>
+            <h1 id="hero-title" class="fade-in">
+              Acumule dólar <span class="text-green">no piloto automático.</span>
             </h1>
-            <p class="hero-sub fade-in"
-               data-variant-a="A Aura compra dólar virtual barato em uma corretora e revende mais caro em outra, sozinha, em 5 corretoras. Teste 7 dias por R$49,90."
-               data-variant-b="A Aura compra dólar virtual barato em uma corretora e revende mais caro em outra, dezenas de vezes por dia. Teste 7 dias por R$49,90.">
-              A Aura compra dólar virtual barato em uma corretora e revende mais caro em outra, sozinha, em 5 corretoras. Teste 7 dias por R$49,90.
+            <p class="hero-sub fade-in">
+              A Aura compra dólar virtual barato em uma corretora e revende mais caro em outra, dezenas de vezes por dia. Teste 7 dias por R$49,90.
             </p>
             <div class="hero-buttons fade-in">
               <a href="#" data-checkout class="btn btn-primary btn-large">
@@ -337,114 +326,6 @@
             </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== Exemplo prático ===== -->
-    <section id="exemplo-pratico" class="example-section" aria-labelledby="exemplo-pratico-title">
-      <div class="container">
-        <header class="section-header example-header">
-          <div class="eyebrow fade-in">Como acontece na prática</div>
-          <h2 id="exemplo-pratico-title" class="section-title fade-in">Um exemplo, do começo ao fim</h2>
-          <p class="section-subtitle fade-in">Imagine <strong>10 mil dólares virtuais</strong> (USDT) comprados em uma corretora e revendidos em outra, com uma diferença de <strong>0,30%</strong> entre elas. Veja o que a Aura faz, passo a passo.</p>
-        </header>
-
-        <ol class="example-timeline" aria-label="Linha do tempo de uma operação">
-          <li class="example-step fade-in">
-            <div class="example-step-rail" aria-hidden="true">
-              <span class="example-step-num mono">01</span>
-            </div>
-            <div class="example-step-body">
-              <div class="example-step-kicker">Encontra a diferença</div>
-              <h3 class="example-step-title">A Aura compara as 5 corretoras a cada segundo</h3>
-              <p class="example-step-desc">No mesmo instante, o mesmo dólar virtual custa preços ligeiramente diferentes em cada corretora. A Aura vê isso antes de qualquer humano conseguir.</p>
-              <dl class="example-ledger" aria-label="Preços observados">
-                <div class="example-ledger-row">
-                  <dt>Bitget</dt>
-                  <dd><span class="mono">R$ 4,9900</span> <span class="example-ledger-unit">por dólar virtual</span></dd>
-                </div>
-                <div class="example-ledger-row">
-                  <dt>OurBit</dt>
-                  <dd><span class="mono">R$ 5,0050</span> <span class="example-ledger-unit">por dólar virtual</span></dd>
-                </div>
-                <div class="example-ledger-row example-ledger-row--highlight">
-                  <dt>Diferença</dt>
-                  <dd><span class="mono text-green" aria-label="quinze milésimos de real por unidade">R$ 0,0150</span> <span class="example-ledger-unit">por unidade</span></dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-
-          <li class="example-step fade-in">
-            <div class="example-step-rail" aria-hidden="true">
-              <span class="example-step-num mono">02</span>
-            </div>
-            <div class="example-step-body">
-              <div class="example-step-kicker">Calcula se vale a pena</div>
-              <h3 class="example-step-title">Tira as taxas antes de operar</h3>
-              <p class="example-step-desc">As corretoras cobram uma pequena taxa em cada ponta. A Aura só dispara a operação se, depois de tirar as taxas, ainda sobra dinheiro.</p>
-              <dl class="example-ledger" aria-label="Cálculo do lucro líquido por unidade">
-                <div class="example-ledger-row">
-                  <dt>Diferença bruta</dt>
-                  <dd><span class="mono">R$ 0,0150</span></dd>
-                </div>
-                <div class="example-ledger-row">
-                  <dt>Taxa das corretoras</dt>
-                  <dd><span class="mono">− R$ 0,0050</span></dd>
-                </div>
-                <div class="example-ledger-row example-ledger-row--highlight">
-                  <dt>Sobra por unidade</dt>
-                  <dd><span class="mono text-green">R$ 0,0100</span></dd>
-                </div>
-              </dl>
-              <p class="example-step-tag"><span class="example-status-dot" aria-hidden="true"></span> Vale operar.</p>
-            </div>
-          </li>
-
-          <li class="example-step fade-in">
-            <div class="example-step-rail" aria-hidden="true">
-              <span class="example-step-num mono">03</span>
-            </div>
-            <div class="example-step-body">
-              <div class="example-step-kicker">Executa em segundos</div>
-              <h3 class="example-step-title">Compra de um lado, vende do outro, ao mesmo tempo</h3>
-              <p class="example-step-desc">A Aura abre as duas pontas em paralelo. Você não fica exposto: a operação inteira começa e termina em frações de segundo.</p>
-              <dl class="example-ledger" aria-label="Ordens enviadas">
-                <div class="example-ledger-row">
-                  <dt>Compra na Bitget</dt>
-                  <dd><span class="mono">10.000 unidades</span></dd>
-                </div>
-                <div class="example-ledger-row">
-                  <dt>Venda na OurBit</dt>
-                  <dd><span class="mono">10.000 unidades</span></dd>
-                </div>
-                <div class="example-ledger-row example-ledger-row--highlight">
-                  <dt>Tempo total</dt>
-                  <dd><span class="mono">0,2 segundos</span></dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-
-          <li class="example-step fade-in">
-            <div class="example-step-rail" aria-hidden="true">
-              <span class="example-step-num mono">04</span>
-            </div>
-            <div class="example-step-body">
-              <div class="example-step-kicker">Acumula na sua conta</div>
-              <h3 class="example-step-title">O saldo cresce, e a Aura procura a próxima</h3>
-              <p class="example-step-desc">A diferença que sobrou, depois das taxas, fica em dólar virtual na sua exchange. A Aura volta a varrer o mercado em busca da próxima janela.</p>
-              <dl class="example-ledger example-ledger--final" aria-label="Resultado da operação">
-                <div class="example-ledger-row">
-                  <dt>10.000 unidades × R$ 0,0100</dt>
-                  <dd><span class="mono text-green example-final-amount" aria-label="cem reais a mais em dólar virtual">+ R$ 100,00</span></dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-        </ol>
-
-        <p class="example-disclaimer fade-in">Exemplo ilustrativo. Diferenças reais costumam ser menores e variam minuto a minuto. A Aura só opera quando o cálculo fecha; há dias com várias operações e dias sem nenhuma.</p>
       </div>
     </section>
 
