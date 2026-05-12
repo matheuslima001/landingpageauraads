@@ -1704,17 +1704,34 @@
             });
         })();
 
-        // DEBUG TEMPORÁRIO v2 (reinstalado) — pós width/height fix
+        // DEBUG TEMPORÁRIO v3 — investigando por que .fade-in não revela o carousel-wrapper
         if (window.matchMedia('(max-width: 768px)').matches) {
             const wrapper = document.querySelector('.carousel-wrapper');
             const outer = document.querySelector('.carousel-track-outer');
             const track = document.querySelector('.testimonials-track');
             const firstCard = track && track.querySelector('.testimonial-card');
+            const allFadeIns = document.querySelectorAll('.fade-in');
+            const inObserved = Array.from(allFadeIns).includes(wrapper);
 
             if (wrapper && outer && track && firstCard) {
                 const debugBox = document.createElement('div');
                 debugBox.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#000;color:#0f0;font:10px monospace;padding:8px;z-index:99999;white-space:pre-wrap;border-bottom:1px solid #0f0;max-height:60vh;overflow:auto;';
                 document.body.appendChild(debugBox);
+
+                debugBox.textContent = '[REVEAL CHECK]\n' +
+                    '  Total .fade-in: ' + allFadeIns.length + '\n' +
+                    '  Wrapper exists: ' + !!wrapper + '\n' +
+                    '  Wrapper has .fade-in class: ' + wrapper.classList.contains('fade-in') + '\n' +
+                    '  Wrapper in querySelectorAll: ' + inObserved + '\n\n';
+
+                const mo = new MutationObserver((mutations) => {
+                    mutations.forEach(m => {
+                        if (m.attributeName === 'class') {
+                            debugBox.textContent += '[CLASS CHANGE @' + (Date.now() % 100000) + '] ' + wrapper.className + '\n';
+                        }
+                    });
+                });
+                mo.observe(wrapper, { attributes: true, attributeFilter: ['class'] });
 
                 const log = (label) => {
                     const csW = getComputedStyle(wrapper);
