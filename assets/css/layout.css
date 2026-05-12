@@ -1,67 +1,6 @@
 /* =========================================================================
-   layout.css — system bar, navbar, container, section shell, footer
+   layout.css — navbar, container, section shell, footer
    ========================================================================= */
-
-/* ===== System status bar (topo) ===== */
-.system-bar {
-  position: relative;
-  z-index: 60;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-  color: var(--text-secondary);
-}
-
-.system-bar-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 9px var(--gutter);
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.system-bar-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.system-bar-item::after {
-  content: '';
-  width: 1px;
-  height: 10px;
-  background: var(--line-strong);
-  margin-left: 24px;
-}
-
-.system-bar-item:last-child::after { display: none; }
-
-.system-bar-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--green);
-}
-
-.system-bar-status::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 6px var(--green);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.35; }
-}
 
 /* ===== Navbar ===== */
 .navbar {
@@ -335,13 +274,6 @@
 }
 
 @media (max-width: 768px) {
-  .system-bar-inner {
-    gap: 14px;
-    padding: 8px 16px;
-    font-size: 0.68rem;
-  }
-  .system-bar-item:nth-child(n+3) { display: none; }
-  .system-bar-item::after { margin-left: 14px; }
 
   .navbar-inner {
     padding: 10px 14px;

@@ -27,7 +27,7 @@ landingpageauraads/
 ├── assets/
 │   ├── css/
 │   │   ├── base.css        # Reset, tokens (:root), tipografia, utilitários (.fade-in)
-│   │   ├── layout.css      # Navbar, system-bar, footer, container, disclaimer
+│   │   ├── layout.css      # Navbar, footer, container, disclaimer
 │   │   ├── components.css  # .btn, cards base, FAQ, chips, window-chrome
 │   │   └── sections.css    # Hero, tagline, mecanismo, comparativo, etc.
 │   └── js/

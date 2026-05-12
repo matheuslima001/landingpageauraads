@@ -25,7 +25,7 @@ R$49,90 é **pagamento único** por 7 dias de acesso. NÃO existe plano mensal, 
 
 ## Exchanges (5, não 4)
 
-Lista oficial e completa: **Gate.io, BingX, MEXC, Bitget, OurBit**. Sempre nessa ordem em chips e listas. Atualizar TODOS os pontos quando algo mudar: system-bar, hero sub, mecanismo, FAQ, JSON-LD, meta tags, chips, log do flow-diagram.
+Lista oficial e completa: **Gate.io, BingX, MEXC, Bitget, OurBit**. Sempre nessa ordem em chips e listas. Atualizar TODOS os pontos quando algo mudar: hero sub, mecanismo, FAQ, JSON-LD, meta tags, chips, log do flow-diagram.
 
 ## Compliance — palavras banidas no body visível
 
@@ -74,8 +74,7 @@ Não introduzir tipografia nova. Não usar Inter pra dado numérico — sempre M
 Catálogo dos componentes que já existem — referencie e estenda, não recrie:
 
 - `.btn` + variantes (`.btn-primary` verde glow, `.btn-outline` ghost, `.btn-large`, `.btn-block`).
-- `.system-bar` — barra topo "● MÉTODO ATIVO · 5 EXCHANGES CONECTADAS · …" com chips separadas por `·`.
-- `.navbar` — abaixo da system-bar, glassmorphism ao scroll (classe `.scrolled`).
+- `.navbar` — fixa, glassmorphism ao scroll (classe `.scrolled`).
 - `.hero` — com variant toggle A/B controlado por `assets/js/variant.js` (atributos `data-variant-a` / `data-variant-b` no `<h1>` e `<p>`).
 - `.flow-diagram` — fluxo Bitget → Aura → OurBit no hero. Ver [`mechanism-diagrams`](../mechanism-diagrams/SKILL.md).
 - `.tagline-block` — manifesto centralizado.
@@ -87,7 +86,7 @@ Catálogo dos componentes que já existem — referencie e estenda, não recrie:
 ## CSS — responsabilidades
 
 - `base.css` — tokens, reset, tipografia, utilitários (`.fade-in`, `.mono`, `.text-green`).
-- `layout.css` — estrutura compartilhada (navbar, system-bar, footer, container, disclaimer).
+- `layout.css` — estrutura compartilhada (navbar, footer, container, disclaimer).
 - `components.css` — componentes reutilizáveis (`.btn`, cards, chips, acordeão, window-chrome).
 - `sections.css` — específico de seção (hero, tagline, mech, comparativo, etc.).
 

@@ -34,7 +34,7 @@ landingpageauraads/
 ├── assets/
 │   ├── css/
 │   │   ├── base.css            # Reset, tokens (:root), tipografia, utilitários, .fade-in
-│   │   ├── layout.css          # Navbar, system-bar, footer, container, disclaimer CVM
+│   │   ├── layout.css          # Navbar, footer, container, disclaimer CVM
 │   │   ├── components.css      # .btn (+variantes), cards, chips, acordeão, window-chrome
 │   │   └── sections.css        # Estilos por seção (hero, tagline, mech, comparativo, etc.)
 │   └── js/
@@ -89,8 +89,7 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
 
 | ID / classe         | Descrição                                                          |
 |---------------------|--------------------------------------------------------------------|
-| `.system-bar`       | Barra superior fixa — "MÉTODO ATIVO · 5 EXCHANGES CONECTADAS · …"  |
-| `.navbar`           | Navbar abaixo da system-bar, glassmorphism ao rolar                |
+| `.navbar`           | Navbar fixa, glassmorphism ao rolar (classe `.scrolled`)           |
 | `.hero`             | Headline (variant A/B) + mockup do scanner + card de notificação   |
 | `.tagline-block`    | Manifesto centralizado: "O Método é nosso. A Aura executa…"        |
 | `.proof-bar`        | KPIs com counters animados (`data-target`, `data-suffix`, etc.)    |
@@ -112,7 +111,7 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
 - **HTML:** semântico. `index.html` não deve conter `<style>` nem `<script>` inline (exceto `<noscript>` para fallback do `.fade-in` e o `<script>` externo de UTM tracking no `<head>`).
 - **CSS — responsabilidades:**
   - Tokens, reset, tipografia, utilitários (`.fade-in`) → `base.css`.
-  - Estrutura compartilhada (navbar, system-bar, footer, section wrapper, disclaimer) → `layout.css`.
+  - Estrutura compartilhada (navbar, footer, section wrapper, disclaimer) → `layout.css`.
   - Componentes reutilizáveis (`.btn`, cards, chips, acordeão, window-chrome) → `components.css`.
   - Tudo específico de uma seção (`.hero-grid`, `.tagline-block`, `.mech-step`, comparativo, …) → `sections.css`.
   - Não cruzar: estilo de componente reutilizável nunca vai em `sections.css`, e vice-versa.
