@@ -139,10 +139,15 @@
 }
 
 /* ====================================================================
-   Flow diagram — visualização editorial estilo Stripe/Mercury.
-   Composição: status bar > stage (eyebrow + row + caption) > log strip.
-   Verde restrito a 3 pontos: status "AO VIVO", engine dot, spread value.
+   Flow diagram — exemplo ilustrativo do mecanismo (Bitget → Aura → OurBit).
+   Composição: window chrome > stage (eyebrow + row + contexto + caption).
+   Verde restrito a 3 pontos: engine dot, target price tint, lucro final.
    ==================================================================== */
+
+.flow-diagram .window-chrome-bar {
+  position: relative;
+  z-index: 1;
+}
 
 .flow-diagram {
   width: 100%;
@@ -262,6 +267,22 @@
   white-space: nowrap;
 }
 
+/* Target price ganha tint verde sutil — telegrafa o lado do ganho. */
+.flow-node-target .flow-node-price {
+  color: #aaffcc;
+}
+
+/* Linha contextual abaixo do row: "mesma moeda · dólar virtual" */
+.flow-context {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+  text-align: center;
+  margin: 18px 0 0;
+}
+
 /* Micro-tick animation no preço (a última casa "respira" via JS) */
 .flow-node-price[data-flow-tick] {
   transition: color 200ms var(--ease-out);
@@ -273,7 +294,7 @@
 .flow-link {
   position: relative;
   align-self: center;
-  width: 56px;
+  width: 72px;
   height: 14px;
   display: flex;
   align-items: center;
@@ -282,14 +303,14 @@
 .flow-link-line {
   position: absolute;
   left: 0;
-  right: 8px;
+  right: 10px;
   top: 50%;
   height: 1px;
   background:
     linear-gradient(90deg,
-      rgba(255,255,255,0.08) 0%,
-      rgba(255,255,255,0.18) 50%,
-      rgba(255,255,255,0.08) 100%);
+      rgba(255,255,255,0.14) 0%,
+      rgba(255,255,255,0.34) 50%,
+      rgba(255,255,255,0.14) 100%);
   transform: translateY(-50%);
   overflow: hidden;
 }
@@ -313,10 +334,10 @@
   position: absolute;
   right: 0;
   top: 50%;
-  width: 6px;
-  height: 6px;
-  border-top: 1px solid rgba(255,255,255,0.45);
-  border-right: 1px solid rgba(255,255,255,0.45);
+  width: 7px;
+  height: 7px;
+  border-top: 1.5px solid rgba(255,255,255,0.65);
+  border-right: 1.5px solid rgba(255,255,255,0.65);
   transform: translateY(-50%) rotate(45deg);
 }
 
