@@ -2,11 +2,10 @@
 // main.js — entrypoint. Importa e inicializa cada módulo.
 // =========================================================================
 
-import { init as initNavbar }    from './navbar.js';
-import { init as initAnims }     from './animations.js';
-import { init as initFaq }       from './faq.js';
-import { init as initVariant }   from './variant.js';
-import { init as initFlowTicker } from './flow-ticker.js';
+import { init as initNavbar }  from './navbar.js';
+import { init as initAnims }   from './animations.js';
+import { init as initFaq }     from './faq.js';
+import { init as initVariant } from './variant.js';
 
 // URL central do checkout. Trocar aqui propaga em todos os data-checkout.
 const CHECKOUT_URL = 'https://pay.aurabot.com.br/teste-7-dias';
@@ -26,7 +25,6 @@ function boot() {
   initNavbar();
   initAnims();
   initFaq();
-  initFlowTicker();
 }
 
 if (document.readyState === 'loading') {

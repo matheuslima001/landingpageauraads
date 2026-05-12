@@ -178,62 +178,6 @@
   -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, #000 35%, transparent 80%);
 }
 
-/* ---- Status bar (header) ----------------------------------- */
-.flow-header {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255,255,255,0.015);
-}
-
-.flow-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  justify-self: start;
-}
-
-.flow-status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 6px var(--green), 0 0 0 3px rgba(0,255,136,0.12);
-  animation: flow-live-pulse 2s var(--ease) infinite;
-}
-
-.flow-status-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--green);
-  text-transform: uppercase;
-}
-
-.flow-header-meta {
-  justify-self: center;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.flow-header-id {
-  justify-self: end;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--text-faint);
-  text-transform: uppercase;
-}
-
 /* ---- Stage --------------------------------------------------- */
 .flow-stage {
   position: relative;
@@ -482,65 +426,15 @@
   justify-self: center;
 }
 
-/* ---- Log strip (histórico) ---------------------------------- */
-.flow-log {
-  position: relative;
-  z-index: 1;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* ---- Caption single (centralizada quando há só "Lucro") ---- */
+.flow-caption-single {
+  justify-content: center;
   border-top: 1px solid var(--line);
-  background: rgba(0,0,0,0.18);
+  padding-top: 22px;
 }
 
-.flow-log-row {
-  display: grid;
-  grid-template-columns: 78px 1fr 1fr auto;
-  align-items: center;
-  gap: 14px;
-  padding: 9px 18px;
-  font-size: 11px;
-  border-bottom: 1px solid var(--line);
-  color: var(--text-faint);
-}
-
-.flow-log-row:last-child { border-bottom: none; }
-
-/* Fade descendente: mais recente mais legível, mais antigo mais apagado */
-.flow-log-row:nth-child(1) { opacity: 0.9; }
-.flow-log-row:nth-child(2) { opacity: 0.62; }
-.flow-log-row:nth-child(3) { opacity: 0.42; }
-
-.flow-log-time {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  color: var(--text-secondary);
-  font-variant-numeric: tabular-nums;
-}
-
-.flow-log-pair {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.flow-log-route {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--text-faint);
-  text-transform: uppercase;
-}
-
-.flow-log-spread {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.005em;
-  justify-self: end;
-}
+.flow-caption-single .flow-caption-block { align-items: center; }
+.flow-caption-single .flow-caption-value { font-size: 22px; }
 
 /* ---- Disclaimer --------------------------------------------- */
 .flow-disclaimer {
@@ -554,11 +448,6 @@
 }
 
 /* ---- Animations --------------------------------------------- */
-@keyframes flow-live-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.45; }
-}
-
 @keyframes flow-engine-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%      { opacity: 0.55; transform: scale(0.85); }
@@ -575,7 +464,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow-status-dot,
   .flow-engine-dot { animation: none; }
   .flow-link-line::after { display: none; }
 }
@@ -1286,8 +1174,6 @@
   .hero-product { margin-top: 48px; }
 
   /* Flow diagram em mobile: stage colapsa em coluna, connector vira vertical */
-  .flow-header     { padding: 10px 14px; gap: 8px; }
-  .flow-header-id  { font-size: 9px; }
   .flow-stage      { padding: 22px 18px 20px; }
   .flow-eyebrow    { margin-bottom: 18px; }
 
@@ -1342,14 +1228,6 @@
     padding-top: 16px;
   }
   .flow-caption-sep { display: none; }
-
-  .flow-log-row {
-    grid-template-columns: 64px 1fr auto;
-    gap: 10px;
-    padding: 8px 14px;
-    font-size: 10px;
-  }
-  .flow-log-route { display: none; }
 
   .magic-block { padding: 56px 0; }
   .magic-block p { font-size: 1.15rem; }
