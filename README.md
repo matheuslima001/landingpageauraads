@@ -1,5 +1,8 @@
 # AURA — Landing Page
 
+[![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+[![Lighthouse CI](../../actions/workflows/lighthouse.yml/badge.svg)](../../actions/workflows/lighthouse.yml)
+
 Landing page de produto do **AURA**, bot de arbitragem de criptomoedas. Página estática em HTML, CSS e JavaScript puros, sem framework e sem etapa de build.
 
 ## Como rodar
@@ -66,9 +69,22 @@ Definidos em `assets/css/base.css` como custom properties em `:root`.
 - **Imagens:** depoimentos em `images/testimonials/` (`testimonial-NN.png`), produto em `images/product/`. A imagem do hero usa `fetchpriority="high"`; o resto usa `loading="lazy"`.
 - **Checkout:** a URL fica em uma única constante (`CHECKOUT_URL`) em `assets/js/main.js`, propagada para todos os links com atributo `data-checkout`.
 
+## CI / qualidade
+
+A esteira do GitHub Actions roda em todo push pra `main` e em todo pull request:
+
+- **`ci.yml`** (rápido, bloqueante):
+  - `html-validate` — valida `index.html` contra o preset `html-validate:recommended`.
+  - `lychee` — checa links internos e externos (config em `.github/lychee.toml`).
+  - `axe-core/cli` — testes de acessibilidade (WCAG 2 A/AA + best-practice) contra a página servida localmente.
+- **`lighthouse.yml`** (mais lento, informativo via `continue-on-error`): Lighthouse CI em PRs com thresholds em `lighthouserc.json` — performance ≥ 80, a11y ≥ 90 (erro), best-practices ≥ 90, SEO ≥ 90.
+
+Todos os workflows rodam **sem secrets** e sem dependência de serviços pagos. O `dependabot.yml` mantém as actions atualizadas semanalmente. Não há `package.json` no repo — as ferramentas são invocadas via `npx --yes <pkg>@<versão pinada>` para preservar a filosofia "zero toolchain" descrita no `CLAUDE.md`.
+
 ## Contribuição
 
-- Mantenha indentação de 2 espaços.
+- Mantenha indentação de 2 espaços (vide `.editorconfig`).
 - Comentários só onde o **porquê** não é óbvio pelo nome do símbolo.
 - Não introduza framework, bundler ou dependência de build.
 - Não altere a paleta de cores nem a tipografia sem alinhamento.
+- Verifique localmente: html-validate (`npx --yes html-validate@9 index.html`), e teste a página em mobile + desktop.
