@@ -168,21 +168,43 @@
           </div>
 
           <div class="hero-product fade-in">
-            <article class="aura-notif" aria-label="Exemplo de operação executada pela Aura">
-              <header class="aura-notif-header">
-                <span class="aura-notif-dot" aria-hidden="true"></span>
-                <span class="aura-notif-app">Aura</span>
-                <span class="aura-notif-sep" aria-hidden="true">·</span>
-                <span class="aura-notif-time">agora</span>
-              </header>
-              <p class="aura-notif-action">Entrada executada</p>
-              <p class="aura-notif-pair">DOGE / USDT</p>
-              <p class="aura-notif-route">
-                Bitget → OurBit · spread <span class="aura-notif-spread">+0,35%</span>
-              </p>
-              <p class="aura-notif-pnl">+ R$ 4,30 acumulados em USDT</p>
-            </article>
-            <p class="aura-notif-disclaimer">Exemplo de operação real. Spreads variam. Há dias sem operação.</p>
+            <figure class="flow-diagram" aria-label="Diagrama: a Aura executa arbitragem do par DOGE/USDT entre Bitget e OurBit, capturando spread de 0,35%.">
+              <div class="flow-row">
+                <div class="flow-node flow-node-source">
+                  <span class="flow-node-name">Bitget</span>
+                  <span class="flow-node-pair mono">DOGE/USDT</span>
+                  <span class="flow-node-price mono">$0,1140</span>
+                </div>
+                <span class="flow-arrow" aria-hidden="true">
+                  <svg width="56" height="10" viewBox="0 0 56 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="5" x2="46" y2="5" stroke="currentColor" stroke-width="1.25" stroke-dasharray="3 3"/>
+                    <polyline points="42 1, 49 5, 42 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </span>
+                <div class="flow-engine">
+                  <span class="flow-engine-dot" aria-hidden="true"></span>
+                  <span class="flow-engine-name">Aura</span>
+                </div>
+                <span class="flow-arrow" aria-hidden="true">
+                  <svg width="56" height="10" viewBox="0 0 56 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="5" x2="46" y2="5" stroke="currentColor" stroke-width="1.25" stroke-dasharray="3 3"/>
+                    <polyline points="42 1, 49 5, 42 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+                  </svg>
+                </span>
+                <div class="flow-node flow-node-target">
+                  <span class="flow-node-name">OurBit</span>
+                  <span class="flow-node-pair mono">DOGE/USDT</span>
+                  <span class="flow-node-price mono">$0,1144</span>
+                </div>
+              </div>
+              <figcaption class="flow-caption">
+                <span class="flow-caption-label">spread</span>
+                <span class="flow-caption-value mono">+0,35%</span>
+                <span class="flow-caption-sep" aria-hidden="true">·</span>
+                <span class="flow-caption-pair mono">DOGE / USDT</span>
+              </figcaption>
+            </figure>
+            <p class="flow-disclaimer">Exemplo de operação real. Spreads variam. Há dias sem operação.</p>
           </div>
         </div>
       </div>

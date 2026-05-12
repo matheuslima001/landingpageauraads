@@ -138,89 +138,146 @@
   margin: 72px auto 0;
 }
 
-.aura-notif {
-  width: 480px;
-  max-width: 100%;
+/* ====================================================================
+   Flow diagram — substitui o antigo card .aura-notif.
+   Mostra o fluxo Bitget → Aura → OurBit em row (mobile: stack vertical).
+   ==================================================================== */
+
+.flow-diagram {
+  width: 100%;
+  max-width: 560px;
+  margin: 0;
   background: #0f0f0f;
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 16px;
   padding: 32px;
   font-family: var(--font-sans);
-  position: relative;
   text-align: left;
-  /* Glow sutil verde abaixo do card */
+  /* Glow sutil verde abaixo do diagrama */
   box-shadow: 0 30px 80px 20px rgba(0,255,136,0.06);
 }
 
-.aura-notif-header {
-  display: flex;
+.flow-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto 1fr;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
+}
+
+.flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  text-align: center;
+  min-width: 0;
+}
+
+.flow-node-name {
   font-size: 13px;
   font-weight: 500;
-  color: #a1a1a1;
-  margin-bottom: 20px;
+  color: #ffffff;
+  letter-spacing: 0.01em;
 }
 
-.aura-notif-dot {
-  width: 6px;
-  height: 6px;
+.flow-node-pair {
+  font-size: 10px;
+  font-weight: 400;
+  color: #666;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flow-node-price {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 2px;
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+
+.flow-node-target .flow-node-price {
+  color: var(--green);
+}
+
+.flow-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+}
+
+.flow-arrow svg { display: block; }
+
+.flow-engine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 16px;
+  background: rgba(0,255,136,0.04);
+  border: 1px solid rgba(0,255,136,0.18);
+  border-radius: 10px;
+}
+
+.flow-engine-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 6px var(--green);
-  margin-right: 2px;
+  box-shadow: 0 0 12px var(--green);
+  animation: flow-pulse 1.8s ease-in-out infinite;
 }
 
-.aura-notif-app  { color: #a1a1a1; }
-.aura-notif-sep  { color: #555; margin: 0 2px; }
-.aura-notif-time { color: #a1a1a1; }
+@keyframes flow-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.85); }
+}
 
-.aura-notif-action {
-  font-size: 14px;
+.flow-engine-name {
+  font-size: 13px;
   font-weight: 500;
-  color: #ffffff;
-  margin: 0 0 8px;
-  line-height: 1.4;
+  color: var(--green);
+  letter-spacing: 0.01em;
 }
 
-.aura-notif-pair {
-  font-size: 20px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-  margin: 0 0 12px;
-  line-height: 1.2;
-}
-
-.aura-notif-route {
-  font-size: 14px;
+.flow-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 13px;
   font-weight: 400;
   color: #a1a1a1;
-  margin: 0 0 24px;
-  line-height: 1.5;
 }
 
-.aura-notif-route .aura-notif-spread {
-  color: var(--green);
-  font-weight: 500;
+.flow-caption-label { color: #666; }
+.flow-caption-value { color: var(--green); font-weight: 500; }
+.flow-caption-sep   { color: #444; }
+.flow-caption-pair  {
+  color: #a1a1a1;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.aura-notif-pnl {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--green);
-  margin: 0;
-  line-height: 1.4;
-}
-
-.aura-notif-disclaimer {
+.flow-disclaimer {
   margin: 20px 0 0;
   font-size: 12px;
   font-weight: 400;
   color: #666;
   text-align: center;
-  max-width: 480px;
+  max-width: 560px;
   line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-engine-dot { animation: none; }
 }
 
 /* ===== Proof bar ===== */
@@ -927,8 +984,22 @@
   .hero-buttons { flex-direction: column; align-items: stretch; }
   .hero-buttons .btn { width: 100%; }
   .hero-product { margin-top: 48px; }
-  .aura-notif { padding: 24px; }
-  .aura-notif-pair { font-size: 18px; }
+
+  /* Flow diagram em mobile: empilha vertical, rotaciona setas 90deg */
+  .flow-diagram { padding: 24px 20px; }
+  .flow-row {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    justify-items: center;
+    gap: 6px;
+  }
+  .flow-node, .flow-engine {
+    width: 100%;
+    max-width: 220px;
+  }
+  .flow-arrow { padding: 2px 0; }
+  .flow-arrow svg { transform: rotate(90deg); transform-origin: center; }
+  .flow-caption { flex-wrap: wrap; }
 
   .magic-block { padding: 56px 0; }
   .magic-block p { font-size: 1.15rem; }
