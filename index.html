@@ -765,6 +765,11 @@
             to { transform: translateX(-50%); }
         }
 
+        @keyframes marqueeMobile {
+            from { transform: translateX(0); }
+            to { transform: translateX(-66.6667%); }
+        }
+
         @media (hover: hover) {
             .carousel-track-outer:hover .testimonials-track {
                 animation-play-state: paused;
@@ -775,6 +780,9 @@
             .testimonial-card {
                 flex: 0 0 75vw;
                 margin-right: 16px;
+            }
+            .testimonials-track {
+                animation-name: marqueeMobile;
             }
         }
 
@@ -1691,15 +1699,20 @@
         })();
 
         // Testimonials marquee — clona os cards no fim pra criar loop seamless
+        // Mobile: clona só 8 (track menor, evita exceder limite de textura do iOS Safari)
+        // Desktop: clona todos os 16
         (function () {
             const track = document.querySelector('.testimonials-track');
             if (!track) return;
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            Array.from(track.children).forEach(child => {
-                const clone = child.cloneNode(true);
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const originals = Array.from(track.children);
+            const cloneCount = isMobile ? 8 : originals.length;
+            for (let i = 0; i < cloneCount; i++) {
+                const clone = originals[i].cloneNode(true);
                 clone.setAttribute('aria-hidden', 'true');
                 track.appendChild(clone);
-            });
+            }
         })();
 
         // FAQ accordion
