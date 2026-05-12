@@ -1,6 +1,19 @@
-# AuraBot — Landing Page
+# Método Dólar Automático — Landing Page
 
-Landing page de produto para o **AuraBot**, bot de arbitragem de criptomoedas que opera simultaneamente em Gate.io, BingX, MEXC e Bitget. Página estática voltada a conversão (CTA de teste por R$49,90), com headline, prova social, mecanismo, FAQ e checkout externo.
+Landing page do **Método Dólar Automático**, produto de acumulação automática de USDT via arbitragem entre cinco exchanges (Gate.io, BingX, MEXC, Bitget, OurBit). A execução é feita pela **Aura**, o sistema operacional do Método. Página estática voltada a conversão (CTA de teste por R$49,90, pagamento único, 7 dias de acesso), com headline, prova social, mecanismo, comparativo, FAQ e checkout externo.
+
+## Arquitetura de marca
+
+| Termo | Uso correto | Errado |
+|---|---|---|
+| **Método Dólar Automático** | Produto vendido. R$49,90 pagamento único, 7 dias de acesso. | "Método Aura", "App Aura" |
+| **Aura** | Sistema que executa o Método. Inicial maiúscula, feminino ("a Aura executa"). | AURA, AuraBot, "o Aura" |
+
+**Tagline-pivô:** *"O Método é nosso. A Aura executa. Você só vê o saldo."* — ocupa uma seção própria (`.tagline-block`) entre hero e prova social.
+
+## Compliance (banidos no body)
+
+Removidos por completo do conteúdo visível: **bot, robô, robot, IA, inteligência artificial, renda passiva, lucro garantido, transforme sua vida**. Toda descrição do produto fala em **mecanismo** (arbitragem, acumulação de USDT), nunca em **promessa de retorno**. CVM disclaimer no rodapé.
 
 ## Stack & filosofia
 
@@ -20,17 +33,18 @@ landingpageauraads/
 ├── index.html                  # HTML semântico, sem <style>/<script> inline. Importa os módulos.
 ├── assets/
 │   ├── css/
-│   │   ├── base.css            # Reset, tokens (:root), tipografia base, utilitários, .fade-in
-│   │   ├── layout.css          # Navbar, footer, container/section, grids genéricos
-│   │   ├── components.css      # .btn (+variantes), cards, badges, acordeão FAQ, chips
-│   │   └── sections.css        # Estilos específicos por seção (hero, problema, mecanismo, etc.)
+│   │   ├── base.css            # Reset, tokens (:root), tipografia, utilitários, .fade-in
+│   │   ├── layout.css          # Navbar, system-bar, footer, container, disclaimer CVM
+│   │   ├── components.css      # .btn (+variantes), cards, chips, acordeão, window-chrome
+│   │   └── sections.css        # Estilos por seção (hero, tagline, mech, comparativo, etc.)
 │   └── js/
-│       ├── main.js             # Entrypoint (type="module"). Chama init() de cada módulo.
-│       ├── animations.js       # IntersectionObserver para revelar .fade-in (com stagger por irmãos)
+│       ├── main.js             # Entrypoint (type="module"). Chama init() de cada módulo. Centraliza CHECKOUT_URL.
+│       ├── animations.js       # IntersectionObserver para .fade-in (com stagger por irmãos), above-fold imediato
 │       ├── navbar.js           # Aplica .scrolled na navbar via scroll listener (glassmorphism)
-│       └── faq.js              # Acordeão exclusivo (abre um, fecha os outros)
+│       ├── faq.js              # Acordeão exclusivo (abre um, fecha os outros) com grid-row transition
+│       └── variant.js          # Toggle A/B do hero (tagline-led vs outcome-led), persiste em localStorage
 ├── images/
-│   ├── testimonials/           # testimonial-01.{png,webp,avif} … prints de clientes
+│   ├── testimonials/           # testimonial-01..16.{png,webp,avif} — prints de clientes
 │   └── product/                # mockupoficial.{png,webp,avif} — mockup do hero (LCP)
 ├── .gitignore
 ├── README.md
@@ -60,34 +74,37 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
 | `--bg`             | `#0a0a0a`   | Fundo principal                    |
 | `--surface-1`      | `#111111`   | Cards e painéis                    |
 | `--surface-2`      | `#1a1a1a`   | Elementos elevados                 |
-| `--green`          | `#00ff88`   | Cor de destaque / CTA              |
+| `--green`          | `#00ff88`   | Destaque, CTA, dados positivos     |
 | `--green-dark`     | `#00cc6a`   | Hover de gradientes verdes         |
 | `--text`           | `#ffffff`   | Texto principal                    |
 | `--text-secondary` | `#a0a0a0`   | Texto secundário / subtítulos      |
 
-**Fonte:** Inter (Google Fonts) — pesos 400, 500, 600, 700, 800. Único recurso externo permitido.
+**Tipografia:**
+- **Inter** (Google Fonts) — pesos 400/500/600/700/800, usada em body, headlines e UI geral.
+- **JetBrains Mono** (Google Fonts) — dados, tickers, badges, valores numéricos. Comunica "produto técnico real", não slide de marketing.
 
 **Breakpoint:** `@media (max-width: 768px)` é o único breakpoint formal. Não introduzir intermediários sem justificativa.
 
 ## Seções da página
 
-| ID / classe        | Descrição                                                          |
-|--------------------|--------------------------------------------------------------------|
-| `.navbar`          | Navbar fixa, glassmorphism ao rolar (classe `.scrolled`)           |
-| `.hero`            | Headline + mockup do scanner; fundo com grid Tron animado          |
-| `.magic-block`     | Bloco de texto-âncora pós-hero                                     |
-| `.proof-bar`       | 4 KPIs com counters animados (`data-target`, `data-suffix`, etc.)  |
-| `#depoimentos`     | Marquee horizontal infinito com prints de clientes                 |
-| `#problema`        | Por que traders perdem oportunidades manualmente (grid 3 cards)    |
-| `#mecanismo`       | Identificação → Execução → Resultado                               |
-| `.risk-section`    | Por que arbitragem é baixo risco (grid 2x2)                        |
-| `.exchanges-bar`   | Chips das 4 exchanges suportadas                                   |
-| `#funcionalidades` | Grid de features do produto                                        |
-| `#como-comecar`    | Onboarding em 3 passos                                             |
-| `#pricing`         | Plano único — R$49,90 por 7 dias, depois R$197/mês                 |
-| `#faq`             | Perguntas frequentes com acordeão                                  |
-| `.cta-section`     | CTA final                                                          |
-| `.footer`          | Logo, copyright, links institucionais                              |
+| ID / classe         | Descrição                                                          |
+|---------------------|--------------------------------------------------------------------|
+| `.system-bar`       | Barra superior fixa — "MÉTODO ATIVO · 5 EXCHANGES CONECTADAS · …"  |
+| `.navbar`           | Navbar abaixo da system-bar, glassmorphism ao rolar                |
+| `.hero`             | Headline (variant A/B) + mockup do scanner + card de notificação   |
+| `.tagline-block`    | Manifesto centralizado: "O Método é nosso. A Aura executa…"        |
+| `.proof-bar`        | KPIs com counters animados (`data-target`, `data-suffix`, etc.)    |
+| `#problema`         | Por que arbitrar manualmente é inviável (grid 3 cards)             |
+| `#mecanismo`        | Identificação → Execução → Resultado                               |
+| `.risk-section`     | Por que arbitragem é baixo risco (grid 2x2)                        |
+| `.exchanges-bar`    | Chips das 5 exchanges suportadas                                   |
+| `#funcionalidades`  | Grid de features do produto                                        |
+| `#como-comecar`     | Onboarding em 3 passos                                             |
+| `#depoimentos`      | Marquee horizontal infinito com prints de clientes                 |
+| `#pricing`          | Plano único R$49,90 pagamento único + comparativo Método × manual  |
+| `#faq`              | Perguntas frequentes com acordeão                                  |
+| `.cta-section`      | CTA final                                                          |
+| `.footer`           | Logo, copyright, links institucionais, disclaimer CVM              |
 
 ## Convenções de código
 
@@ -95,27 +112,29 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
 - **HTML:** semântico. `index.html` não deve conter `<style>` nem `<script>` inline (exceto `<noscript>` para fallback do `.fade-in` e o `<script>` externo de UTM tracking no `<head>`).
 - **CSS — responsabilidades:**
   - Tokens, reset, tipografia, utilitários (`.fade-in`) → `base.css`.
-  - Estrutura compartilhada (navbar, footer, section wrapper) → `layout.css`.
-  - Componentes reutilizáveis (`.btn`, cards, chips, acordeão) → `components.css`.
-  - Tudo específico de uma seção (`.hero-grid`, `.proof-bar`, `.mech-step`, …) → `sections.css`.
+  - Estrutura compartilhada (navbar, system-bar, footer, section wrapper, disclaimer) → `layout.css`.
+  - Componentes reutilizáveis (`.btn`, cards, chips, acordeão, window-chrome) → `components.css`.
+  - Tudo específico de uma seção (`.hero-grid`, `.tagline-block`, `.mech-step`, comparativo, …) → `sections.css`.
   - Não cruzar: estilo de componente reutilizável nunca vai em `sections.css`, e vice-versa.
 - **JS — módulos ES:**
   - Cada módulo exporta uma função `init()` (`export function init() { … }`).
   - `main.js` importa e dispara: `import { init as initFaq } from './faq.js'; initFaq();`.
+  - `CHECKOUT_URL` é constante única no topo de `main.js` — propagada para todo elemento com atributo `data-checkout`.
   - Nada de IIFEs globais, nada de variáveis no `window`.
   - Sem libs externas. Sem npm. Só APIs nativas do browser.
-- **Animações:** `.fade-in` + IntersectionObserver em `animations.js`, com stagger automático por ordem entre irmãos. Não criar mecanismos paralelos. Respeitar `prefers-reduced-motion` (já tratado).
-- **Botões:** classe base `.btn`, combinando com `.btn-primary` (verde, gradiente, glow), `.btn-outline` (transparente, borda) e/ou `.btn-large`. CTAs de checkout usam o atributo `data-checkout` — o JS injeta a URL central e `target="_blank"`.
-- **Responsividade:** mobile-first nos breakpoints específicos. O único breakpoint geral é `@media (max-width: 768px)`.
+- **Animações:** `.fade-in` + IntersectionObserver em `animations.js`, com stagger automático por ordem entre irmãos. Above-fold revela imediatamente; resto observa scroll com fallback de 3s. Não criar mecanismos paralelos. Respeitar `prefers-reduced-motion`.
+- **Botões:** classe base `.btn`, combinando com `.btn-primary` (verde, gradiente, glow), `.btn-outline` (transparente, borda) e/ou `.btn-large`/`.btn-block`. CTAs de checkout usam `data-checkout` — o JS injeta a URL central e `target="_blank"`.
+- **Variant toggle (A/B) do hero:** o `<h1>` e `<p>` do hero têm `data-variant-a`/`data-variant-b` com a copy de cada versão. `variant.js` aplica a escolha e persiste em `localStorage["aura.hero.variant"]`. Para fixar uma das versões antes do deploy, remova o toggle e os atributos `data-variant-*`.
+- **Responsividade:** mobile-first. Breakpoint geral `@media (max-width: 768px)`.
 - **Acessibilidade:**
-  - `alt` descritivo em toda imagem (depoimentos, mockups).
-  - `aria-label` / `aria-hidden` em controles e elementos decorativos (grid de fundo, contadores).
+  - `alt` descritivo em toda imagem.
+  - `aria-label` / `aria-hidden` em controles e elementos decorativos.
   - Foco visível preservado nos botões e links da navbar/FAQ.
   - Toggle do FAQ é `<button>`, não `<div>`.
 - **Imagens:**
   - Nomes em kebab-case, semânticos (`testimonial-03.png`, `mockupoficial.png`). Cada imagem em PNG + WebP + AVIF, servidas via `<picture>`.
-  - Depoimentos em `images/testimonials/`, mockups de produto em `images/product/`.
-  - Sempre `loading="lazy"` em imagens abaixo da dobra.
+  - Depoimentos em `images/testimonials/`, mockups em `images/product/`.
+  - Sempre `loading="lazy"` em imagens abaixo da dobra; `fetchpriority="high"` no LCP do hero.
   - Renomear arquivo exige atualizar todas as referências no HTML.
 
 ## O que evitar
@@ -128,3 +147,5 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
 - Renomear arquivos de imagem sem atualizar todas as referências.
 - Criar novos mecanismos de animação em paralelo ao `.fade-in`.
 - Colocar lógica de uma seção dentro de `base.css`/`layout.css`/`components.css` (e vice-versa).
+- Usar palavras banidas (bot, robô, IA, renda passiva, lucro garantido) no body visível.
+- Prometer retorno percentual ou financeiro — descrever apenas o mecanismo.
