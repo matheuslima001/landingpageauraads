@@ -168,41 +168,92 @@
           </div>
 
           <div class="hero-product fade-in">
-            <figure class="flow-diagram" aria-label="Diagrama: a Aura executa arbitragem do par DOGE/USDT entre Bitget e OurBit, capturando spread de 0,35%.">
-              <div class="flow-row">
-                <div class="flow-node flow-node-source">
-                  <span class="flow-node-name">Bitget</span>
-                  <span class="flow-node-pair mono">DOGE/USDT</span>
-                  <span class="flow-node-price mono">$0,1140</span>
-                </div>
-                <span class="flow-arrow" aria-hidden="true">
-                  <svg width="56" height="10" viewBox="0 0 56 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="5" x2="46" y2="5" stroke="currentColor" stroke-width="1.25" stroke-dasharray="3 3"/>
-                    <polyline points="42 1, 49 5, 42 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
-                  </svg>
+            <figure class="flow-diagram" aria-label="Diagrama de execução: a Aura captura o spread de 0,35% no par DOGE/USDT comprando na Bitget e vendendo na OurBit, com latência de 184ms.">
+              <header class="flow-header" aria-hidden="true">
+                <span class="flow-status">
+                  <span class="flow-status-dot"></span>
+                  <span class="flow-status-label">AO VIVO</span>
                 </span>
-                <div class="flow-engine">
-                  <span class="flow-engine-dot" aria-hidden="true"></span>
-                  <span class="flow-engine-name">Aura</span>
+                <span class="flow-header-meta mono" data-flow-ts>14:32:07.412</span>
+                <span class="flow-header-id mono">OP #04127</span>
+              </header>
+
+              <div class="flow-stage">
+                <p class="flow-eyebrow" aria-hidden="true">Fluxo de execução</p>
+
+                <div class="flow-row">
+                  <div class="flow-node flow-node-source">
+                    <span class="flow-node-role">Compra</span>
+                    <span class="flow-node-name">Bitget</span>
+                    <span class="flow-node-price mono" data-flow-price="source">$0,11402</span>
+                    <span class="flow-node-pair mono">DOGE / USDT</span>
+                  </div>
+
+                  <span class="flow-link flow-link-in" aria-hidden="true">
+                    <span class="flow-link-line"></span>
+                    <span class="flow-link-head"></span>
+                  </span>
+
+                  <div class="flow-engine" role="group" aria-label="Aura, motor de execução">
+                    <span class="flow-engine-eyebrow">Executando</span>
+                    <span class="flow-engine-name">
+                      <span class="flow-engine-dot" aria-hidden="true"></span>
+                      Aura
+                    </span>
+                    <span class="flow-engine-meta mono">184 ms</span>
+                  </div>
+
+                  <span class="flow-link flow-link-out" aria-hidden="true">
+                    <span class="flow-link-line"></span>
+                    <span class="flow-link-head"></span>
+                  </span>
+
+                  <div class="flow-node flow-node-target">
+                    <span class="flow-node-role">Venda</span>
+                    <span class="flow-node-name">OurBit</span>
+                    <span class="flow-node-price mono" data-flow-price="target">$0,11442</span>
+                    <span class="flow-node-pair mono">DOGE / USDT</span>
+                  </div>
                 </div>
-                <span class="flow-arrow" aria-hidden="true">
-                  <svg width="56" height="10" viewBox="0 0 56 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="5" x2="46" y2="5" stroke="currentColor" stroke-width="1.25" stroke-dasharray="3 3"/>
-                    <polyline points="42 1, 49 5, 42 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
-                  </svg>
-                </span>
-                <div class="flow-node flow-node-target">
-                  <span class="flow-node-name">OurBit</span>
-                  <span class="flow-node-pair mono">DOGE/USDT</span>
-                  <span class="flow-node-price mono">$0,1144</span>
-                </div>
+
+                <figcaption class="flow-caption">
+                  <span class="flow-caption-block">
+                    <span class="flow-caption-label">Spread capturado</span>
+                    <span class="flow-caption-value mono">+0,35%</span>
+                  </span>
+                  <span class="flow-caption-sep" aria-hidden="true"></span>
+                  <span class="flow-caption-block">
+                    <span class="flow-caption-label">Par</span>
+                    <span class="flow-caption-sub mono">DOGE / USDT</span>
+                  </span>
+                  <span class="flow-caption-sep" aria-hidden="true"></span>
+                  <span class="flow-caption-block">
+                    <span class="flow-caption-label">Rota</span>
+                    <span class="flow-caption-sub mono">BITGET &rsaquo; OURBIT</span>
+                  </span>
+                </figcaption>
               </div>
-              <figcaption class="flow-caption">
-                <span class="flow-caption-label">spread</span>
-                <span class="flow-caption-value mono">+0,35%</span>
-                <span class="flow-caption-sep" aria-hidden="true">·</span>
-                <span class="flow-caption-pair mono">DOGE / USDT</span>
-              </figcaption>
+
+              <ul class="flow-log" aria-label="Operações anteriores">
+                <li class="flow-log-row">
+                  <span class="flow-log-time mono">14:31:58</span>
+                  <span class="flow-log-pair mono">SOL / USDT</span>
+                  <span class="flow-log-route mono">MEXC <span aria-hidden="true">&rsaquo;</span> GATE</span>
+                  <span class="flow-log-spread mono">+0,28%</span>
+                </li>
+                <li class="flow-log-row">
+                  <span class="flow-log-time mono">14:31:42</span>
+                  <span class="flow-log-pair mono">XRP / USDT</span>
+                  <span class="flow-log-route mono">BINGX <span aria-hidden="true">&rsaquo;</span> OURBIT</span>
+                  <span class="flow-log-spread mono">+0,41%</span>
+                </li>
+                <li class="flow-log-row">
+                  <span class="flow-log-time mono">14:31:19</span>
+                  <span class="flow-log-pair mono">DOGE / USDT</span>
+                  <span class="flow-log-route mono">GATE <span aria-hidden="true">&rsaquo;</span> BITGET</span>
+                  <span class="flow-log-spread mono">+0,32%</span>
+                </li>
+              </ul>
             </figure>
             <p class="flow-disclaimer">Exemplo de operação real. Spreads variam. Há dias sem operação.</p>
           </div>
