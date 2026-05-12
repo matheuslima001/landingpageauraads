@@ -20,6 +20,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Compensa a navbar fixa quando se rola até uma âncora */
+  scroll-padding-top: 80px;
 }
 
 body {
