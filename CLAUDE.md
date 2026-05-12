@@ -30,8 +30,8 @@ landingpageauraads/
 │       ├── navbar.js           # Aplica .scrolled na navbar via scroll listener (glassmorphism)
 │       └── faq.js              # Acordeão exclusivo (abre um, fecha os outros)
 ├── images/
-│   ├── testimonials/           # testimonial-01.png … testimonial-NN.png — prints de clientes
-│   └── product/                # mockupaura.png, mockup2.png, mockupoficial.png, dashboard-aura.png
+│   ├── testimonials/           # testimonial-01.{png,webp,avif} … prints de clientes
+│   └── product/                # mockupoficial.{png,webp,avif} — mockup do hero (LCP)
 ├── .gitignore
 ├── README.md
 └── CLAUDE.md
@@ -113,7 +113,7 @@ Tokens definidos em `assets/css/base.css` como variáveis CSS no `:root`. Use se
   - Foco visível preservado nos botões e links da navbar/FAQ.
   - Toggle do FAQ é `<button>`, não `<div>`.
 - **Imagens:**
-  - Nomes em kebab-case, semânticos (`testimonial-03.png`, `dashboard-aura.png`).
+  - Nomes em kebab-case, semânticos (`testimonial-03.png`, `mockupoficial.png`). Cada imagem em PNG + WebP + AVIF, servidas via `<picture>`.
   - Depoimentos em `images/testimonials/`, mockups de produto em `images/product/`.
   - Sempre `loading="lazy"` em imagens abaixo da dobra.
   - Renomear arquivo exige atualizar todas as referências no HTML.

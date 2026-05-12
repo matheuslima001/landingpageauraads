@@ -36,8 +36,8 @@ landingpageauraads/
 │       ├── navbar.js       # Efeito glassmorphism ao rolar (defensivo: no-op se a .navbar não existir)
 │       └── faq.js          # Acordeão com aria-expanded/aria-controls
 ├── images/
-│   ├── product/            # mockupoficial.png, mockup2.png, mockupaura.png, dashboard-aura.png
-│   └── testimonials/       # testimonial-01.png ... testimonial-16.png
+│   ├── product/            # mockupoficial.{png,webp,avif} — mockup do hero (LCP)
+│   └── testimonials/       # testimonial-01..16.{png,webp,avif} — prints de clientes
 ├── .gitignore
 ├── CLAUDE.md
 └── README.md
