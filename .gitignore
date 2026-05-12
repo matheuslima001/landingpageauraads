@@ -1,0 +1,33 @@
+# Sistema
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# Logs e temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node (caso alguém venha a usar um servidor local com `npx serve`)
+node_modules/
+.npm/
+.cache/
+
+# Builds (não há build configurado, mas evita commits acidentais)
+dist/
+build/
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
