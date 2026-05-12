@@ -3,51 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA — Bot de Arbitragem Cripto Automatizado 24/7 | R$49,90</title>
-  <meta name="description" content="AURA é o bot de arbitragem cripto que opera 24h em Gate, BingX, MEXC e Bitget. Sem chave de API. Teste 7 dias por R$49,90.">
+  <title>Método Dólar Automático — Acumulação automática de USDT | R$49,90</title>
+  <meta name="description" content="Método Dólar Automático: a Aura executa arbitragem em Gate.io, BingX, MEXC, Bitget e OurBit acumulando USDT 24h por dia. Sem chave de API. Teste 7 dias por R$49,90.">
   <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark">
 
   <link rel="canonical" href="https://aurabot.com.br/">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="AURA">
+  <meta property="og:site_name" content="Aura">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://aurabot.com.br/">
-  <meta property="og:title" content="AURA — Bot de Arbitragem Cripto Automatizado 24/7">
-  <meta property="og:description" content="AURA é o bot de arbitragem cripto que opera 24h em Gate, BingX, MEXC e Bitget. Sem chave de API. Teste 7 dias por R$49,90.">
+  <meta property="og:title" content="Método Dólar Automático — Acumulação automática de USDT">
+  <meta property="og:description" content="O Método é nosso. A Aura executa. Arbitragem em 5 exchanges, sem chave de API. Teste 7 dias por R$49,90.">
   <meta property="og:image" content="https://aurabot.com.br/images/product/mockupoficial.png">
   <meta property="og:image:width" content="4000">
   <meta property="og:image:height" content="2500">
-  <meta property="og:image:alt" content="Scanner do AURA exibindo oportunidades de arbitragem cripto em tempo real">
+  <meta property="og:image:alt" content="Painel da Aura exibindo execução do Método Dólar Automático em tempo real">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AURA — Bot de Arbitragem Cripto Automatizado 24/7">
-  <meta name="twitter:description" content="Bot de arbitragem cripto operando 24h em 4 exchanges. Sem chave de API. Teste 7 dias por R$49,90.">
+  <meta name="twitter:title" content="Método Dólar Automático — Acumulação automática de USDT">
+  <meta name="twitter:description" content="O Método é nosso. A Aura executa. Arbitragem em 5 exchanges acumulando USDT. Teste 7 dias por R$49,90.">
   <meta name="twitter:image" content="https://aurabot.com.br/images/product/mockupoficial.png">
-  <meta name="twitter:image:alt" content="Scanner do AURA exibindo oportunidades de arbitragem cripto em tempo real">
+  <meta name="twitter:image:alt" content="Painel da Aura exibindo execução do Método Dólar Automático em tempo real">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!--
-    base.css inline aqui (≈1KB): reset, tokens, tipografia base, .fade-in e reduced-motion.
-    Inline elimina 1 round-trip e garante que cores/tokens chegam ao paint inicial.
-    Os outros CSS continuam síncronos por serem pequenos no agregado (~22KB) e o
-    truque media="print" onload introduziria FOUC de hero sem ganho relevante.
-  -->
-  <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#0a0a0a;--surface-1:#111111;--surface-2:#1a1a1a;--green:#00ff88;--green-dark:#00cc6a;--text:#ffffff;--text-secondary:#a0a0a0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-    :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
-    .fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
-    .fade-in.revealed{opacity:1;transform:translateY(0)}
-    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.fade-in{transition:none;transform:none;opacity:1}}
-    .text-green{color:var(--green)}
-  </style>
-
+  <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/sections.css">
@@ -57,7 +41,9 @@
   </noscript>
 
   <link rel="modulepreload" href="assets/js/main.js">
+  <script type="module" src="assets/js/main.js"></script>
 
+  <!-- UTM tracking (mantido do head original do repo) -->
   <script
     src="https://cdn.utmify.com.br/scripts/utms/latest.js"
     data-utmify-prevent-xcod-sck
@@ -66,13 +52,64 @@
     defer
   ></script>
 
-  <script type="module" src="assets/js/main.js"></script>
+  <!-- Inline icon library: chamamos por <svg><use href="#icon-..."/></svg> -->
 </head>
 <body>
 
+  <!-- Sprite SVG (acessibilidade: aria-hidden, fora do flow) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7v8l10-12h-7V2z"/></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+      <symbol id="icon-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M14 7h7v7"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="icon-calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 17h.01M12 17h.01M16 17h.01"/></symbol>
+      <symbol id="icon-key-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2 3 22M16 8l-5 5M15 14l4 4M9 9l-3.5 3.5a3.5 3.5 0 1 0 5 5L14 14"/></symbol>
+      <symbol id="icon-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h0a1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+      <symbol id="icon-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1-2 5.5-2 5.5s4.5-.5 5.5-2c.6-.9.6-2.2-.2-3-.8-.8-2.1-.8-3 .2zM12 15l-3-3a22 22 0 0 1 11-11c1 1 1 5-3 8a22 22 0 0 1-5 6z"/><path d="M9 12H4l1.5-3H9M12 15v5l3-1.5V15M15 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0z"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== System status bar ===== -->
+  <div class="system-bar" aria-label="Status do sistema">
+    <div class="system-bar-inner">
+      <span class="system-bar-item system-bar-status">MÉTODO ATIVO</span>
+      <span class="system-bar-item">5 EXCHANGES CONECTADAS</span>
+      <span class="system-bar-item">LATÊNCIA &lt; 300MS</span>
+      <span class="system-bar-item">ÚLTIMA OP HÁ 12S</span>
+    </div>
+  </div>
+
+  <!-- ===== Navbar ===== -->
   <header class="navbar" aria-label="Navegação principal">
-    <a href="#" class="navbar-logo" aria-label="AURA — voltar ao topo"><span class="dot" aria-hidden="true">●</span> AURA</a>
-    <nav class="navbar-links" aria-label="Seções da página">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-logo" aria-label="Aura — voltar ao topo">
+        <span class="dot" aria-hidden="true">●</span> Aura
+      </a>
+      <nav class="navbar-links" aria-label="Seções da página">
+        <a href="#problema">Problema</a>
+        <a href="#mecanismo">Mecanismo</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="navbar-cta-wrap">
+        <span class="navbar-price mono">R$49,90 / 7 dias</span>
+        <a href="#" data-checkout class="btn btn-primary">Quero o Método <span class="arrow" aria-hidden="true">→</span></a>
+        <button class="navbar-hamburger" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="navbar-mobile-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <nav class="navbar-mobile-menu" id="navbar-mobile-menu" aria-label="Menu mobile" hidden>
       <a href="#problema">Problema</a>
       <a href="#mecanismo">Mecanismo</a>
       <a href="#depoimentos">Depoimentos</a>
@@ -80,46 +117,90 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a href="#" data-checkout class="btn btn-primary navbar-cta">Testar por R$49,90</a>
   </header>
 
   <main>
 
+    <!-- ===== Hero ===== -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true">
-        <div class="hero-grid-plane plane-1"></div>
-        <div class="hero-grid-plane plane-2"></div>
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
       </div>
-      <h1 id="hero-title" class="fade-in">Coloque um bot pra operar criptomoedas por você, <span class="text-green">sem depender da moeda subir</span></h1>
-      <p class="hero-sub fade-in">O AURA opera arbitragem automática em 4 exchanges ao mesmo tempo, identificando diferenças de preço e executando em milissegundos. Você <span class="text-green">não precisa entender de cripto</span>, <span class="text-green">não precisa estar online</span>, <span class="text-green">não precisa fazer nada</span>. Configure uma vez e o <span class="text-green">bot trabalha por você 24 horas por dia</span>.</p>
 
-      <div class="bot-panel fade-in">
-        <picture>
-          <source srcset="images/product/mockupoficial.avif" type="image/avif">
-          <source srcset="images/product/mockupoficial.webp" type="image/webp">
-          <img src="images/product/mockupoficial.png" alt="Scanner de operações do AURA mostrando oportunidades de arbitragem em tempo real" fetchpriority="high" width="4000" height="2500">
-        </picture>
+      <!-- Toggle pra comparar 2 variações de hero. Persiste em localStorage. -->
+      <div class="hero-variant-toggle" role="group" aria-label="Comparar variações da headline">
+        <span class="hero-variant-label" aria-hidden="true">VARIAÇÃO</span>
+        <button type="button" data-variant="a" aria-pressed="true">A</button>
+        <button type="button" data-variant="b" aria-pressed="false">B</button>
+      </div>
+
+      <div class="container">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-eyebrow-row fade-in">
+              <span class="eyebrow">Método Dólar Automático</span>
+            </div>
+            <h1 id="hero-title" class="fade-in"
+                data-variant-a='O Método é nosso. <span class="text-green">A Aura executa.</span>'
+                data-variant-b='Acumule dólar <span class="text-green">sem operar manualmente.</span>'>
+              O Método é nosso. <span class="text-green">A Aura executa.</span>
+            </h1>
+            <p class="hero-sub fade-in"
+               data-variant-a="Método Dólar Automático: acumulação de USDT por arbitragem entre Gate.io, BingX, MEXC, Bitget e OurBit. Sem chave de API. Você só vê o saldo."
+               data-variant-b="O Método executa arbitragem em 5 exchanges, 24h por dia. A Aura cuida da ordem. Você define o capital. Teste por 7 dias por R$49,90.">
+              Método Dólar Automático: acumulação de USDT por arbitragem entre Gate.io, BingX, MEXC, Bitget e OurBit. Sem chave de API. Você só vê o saldo.
+            </p>
+            <div class="hero-buttons fade-in">
+              <a href="#" data-checkout class="btn btn-primary btn-large">
+                Quero o Método — R$49,90 <span class="arrow" aria-hidden="true">→</span>
+              </a>
+              <a href="#mecanismo" class="btn btn-outline btn-large">
+                Como funciona
+              </a>
+            </div>
+            <div class="hero-microcopy fade-in" role="note">
+              <span>Pagamento único</span>
+              <span class="sep" aria-hidden="true"></span>
+              <span>Sem cobrança recorrente</span>
+              <span class="sep" aria-hidden="true"></span>
+              <span>Sem chave de API</span>
+            </div>
+          </div>
+
+          <div class="hero-product fade-in">
+            <article class="aura-notif" aria-label="Exemplo de operação executada pela Aura">
+              <header class="aura-notif-header">
+                <span class="aura-notif-dot" aria-hidden="true"></span>
+                <span class="aura-notif-app">Aura</span>
+                <span class="aura-notif-sep" aria-hidden="true">·</span>
+                <span class="aura-notif-time">agora</span>
+              </header>
+              <p class="aura-notif-action">Entrada executada</p>
+              <p class="aura-notif-pair">DOGE / USDT</p>
+              <p class="aura-notif-route">
+                Bitget → OurBit · spread <span class="aura-notif-spread">+0,35%</span>
+              </p>
+              <p class="aura-notif-pnl">+ R$ 4,30 acumulados em USDT</p>
+            </article>
+            <p class="aura-notif-disclaimer">Exemplo de operação real. Spreads variam. Há dias sem operação.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="magic-block" aria-label="Resumo do produto">
-      <div class="magic-block-inner fade-in">
-        <p>Enquanto você trabalha, dorme ou viaja, o AURA <span>já identificou e executou dezenas de operações</span> na sua conta. Sem você precisar abrir uma exchange. Sem acompanhar gráfico. Sem entender de mercado. <span>É renda passiva de verdade, rodando 24 horas por dia.</span></p>
-      </div>
-    </section>
-
-    <section class="proof-bar" aria-label="Indicadores de operação do bot">
-      <div class="proof-bar-inner fade-in">
-        <div class="proof-item" aria-label="1.200 operações esta semana">
+    <!-- ===== Proof bar ===== -->
+    <section class="proof-bar" aria-label="Indicadores de operação da Aura">
+      <div class="proof-bar-inner">
+        <div class="proof-item">
           <div class="proof-number" data-target="1200" data-suffix="+" data-format="thousands" aria-hidden="true">1.200+</div>
           <div class="proof-label">Operações esta semana</div>
         </div>
-        <div class="proof-item" aria-label="Tempo de execução menor que 300 milissegundos">
+        <div class="proof-item">
           <div class="proof-number" data-target="300" data-prefix="&lt; " data-suffix="ms" aria-hidden="true">&lt; 300ms</div>
           <div class="proof-label">Tempo de execução</div>
         </div>
-        <div class="proof-item" aria-label="4 exchanges conectadas">
-          <div class="proof-number" data-target="4" aria-hidden="true">4</div>
+        <div class="proof-item">
+          <div class="proof-number" data-target="5" aria-hidden="true">4</div>
           <div class="proof-label">Exchanges conectadas</div>
         </div>
         <div class="proof-item">
@@ -129,429 +210,568 @@
       </div>
     </section>
 
-    <section id="depoimentos" aria-labelledby="depoimentos-title">
-      <h2 id="depoimentos-title" class="section-title fade-in">Resultados reais, clientes reais</h2>
-      <p class="section-subtitle fade-in">Estes são prints do nosso Discord. Clientes reais, resultados reais, enviados por eles mesmos sem nenhum incentivo.</p>
-      <div class="carousel-wrapper fade-in" role="region" aria-label="Depoimentos de clientes do AURA">
-        <div class="carousel-track-outer">
-          <div class="testimonials-track">
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-01.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-01.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-01.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="780" height="240">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-02.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-02.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-02.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="1050" height="818">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-03.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-03.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-03.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="664" height="220">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-04.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-04.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-04.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="656" height="868">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-05.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-05.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-05.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="706" height="902">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-06.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-06.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-06.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="722" height="778">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-07.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-07.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-07.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="670" height="824">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-08.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-08.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-08.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="704" height="224">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-09.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-09.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-09.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="1218" height="422">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-10.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-10.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-10.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="1258" height="488">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-11.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-11.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-11.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="1296" height="722">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-12.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-12.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-12.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="718" height="580">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-13.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-13.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-13.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="656" height="430">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-14.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-14.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-14.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="536" height="740">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-15.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-15.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-15.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="562" height="244">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
-            <figure class="testimonial-card">
-              <picture>
-                <source srcset="images/testimonials/testimonial-16.avif" type="image/avif">
-                <source srcset="images/testimonials/testimonial-16.webp" type="image/webp">
-                <img src="images/testimonials/testimonial-16.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy" width="666" height="214">
-              </picture>
-              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
-            </figure>
+    <!-- ===== Tagline block (manifesto-style quote) ===== -->
+    <section class="tagline-block" aria-label="Manifesto">
+      <div class="tagline-block-inner fade-in">
+        <div class="tagline-eyebrow">Manifesto</div>
+        <p>
+          <span>O Método é nosso.</span> <span>A Aura executa.</span><br>
+          <span class="muted">Você só vê o saldo.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Problema ===== -->
+    <section id="problema" class="section section-bordered" aria-labelledby="problema-title">
+      <div class="container">
+        <header class="section-header">
+          <div class="eyebrow fade-in">01 — Problema</div>
+          <h2 id="problema-title" class="section-title fade-in">Por que executar arbitragem na mão não funciona</h2>
+          <p class="section-subtitle fade-in">Não é falta de capital. É falta de velocidade e disponibilidade.</p>
+        </header>
+
+        <div class="problem-grid">
+          <article class="problem-card fade-in">
+            <span class="problem-card-index mono">01</span>
+            <div class="problem-card-mark" aria-hidden="true"><svg><use href="#icon-bolt"/></svg></div>
+            <h3>A janela dura segundos</h3>
+            <p>A diferença de preço entre corretoras some antes de você conseguir executar. Na mão, você sempre chega tarde.</p>
+          </article>
+          <article class="problem-card fade-in">
+            <span class="problem-card-index mono">02</span>
+            <div class="problem-card-mark" aria-hidden="true"><svg><use href="#icon-clock"/></svg></div>
+            <h3>Você não monitora 24h</h3>
+            <p>As melhores janelas aparecem de madrugada, no fim de semana, enquanto você trabalha. O mercado não tem horário.</p>
+          </article>
+          <article class="problem-card fade-in">
+            <span class="problem-card-index mono">03</span>
+            <div class="problem-card-mark" aria-hidden="true"><svg><use href="#icon-lock"/></svg></div>
+            <h3>Calcular spread + taxa em tempo real é inviável</h3>
+            <p>Confirmar que o spread cobre todas as taxas envolvidas, em segundos, em cinco exchanges, é impossível manualmente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Mecanismo ===== -->
+    <section id="mecanismo" class="mechanism" aria-labelledby="mecanismo-title">
+      <div class="container">
+        <header class="section-header">
+          <div class="eyebrow fade-in">02 — Mecanismo</div>
+          <h2 id="mecanismo-title" class="section-title fade-in">Como o Método funciona</h2>
+          <p class="section-subtitle fade-in">Matemática de spread entre exchanges. Sem previsão de preço, sem modelo treinado, sem caixa preta.</p>
+        </header>
+
+        <div class="mechanism-steps fade-in">
+          <article class="mech-step">
+            <div class="mech-step-head">
+              <span class="mech-step-num">01</span>
+              <span class="mech-step-tag">Identificação</span>
+            </div>
+            <h3>A Aura monitora 5 livros</h3>
+            <p>Preço do mesmo par em Gate.io, BingX, MEXC, Bitget e OurBit, comparado em tempo real. O Método define o spread mínimo viável após taxas.</p>
+            <div class="mech-step-illust" aria-hidden="true">
+              <div class="row"><span class="ex">Gate.io · SOL/USDT</span><span class="dim">$148.21</span></div>
+              <div class="row"><span class="ex">OurBit · SOL/USDT</span><span class="ok">$148.83</span></div>
+              <div class="row"><span class="dim">spread bruto</span><span class="ok">+0.42%</span></div>
+            </div>
+          </article>
+
+          <article class="mech-step">
+            <div class="mech-step-head">
+              <span class="mech-step-num">02</span>
+              <span class="mech-step-tag">Execução</span>
+            </div>
+            <h3>A Aura abre as duas pontas</h3>
+            <p>Quando o spread cobre todas as taxas, a Aura abre compra na exchange mais barata e venda na mais cara. As ordens saem em milissegundos.</p>
+            <div class="mech-step-illust" aria-hidden="true">
+              <div class="row"><span class="ex">BUY  Gate.io</span><span class="ok">✓ 142ms</span></div>
+              <div class="row"><span class="ex">SELL OurBit</span><span class="ok">✓ 198ms</span></div>
+              <div class="row"><span class="dim">execução total</span><span class="dim">340ms</span></div>
+            </div>
+          </article>
+
+          <article class="mech-step">
+            <div class="mech-step-head">
+              <span class="mech-step-num">03</span>
+              <span class="mech-step-tag">Acumulação</span>
+            </div>
+            <h3>O saldo em USDT cresce</h3>
+            <p>A diferença entre as duas pontas, descontadas as taxas, fica em USDT na sua exchange. Cada janela é uma adição pequena ao saldo.</p>
+            <div class="mech-step-illust" aria-hidden="true">
+              <div class="row"><span class="ex">spread bruto</span><span class="dim">+0.42%</span></div>
+              <div class="row"><span class="ex">taxas</span><span class="dim">−0.12%</span></div>
+              <div class="row"><span class="dim">acumulado / op</span><span class="ok">+0.30% USDT</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Depoimentos ===== -->
+    <section id="depoimentos" class="testimonials-section" aria-labelledby="depoimentos-title">
+      <div class="container">
+        <header class="section-header">
+          <div class="eyebrow fade-in">03 — Prova social</div>
+          <h2 id="depoimentos-title" class="section-title fade-in">Resultados reais, clientes reais</h2>
+          <p class="section-subtitle fade-in">Estes são prints do nosso Discord. Clientes reais, resultados reais, enviados por eles mesmos sem nenhum incentivo.</p>
+        </header>
+      </div>
+
+      <div class="testimonials-marquee fade-in" role="region" aria-label="Depoimentos de clientes do Aura">
+        <div class="testimonials-row" aria-hidden="false">
+          <!-- 8 cards × 2 (duplicado pro loop infinito) -->
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-01.avif" type="image/avif"><source srcset="images/testimonials/testimonial-01.webp" type="image/webp"><img src="images/testimonials/testimonial-01.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="780" height="240"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-02.avif" type="image/avif"><source srcset="images/testimonials/testimonial-02.webp" type="image/webp"><img src="images/testimonials/testimonial-02.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="1050" height="818"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-03.avif" type="image/avif"><source srcset="images/testimonials/testimonial-03.webp" type="image/webp"><img src="images/testimonials/testimonial-03.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="664" height="220"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-04.avif" type="image/avif"><source srcset="images/testimonials/testimonial-04.webp" type="image/webp"><img src="images/testimonials/testimonial-04.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="656" height="868"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-05.avif" type="image/avif"><source srcset="images/testimonials/testimonial-05.webp" type="image/webp"><img src="images/testimonials/testimonial-05.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="706" height="902"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-06.avif" type="image/avif"><source srcset="images/testimonials/testimonial-06.webp" type="image/webp"><img src="images/testimonials/testimonial-06.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="722" height="778"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-07.avif" type="image/avif"><source srcset="images/testimonials/testimonial-07.webp" type="image/webp"><img src="images/testimonials/testimonial-07.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="670" height="824"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-08.avif" type="image/avif"><source srcset="images/testimonials/testimonial-08.webp" type="image/webp"><img src="images/testimonials/testimonial-08.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="704" height="224"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <!-- duplicado pro loop infinito -->
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-01.avif" type="image/avif"><source srcset="images/testimonials/testimonial-01.webp" type="image/webp"><img src="images/testimonials/testimonial-01.png" alt="" loading="lazy" width="780" height="240"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-02.avif" type="image/avif"><source srcset="images/testimonials/testimonial-02.webp" type="image/webp"><img src="images/testimonials/testimonial-02.png" alt="" loading="lazy" width="1050" height="818"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-03.avif" type="image/avif"><source srcset="images/testimonials/testimonial-03.webp" type="image/webp"><img src="images/testimonials/testimonial-03.png" alt="" loading="lazy" width="664" height="220"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-04.avif" type="image/avif"><source srcset="images/testimonials/testimonial-04.webp" type="image/webp"><img src="images/testimonials/testimonial-04.png" alt="" loading="lazy" width="656" height="868"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-05.avif" type="image/avif"><source srcset="images/testimonials/testimonial-05.webp" type="image/webp"><img src="images/testimonials/testimonial-05.png" alt="" loading="lazy" width="706" height="902"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-06.avif" type="image/avif"><source srcset="images/testimonials/testimonial-06.webp" type="image/webp"><img src="images/testimonials/testimonial-06.png" alt="" loading="lazy" width="722" height="778"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-07.avif" type="image/avif"><source srcset="images/testimonials/testimonial-07.webp" type="image/webp"><img src="images/testimonials/testimonial-07.png" alt="" loading="lazy" width="670" height="824"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-08.avif" type="image/avif"><source srcset="images/testimonials/testimonial-08.webp" type="image/webp"><img src="images/testimonials/testimonial-08.png" alt="" loading="lazy" width="704" height="224"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="testimonials-row reverse">
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-09.avif" type="image/avif"><source srcset="images/testimonials/testimonial-09.webp" type="image/webp"><img src="images/testimonials/testimonial-09.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="1218" height="422"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-10.avif" type="image/avif"><source srcset="images/testimonials/testimonial-10.webp" type="image/webp"><img src="images/testimonials/testimonial-10.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="1258" height="488"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-11.avif" type="image/avif"><source srcset="images/testimonials/testimonial-11.webp" type="image/webp"><img src="images/testimonials/testimonial-11.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="1296" height="722"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-12.avif" type="image/avif"><source srcset="images/testimonials/testimonial-12.webp" type="image/webp"><img src="images/testimonials/testimonial-12.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="718" height="580"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-13.avif" type="image/avif"><source srcset="images/testimonials/testimonial-13.webp" type="image/webp"><img src="images/testimonials/testimonial-13.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="656" height="430"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-14.avif" type="image/avif"><source srcset="images/testimonials/testimonial-14.webp" type="image/webp"><img src="images/testimonials/testimonial-14.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="536" height="740"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-15.avif" type="image/avif"><source srcset="images/testimonials/testimonial-15.webp" type="image/webp"><img src="images/testimonials/testimonial-15.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="562" height="244"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <picture><source srcset="images/testimonials/testimonial-16.avif" type="image/avif"><source srcset="images/testimonials/testimonial-16.webp" type="image/webp"><img src="images/testimonials/testimonial-16.png" alt="Print de depoimento de cliente do Aura enviado no Discord" loading="lazy" width="666" height="214"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <!-- duplicado pro loop infinito -->
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-09.avif" type="image/avif"><source srcset="images/testimonials/testimonial-09.webp" type="image/webp"><img src="images/testimonials/testimonial-09.png" alt="" loading="lazy" width="1218" height="422"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-10.avif" type="image/avif"><source srcset="images/testimonials/testimonial-10.webp" type="image/webp"><img src="images/testimonials/testimonial-10.png" alt="" loading="lazy" width="1258" height="488"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-11.avif" type="image/avif"><source srcset="images/testimonials/testimonial-11.webp" type="image/webp"><img src="images/testimonials/testimonial-11.png" alt="" loading="lazy" width="1296" height="722"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-12.avif" type="image/avif"><source srcset="images/testimonials/testimonial-12.webp" type="image/webp"><img src="images/testimonials/testimonial-12.png" alt="" loading="lazy" width="718" height="580"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-13.avif" type="image/avif"><source srcset="images/testimonials/testimonial-13.webp" type="image/webp"><img src="images/testimonials/testimonial-13.png" alt="" loading="lazy" width="656" height="430"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-14.avif" type="image/avif"><source srcset="images/testimonials/testimonial-14.webp" type="image/webp"><img src="images/testimonials/testimonial-14.png" alt="" loading="lazy" width="536" height="740"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-15.avif" type="image/avif"><source srcset="images/testimonials/testimonial-15.webp" type="image/webp"><img src="images/testimonials/testimonial-15.png" alt="" loading="lazy" width="562" height="244"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+          <figure class="testimonial-card" aria-hidden="true">
+            <picture><source srcset="images/testimonials/testimonial-16.avif" type="image/avif"><source srcset="images/testimonials/testimonial-16.webp" type="image/webp"><img src="images/testimonials/testimonial-16.png" alt="" loading="lazy" width="666" height="214"></picture>
+            <figcaption class="testimonial-meta"><span class="source">discord · #resultados</span><span class="check"><svg width="11" height="11"><use href="#icon-check"/></svg> verificado</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Risk section ===== -->
+    <section class="risk-section section-bordered" aria-labelledby="risk-title">
+      <div class="container">
+        <div class="risk-section-grid">
+          <div class="risk-section-lead fade-in">
+            <div class="eyebrow">04 — Baixa exposição</div>
+            <h2 id="risk-title">Você não aposta na alta. Captura ineficiência.</h2>
+            <p>Quem entra em cripto pra adivinhar o mercado quase sempre sai pior. <span>Arbitragem é diferente: a diferença de preço entre exchanges existe independente do Bitcoin subir ou cair.</span> O Método trabalha em cima dessa ineficiência, não da direção do preço.</p>
+          </div>
+
+          <div class="risk-grid">
+            <article class="risk-card fade-in">
+              <div class="risk-card-icon"><svg><use href="#icon-trend"/></svg></div>
+              <h3>Sem direção de mercado</h3>
+              <p>A acumulação vem da diferença entre corretoras, não da valorização do ativo. Independe do BTC subir, cair ou andar de lado.</p>
+            </article>
+            <article class="risk-card fade-in">
+              <div class="risk-card-icon"><svg><use href="#icon-bolt"/></svg></div>
+              <h3>Operações curtas e fechadas</h3>
+              <p>Cada ordem abre e fecha em segundos. Você não fica exposto ao mercado por horas esperando o preço mover.</p>
+            </article>
+            <article class="risk-card fade-in">
+              <div class="risk-card-icon"><svg><use href="#icon-calc"/></svg></div>
+              <h3>Spread líquido antes da ordem</h3>
+              <p>A Aura só dispara quando o spread cobre todas as taxas envolvidas. Comissões e custos de transferência entram no cálculo automaticamente.</p>
+            </article>
+            <article class="risk-card fade-in">
+              <div class="risk-card-icon"><svg><use href="#icon-key-off"/></svg></div>
+              <h3>Sem chave de API, sem custódia</h3>
+              <p>A Aura roda como extensão dentro do seu navegador, nas exchanges em que você já está logado. Nunca temos acesso ao seu saldo, login ou senhas.</p>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cta-mid" aria-label="Chamada para iniciar o teste">
-      <div class="hero-buttons fade-in">
-        <a href="#" data-checkout class="btn btn-primary btn-large">Testar por 7 dias — R$49,90</a>
-        <a href="#mecanismo" class="btn btn-outline btn-large">Ver como funciona</a>
-      </div>
-      <div class="fade-in cta-mid-note">Após o teste, mensalidade de R$197/mês. Cancele quando quiser.</div>
-    </section>
-
-    <section id="problema" aria-labelledby="problema-title">
-      <h2 id="problema-title" class="section-title fade-in">Por que a maioria perde dinheiro tentando arbitrar manualmente</h2>
-      <p class="section-subtitle fade-in">Não é falta de capital. É falta de velocidade e disponibilidade.</p>
-      <div class="problem-grid">
-        <article class="problem-card fade-in">
-          <div class="problem-icon" aria-hidden="true">⚡</div>
-          <h3>Janelas duram segundos</h3>
-          <p>A diferença de preço entre corretoras some antes de você conseguir executar. Operar manualmente significa sempre chegar tarde.</p>
-        </article>
-        <article class="problem-card fade-in">
-          <div class="problem-icon" aria-hidden="true">🕐</div>
-          <h3>Você não pode monitorar 24h</h3>
-          <p>As melhores oportunidades aparecem de madrugada, no fim de semana, enquanto você trabalha. O mercado não tem horário.</p>
-        </article>
-        <article class="problem-card fade-in">
-          <div class="problem-icon" aria-hidden="true">🔒</div>
-          <h3>Complexidade afasta quem poderia lucrar</h3>
-          <p>Calcular taxas, spreads e timing em tempo real é impossível sem automação. A maioria desiste antes de entender o mecanismo.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="mecanismo" aria-labelledby="mecanismo-title">
-      <h2 id="mecanismo-title" class="section-title fade-in">A lógica por trás do lucro</h2>
-      <p class="section-subtitle fade-in">Arbitragem não é especulação. É matemática.</p>
-      <div class="mechanism-steps">
-        <article class="mech-step fade-in">
-          <div class="mech-step-number" aria-hidden="true">1</div>
-          <h3>Identificação</h3>
-          <p>O bot monitora o preço do mesmo ativo em Gate, BingX, MEXC e Bitget ao mesmo tempo, em tempo real.</p>
-        </article>
-        <div class="mech-arrow fade-in" aria-hidden="true">→</div>
-        <article class="mech-step fade-in">
-          <div class="mech-step-number" aria-hidden="true">2</div>
-          <h3>Execução</h3>
-          <p>Ao detectar uma diferença lucrativa acima das taxas, compra na exchange mais barata e vende na mais cara, em milissegundos.</p>
-        </article>
-        <div class="mech-arrow fade-in" aria-hidden="true">→</div>
-        <article class="mech-step fade-in">
-          <div class="mech-step-number" aria-hidden="true">3</div>
-          <h3>Resultado</h3>
-          <p>A diferença de preço, descontadas as taxas, vai direto para o seu saldo. Repetido centenas de vezes por semana.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="risk-section" aria-labelledby="risk-title">
-      <div class="risk-section-inner">
-        <h2 id="risk-title" class="section-title fade-in">Uma das estratégias de menor risco no mercado cripto</h2>
-        <p class="section-subtitle fade-in">Você não está apostando na alta ou na queda de nenhum ativo. Está capturando ineficiências de mercado que existem independente da direção do preço.</p>
-        <p class="fade-in risk-section-lead">A maior parte das pessoas que entra em cripto perde dinheiro porque tenta adivinhar o mercado. <span>Arbitragem é diferente: você lucra com a diferença de preço entre exchanges, não com a direção do preço.</span> Se Bitcoin sobe, você lucra. Se cai, você lucra também. É matemática, não aposta.</p>
-        <div class="risk-grid">
-          <article class="risk-card fade-in">
-            <div class="risk-card-icon" aria-hidden="true">📊</div>
-            <div class="risk-card-content">
-              <h3>Sem dependência de direção de mercado</h3>
-              <p>O lucro vem da diferença entre corretoras, não da valorização do ativo. Bitcoin subindo ou caindo não importa, a diferença de preço entre exchanges sempre existe.</p>
-            </div>
-          </article>
-          <article class="risk-card fade-in">
-            <div class="risk-card-icon" aria-hidden="true">⚡</div>
-            <div class="risk-card-content">
-              <h3>Operações rápidas e fechadas</h3>
-              <p>Cada operação abre e fecha em questão de segundos. Você não fica exposto ao mercado por horas ou dias esperando o preço mover.</p>
-            </div>
-          </article>
-          <article class="risk-card fade-in">
-            <div class="risk-card-icon" aria-hidden="true">🧮</div>
-            <div class="risk-card-content">
-              <h3>Cálculo automático de taxas</h3>
-              <p>O bot só executa quando o lucro supera todas as taxas envolvidas, comissões das exchanges e custos de transferência calculados automaticamente.</p>
-            </div>
-          </article>
-          <article class="risk-card fade-in">
-            <div class="risk-card-icon" aria-hidden="true">🛡️</div>
-            <div class="risk-card-content">
-              <h3>Sem acesso ao seu dinheiro</h3>
-              <p>Diferente da maioria dos bots, o AURA não usa chaves de API. Ele roda como extensão no seu próprio navegador, dentro das exchanges que você já está logado. Nós nunca temos acesso ao seu saldo, login ou senhas.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
+    <!-- ===== Exchanges bar ===== -->
     <section class="exchanges-bar" aria-label="Exchanges suportadas">
-      <div class="exchanges-bar-label fade-in">Exchanges monitoradas simultaneamente</div>
-      <div class="exchanges-row fade-in">
-        <div class="exchange-chip">Gate.io</div>
-        <div class="exchange-chip">BingX</div>
-        <div class="exchange-chip">MEXC</div>
-        <div class="exchange-chip">Bitget</div>
-      </div>
-    </section>
-
-    <section id="funcionalidades" aria-labelledby="funcionalidades-title">
-      <h2 id="funcionalidades-title" class="section-title fade-in">Construído para não perder nenhuma janela</h2>
-      <p class="section-subtitle fade-in">Cada funcionalidade existe para que o bot seja mais rápido e preciso do que qualquer operador humano.</p>
-      <div class="features-grid">
-        <article class="feature-card fade-in">
-          <div class="feature-icon" aria-hidden="true">⚙️</div>
-          <h3>Operação autônoma 24/7</h3>
-          <p>Roda em servidor próprio, independente do seu dispositivo. Trabalha enquanto você dorme, viaja ou descansa.</p>
-        </article>
-        <article class="feature-card fade-in">
-          <div class="feature-icon" aria-hidden="true">🚀</div>
-          <h3>Setup em menos de 20 minutos</h3>
-          <p>Instale o AURA no seu navegador via Tampermonkey e o bot já começa a operar. Passo a passo guiado no Scanner.</p>
-        </article>
-        <article class="feature-card fade-in">
-          <div class="feature-icon" aria-hidden="true">🛡️</div>
-          <h3>Estratégia de baixo risco</h3>
-          <p>Arbitragem não depende de previsão de mercado. O lucro vem da diferença matemática de preço entre corretoras.</p>
-        </article>
-        <article class="feature-card fade-in">
-          <div class="feature-icon" aria-hidden="true">👤</div>
-          <h3>Sem conhecimento técnico</h3>
-          <p>Feito para quem quer resultado, não para desenvolvedores. Você configura uma vez e o bot faz o resto.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="como-comecar" class="section-centered" aria-labelledby="como-comecar-title">
-      <h2 id="como-comecar-title" class="section-title fade-in">Do zero ao bot operando em 3 passos</h2>
-      <p class="section-subtitle fade-in">Em menos de 20 minutos você já está com o AURA rodando nas suas exchanges.</p>
-      <div class="steps-row">
-        <article class="step-card fade-in">
-          <div class="step-number" aria-hidden="true">1</div>
-          <h3>Comece com R$49,90</h3>
-          <p>Acesso imediato ao Scanner e às aulas gravadas que ensinam a configurar e operar com o AURA. Sem fidelidade, sem compromisso.</p>
-        </article>
-        <article class="step-card fade-in">
-          <div class="step-number" aria-hidden="true">2</div>
-          <h3>Instale a extensão</h3>
-          <p>Instale o AURA no seu navegador via Tampermonkey e o bot já começa a operar nas suas exchanges. Sem API, sem chaves, sem acesso ao seu saldo. Guia passo a passo incluso.</p>
-        </article>
-        <article class="step-card fade-in">
-          <div class="step-number" aria-hidden="true">3</div>
-          <h3>O bot opera por você</h3>
-          <p>A partir daí é só acompanhar os resultados. O bot identifica e executa as operações automaticamente.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="pricing" aria-labelledby="pricing-title">
-      <h2 id="pricing-title" class="section-title fade-in">Teste por 7 dias antes de assinar</h2>
-      <p class="section-subtitle fade-in">Pague R$49,90 hoje e tenha o AURA rodando na sua conta pelos próximos 7 dias. Tempo suficiente pra ver o bot operando, gerar suas primeiras operações e decidir se faz sentido continuar. Se fizer, a mensalidade de R$197 entra automaticamente. Se não, é só cancelar — sem multa, sem perguntas.</p>
-      <div class="pricing-card fade-in">
-        <div class="pricing-label">Acesso completo por 7 dias</div>
-        <div class="pricing-price">R$49,90</div>
-        <div class="pricing-period">pagamento único · sem renovação automática nos primeiros 7 dias</div>
-        <ul class="pricing-features">
-          <li>Scanner e bot rodando nas suas exchanges desde o primeiro dia</li>
-          <li>4 exchanges conectadas simultaneamente (Gate, BingX, MEXC, Bitget)</li>
-          <li>Aulas gravadas com passo a passo de configuração e uso</li>
-          <li>Setup guiado com nosso time via AnyDesk</li>
-          <li>Suporte direto no Discord</li>
-          <li>Mentoria comigo após o setup</li>
-        </ul>
-        <div class="pricing-guarantee">Após os 7 dias, mensalidade de R$197 pra continuar usando o bot. Cancele quando quiser, sem multa.</div>
-        <a href="#" data-checkout class="btn btn-primary btn-large btn-block">Começar agora por R$49,90</a>
-        <div class="pricing-note">Acesso liberado em até 5 minutos após o pagamento.</div>
-      </div>
-    </section>
-
-    <section id="faq" class="section-centered" aria-labelledby="faq-title">
-      <h2 id="faq-title" class="section-title fade-in">Perguntas frequentes</h2>
-      <p class="section-subtitle fade-in">Tudo que você precisa saber antes de começar.</p>
-      <div class="faq-list">
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Quanto preciso ter pra começar a operar?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Recomendamos no mínimo R$500 distribuídos entre as 4 exchanges. Esse é o valor que permite o bot identificar e executar operações com folga, considerando as taxas envolvidas. Você pode começar com mais, mas abaixo disso a quantidade de oportunidades viáveis cai bastante e o bot fica parado boa parte do tempo. O capital fica sempre nas suas próprias contas das exchanges — o AURA não tem acesso ao seu saldo, ele só executa as ordens dentro do seu próprio navegador.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Quanto posso ganhar com o AURA?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Não prometemos valores fixos porque seria desonesto. O resultado depende de três coisas: quanto capital você tem operando, quantas oportunidades o mercado oferece naquele período e a sua configuração de risco no Scanner. O que podemos mostrar são os prints reais dos nossos clientes (você vê alguns na seção "Resultados reais" desta página, e dezenas no nosso Discord), com operações de spread variando entre 1% e 4% em média. Multiplique isso pelo seu capital e pela frequência de operações pra ter uma noção. Quem quer promessa de ganho garantido não é nosso cliente — quem quer uma ferramenta séria rodando por conta própria, é.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Como funciona o teste de 7 dias?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Você paga R$49,90 hoje e recebe acesso completo ao AURA pelos próximos 7 dias: Scanner liberado, bot rodando nas 4 exchanges, suporte do nosso time, aulas gravadas e mentoria comigo após o setup. É exatamente a mesma ferramenta que os clientes mensalistas usam — sem versão limitada, sem recursos travados. Após os 7 dias, se quiser continuar, a mensalidade de R$197 entra automaticamente. Se não quiser, é só cancelar antes do fim do período — não cobramos nada além dos R$49,90 iniciais. Sem multa, sem burocracia, sem ligação de retenção.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Preciso entender de criptomoedas pra usar?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Não. O AURA foi construído justamente pra quem não entende de cripto e não quer aprender. Você não precisa saber ler gráfico, prever mercado ou escolher moeda — o bot faz tudo isso. O que você precisa fazer é seguir o passo a passo das aulas gravadas (cerca de 20 minutos de configuração com suporte do nosso time via AnyDesk) e depois acompanhar os resultados. Quem nunca operou cripto na vida consegue rodar o AURA sem problema.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Meu capital fica seguro? Vocês têm acesso ao meu dinheiro?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Seu dinheiro nunca sai das suas contas nas exchanges, e o AURA nunca tem acesso a ele. Diferente da maioria dos bots do mercado, o AURA não usa chaves de API — ele roda como uma extensão no seu próprio navegador (via Tampermonkey) e executa as operações dentro das exchanges que você já está logado, como se fosse você clicando. Nós não temos acesso ao seu saldo, ao seu login, às suas senhas ou a qualquer dado da sua conta. Você mantém controle total a qualquer momento.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            É uma estratégia arriscada?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, justamente porque você não está apostando se o preço vai subir ou cair — está capturando a diferença de preço entre exchanges, que é matemática pura. Dito isso, nenhuma operação no mercado financeiro tem risco zero: pode haver lentidão de exchange, problemas técnicos pontuais ou variação de spread no meio da operação. O AURA tem mecanismos pra mitigar tudo isso (cálculo automático de taxas, execução em milissegundos, anti-liquidação ativo), mas é importante você entrar entendendo que existe risco — só que muito menor do que trade direcional.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            O AURA executa as operações automaticamente?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Sim, totalmente. Você configura uma vez no Scanner (capital disponível, percentual mínimo de lucro por operação, exchanges ativas) e o bot identifica e executa sozinho, 24 horas por dia. Você pode acompanhar o histórico no Scanner a qualquer momento, mas não precisa fazer nada manualmente — nem aprovar operação, nem decidir nada.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            O bot opera enquanto eu não estou no computador?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Sim. Basta deixar o navegador aberto com o Scanner rodando e o AURA continua operando sozinho, 24 horas por dia. Você pode trabalhar, dormir, viajar ou simplesmente viver sua vida — o bot trabalha em segundo plano, identificando e executando as operações automaticamente. A maioria dos clientes deixa rodando direto no PC e só checa os resultados quando quer.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Quais exchanges são suportadas?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Atualmente o AURA opera simultaneamente em Gate.io, BingX, MEXC e Bitget. São 4 das maiores exchanges globais, todas com alta liquidez e bom volume de oportunidades. Você precisa ter conta nas 4 pra aproveitar o máximo do bot — o setup em cada uma é simples e nosso time guia você no processo.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            Posso cancelar a qualquer momento?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Sim. Não tem fidelidade, não tem multa, não tem burocracia. Você cancela a qualquer momento e o acesso permanece até o fim do período já pago. Sem ligação de retenção, sem perguntas, sem dificuldade.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-in">
-          <button class="faq-question" type="button">
-            E se eu não conseguir configurar sozinho?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Não vai precisar. Logo após a confirmação do pagamento, você é encaminhado pro nosso time de onboarding. O Kevin (nosso especialista) faz uma sessão remota com você via AnyDesk e configura tudo em tempo real — desde a instalação da extensão Tampermonkey até os ajustes finais no Scanner. Você só precisa estar disponível pra acompanhar. Após o setup, eu mesmo (Matheus, fundador do AURA) faço uma call de mentoria pra alinhar a estratégia que faz sentido pro seu capital e perfil. Ninguém é deixado sozinho.</p>
-          </div>
+      <div class="container">
+        <div class="exchanges-label fade-in">Exchanges monitoradas simultaneamente</div>
+        <div class="exchanges-row fade-in">
+          <div class="chip"><span class="chip-dot" aria-hidden="true"></span> Gate.io</div>
+          <div class="chip"><span class="chip-dot" aria-hidden="true"></span> BingX</div>
+          <div class="chip"><span class="chip-dot" aria-hidden="true"></span> MEXC</div>
+          <div class="chip"><span class="chip-dot" aria-hidden="true"></span> Bitget</div>
+          <div class="chip"><span class="chip-dot" aria-hidden="true"></span> OurBit</div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section" aria-labelledby="cta-title">
-      <h2 id="cta-title" class="section-title fade-in">Seu bot já poderia estar operando agora</h2>
-      <p class="section-subtitle fade-in">Cada hora sem o AURA é uma janela de arbitragem que passa sem você. Configure em menos de 20 minutos.</p>
-      <div class="fade-in">
-        <a href="#" data-checkout class="btn btn-primary btn-large">Começar agora por R$49,90</a>
-        <div class="cta-note">7 dias de acesso completo · Após o teste, R$197/mês · Cancele quando quiser</div>
+    <!-- ===== Funcionalidades ===== -->
+    <section id="funcionalidades" class="section" aria-labelledby="funcionalidades-title">
+      <div class="container">
+        <header class="section-header">
+          <div class="eyebrow fade-in">05 — Funcionalidades</div>
+          <h2 id="funcionalidades-title" class="section-title fade-in">Construído pra não perder janela</h2>
+          <p class="section-subtitle fade-in">Cada funcionalidade existe pra que a execução seja mais rápida e precisa do que qualquer trader humano.</p>
+        </header>
+
+        <div class="features-grid">
+          <article class="feature-card fade-in">
+            <div class="feature-card-icon" aria-hidden="true"><svg><use href="#icon-cog"/></svg></div>
+            <div>
+              <h3>Execução autônoma 24/7</h3>
+              <p>A Aura roda independente do seu dispositivo. Trabalha enquanto você dorme, viaja ou descansa.</p>
+            </div>
+            <span class="feature-card-index mono">01</span>
+          </article>
+          <article class="feature-card fade-in">
+            <div class="feature-card-icon" aria-hidden="true"><svg><use href="#icon-rocket"/></svg></div>
+            <div>
+              <h3>Setup em menos de 20 minutos</h3>
+              <p>Instalação via Tampermonkey no seu navegador. Passo a passo guiado, com call de suporte ao vivo no setup inicial.</p>
+            </div>
+            <span class="feature-card-index mono">02</span>
+          </article>
+          <article class="feature-card fade-in">
+            <div class="feature-card-icon" aria-hidden="true"><svg><use href="#icon-shield"/></svg></div>
+            <div>
+              <h3>Estratégia de baixa exposição</h3>
+              <p>Arbitragem não depende de previsão. A acumulação vem da diferença matemática de preço entre corretoras.</p>
+            </div>
+            <span class="feature-card-index mono">03</span>
+          </article>
+          <article class="feature-card fade-in">
+            <div class="feature-card-icon" aria-hidden="true"><svg><use href="#icon-user"/></svg></div>
+            <div>
+              <h3>Sem conhecimento técnico</h3>
+              <p>Feito pra quem quer um Método rodando, não pra desenvolvedor. Você configura uma vez e a Aura cuida do resto.</p>
+            </div>
+            <span class="feature-card-index mono">04</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pricing ===== -->
+    <section id="pricing" class="pricing section-bordered" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="section-header">
+          <div class="eyebrow fade-in">06 — Pricing</div>
+          <h2 id="pricing-title" class="section-title fade-in">7 dias de acesso por R$49,90</h2>
+          <p class="section-subtitle fade-in">Pagamento único. Sem cartão salvo, sem renovação automática, sem cobrança recorrente depois.</p>
+        </header>
+
+        <div class="pricing-grid pricing-grid--single">
+          <article class="pricing-card featured fade-in">
+            <span class="pricing-tag"><span class="dot"></span> Pagamento único</span>
+            <h3 class="pricing-name">Acesso completo · 7 dias</h3>
+            <p class="pricing-sub">Pagamento único · sem renovação automática · acesso por 7 dias.</p>
+            <div class="pricing-price">
+              <span class="currency">R$</span>49,90
+              <span class="unit">/ 7 dias</span>
+            </div>
+            <p class="pricing-meta">Sem cobrança recorrente. Sem cartão salvo. Sem taxa de execução. Sem % sobre lucro.</p>
+            <ul class="pricing-features">
+              <li>Método ativo nas suas 5 exchanges desde o dia 1</li>
+              <li>Gate.io, BingX, MEXC, Bitget e OurBit rodando em paralelo</li>
+              <li>Aulas gravadas de configuração e uso</li>
+              <li>Setup guiado com nosso time via AnyDesk</li>
+              <li>Suporte direto no Discord</li>
+              <li>Mentoria com o Matheus após o setup</li>
+            </ul>
+            <a href="#" data-checkout class="btn btn-primary btn-large btn-block">
+              Quero o Método — R$49,90 <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <p class="pricing-footnote">Acesso liberado em até 5 min após o pagamento</p>
+          </article>
+        </div>
+
+        <!-- Comparativo Método × execução manual -->
+        <div class="comparison fade-in" aria-label="Comparativo entre Método Dólar Automático e execução manual">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Característica</th>
+                <th scope="col" class="col-method">Método Dólar Automático</th>
+                <th scope="col">Execução manual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tempo de setup</td>
+                <td class="cell-method">~20 minutos com suporte ao vivo</td>
+                <td class="cell-manual">semanas estudando exchange por exchange</td>
+              </tr>
+              <tr>
+                <td>Cobertura</td>
+                <td class="cell-method">24h por dia, 7 dias</td>
+                <td class="cell-manual">só quando você está acordado e online</td>
+              </tr>
+              <tr>
+                <td>Tempo de execução por ordem</td>
+                <td class="cell-method">&lt; 300 ms</td>
+                <td class="cell-manual">minutos — janela já fechou</td>
+              </tr>
+              <tr>
+                <td>Cálculo de taxas pré-ordem</td>
+                <td class="cell-method"><span class="comparison-mark yes"><svg><use href="#icon-check"/></svg> automático</span></td>
+                <td class="cell-manual">na cabeça, sob pressão</td>
+              </tr>
+              <tr>
+                <td>Chave de API exposta</td>
+                <td class="cell-method"><span class="comparison-mark yes"><svg><use href="#icon-check"/></svg> nenhuma</span></td>
+                <td class="cell-manual">depende da ferramenta</td>
+              </tr>
+              <tr>
+                <td>Acompanhamento ativo</td>
+                <td class="cell-method">desnecessário</td>
+                <td class="cell-manual">obrigatório — uma ordem por vez</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="section section-bordered" aria-labelledby="faq-title">
+      <div class="container-tight">
+        <header class="section-header">
+          <div class="eyebrow fade-in">07 — FAQ</div>
+          <h2 id="faq-title" class="section-title fade-in">Perguntas frequentes</h2>
+          <p class="section-subtitle fade-in">Tudo que você precisa saber antes de começar.</p>
+        </header>
+
+        <div class="faq-list">
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Quanto preciso ter pra começar?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Recomendamos no mínimo R$500 distribuídos entre as 5 exchanges. Esse é o valor que permite a Aura identificar e executar operações com folga, considerando as taxas envolvidas. Você pode começar com mais, mas abaixo disso a quantidade de oportunidades viáveis cai bastante e a Aura fica parado boa parte do tempo. O capital fica sempre nas suas próprias contas das exchanges — o Método não tem acesso ao seu saldo, ele só executa as ordens dentro do seu próprio navegador.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Quanto posso ganhar com o Método?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Não prometemos valores fixos porque seria desonesto. O resultado depende de três coisas: quanto capital você tem operando, quantas oportunidades o mercado oferece naquele período e a sua configuração de risco no painel da Aura. O que podemos mostrar são os prints reais dos nossos clientes (você vê alguns na seção "Resultados reais" desta página, e dezenas no nosso Discord), com operações de spread variando entre 1% e 4% em média. Multiplique isso pelo seu capital e pela frequência de operações pra ter uma noção. Quem quer promessa de ganho garantido não é nosso cliente — quem quer uma ferramenta séria rodando por conta própria, é.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Como funciona o teste de 7 dias?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Você paga R$49,90 hoje (pagamento único) e recebe acesso completo pelos próximos 7 dias: painel da Aura ativo nas 5 exchanges, suporte do nosso time, aulas gravadas e mentoria com o Matheus após o setup. Sem cartão salvo, sem renovação automática, sem cobrança recorrente. Quando os 7 dias acabam, acabou — se quiser entrar de novo no futuro, é só comprar de novo.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              E depois dos 7 dias?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Acabou. Sem cobrança automática, sem cartão salvo, sem renovação. O acesso ao painel da Aura é encerrado no fim do 7º dia e ponto. Nada é cobrado depois — nem mensalidade, nem taxa, nem percentual sobre operação. Se quiser entrar de novo, é só fazer uma nova compra de R$49,90.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Tem mensalidade?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Não. R$49,90 é pagamento único pelos 7 dias de acesso. Não cobramos mensalidade, taxa de execução, comissão sobre operação ou qualquer outro custo adicional depois. O Método é vendido como acesso único de 7 dias, sem amarra.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Preciso entender de criptomoedas pra usar?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Não. O Método foi construído justamente pra quem não entende de cripto e não quer aprender. Você não precisa saber ler gráfico, prever mercado ou escolher moeda — a Aura faz tudo isso. O que você precisa fazer é seguir o passo a passo das aulas gravadas (cerca de 20 minutos de configuração com suporte do nosso time via AnyDesk) e depois acompanhar os resultados. Quem nunca operou cripto na vida consegue rodar o Método sem problema.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Meu capital fica seguro? Vocês têm acesso ao meu dinheiro?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Seu dinheiro nunca sai das suas contas nas exchanges, e o Método nunca tem acesso a ele. Diferente das ferramentas comuns do mercado, o Método não usa chaves de API — ele roda como uma extensão no seu próprio navegador (via Tampermonkey) e executa as operações dentro das exchanges que você já está logado, como se fosse você clicando. Nós não temos acesso ao seu saldo, ao seu login, às suas senhas ou a qualquer dado da sua conta. Você mantém controle total a qualquer momento.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              É uma estratégia arriscada?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, justamente porque você não está apostando se o preço vai subir ou cair — está capturando a diferença de preço entre exchanges, que é matemática pura. Dito isso, nenhuma operação no mercado financeiro tem risco zero: pode haver lentidão de exchange, problemas técnicos pontuais ou variação de spread no meio da operação. O Método tem mecanismos pra mitigar tudo isso (cálculo automático de taxas, execução em milissegundos, anti-liquidação ativo), mas é importante você entrar entendendo que existe risco — só que muito menor do que trade direcional.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              O Método executa as ordens automaticamente?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Sim, totalmente. Você configura uma vez no painel da Aura (capital disponível, spread mínimo por ordem, exchanges ativas) e a Aura identifica e executa sozinho, 24 horas por dia. Você pode acompanhar o histórico no painel da Aura a qualquer momento, mas não precisa fazer nada manualmente — nem aprovar operação, nem decidir nada.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              A Aura roda enquanto eu não estou no computador?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Sim. Basta deixar o navegador aberto com o Scanner rodando e o Método continua operando sozinho, 24 horas por dia. Você pode trabalhar, dormir, viajar ou simplesmente viver sua vida — a Aura trabalha em segundo plano, identificando e executando as operações automaticamente. A maioria dos clientes deixa rodando direto no PC e só checa os resultados quando quer.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              Quais exchanges são suportadas?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Atualmente o Método opera simultaneamente em Gate.io, BingX, MEXC, Bitget e OurBit. São 5 das maiores exchanges globais, todas com alta liquidez e bom volume de janelas. Você precisa ter conta nas 5 pra extrair o máximo do Método — o setup em cada uma é simples e nosso time guia você no processo.</p>
+            </div></div>
+          </div>
+          <div class="faq-item fade-in">
+            <button class="faq-question" type="button">
+              E se eu não conseguir configurar sozinho?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>Não vai precisar. Logo após a confirmação do pagamento, você é encaminhado pro nosso time de onboarding. O Kevin (nosso especialista) faz uma sessão remota com você via AnyDesk e configura tudo em tempo real — desde a instalação da extensão Tampermonkey até os ajustes finais no painel da Aura. Você só precisa estar disponível pra acompanhar. Após o setup, eu mesmo (Matheus, fundador do Aura) faço uma call de mentoria pra alinhar a estratégia que faz sentido pro seu capital e perfil. Ninguém é deixado sozinho.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA final ===== -->
+    <section class="cta-final" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="eyebrow fade-in" style="display:inline-flex;margin-bottom:18px">08 — Ação</div>
+        <h2 id="cta-title" class="fade-in">Seu dólar já poderia estar sendo acumulado</h2>
+        <p class="fade-in">Cada hora sem o Método é uma janela de arbitragem que passa sem você. Configure em menos de 20 minutos.</p>
+        <div class="hero-buttons fade-in" style="margin-bottom:0">
+          <a href="#" data-checkout class="btn btn-primary btn-large">
+            Começar agora por R$49,90 <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#faq" class="btn btn-outline btn-large">
+            Tirar uma dúvida primeiro
+          </a>
+        </div>
+        <div class="cta-note">Pagamento único · 7 dias de acesso completo · Sem cobrança recorrente</div>
       </div>
     </section>
 
@@ -559,20 +779,26 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-logo"><span class="dot" aria-hidden="true">●</span> AURA</div>
-      <div class="footer-copy">&copy; 2026 AURA. Todos os direitos reservados.</div>
+      <div class="footer-logo"><span class="dot" aria-hidden="true">●</span> Aura</div>
+      <div class="footer-copy">© 2026 Aura · Método Dólar Automático · Todos os direitos reservados</div>
       <nav class="footer-links" aria-label="Links institucionais">
         <a href="#">Termos de uso</a>
         <a href="#">Política de privacidade</a>
       </nav>
     </div>
+    <div class="footer-disclaimer">
+      <p>
+        <strong>Disclaimer.</strong> O Método Dólar Automático é uma ferramenta de execução automatizada de arbitragem entre exchanges de criptoativos, comercializada exclusivamente como acesso a software. Não constitui oferta pública de valor mobiliário, consultoria, gestão de carteira ou recomendação de investimento. Não há promessa, garantia ou expectativa de rendimento. Resultados passados não garantem resultados futuros. Operações com criptoativos envolvem risco de perda total do capital. A Aura não tem acesso, custódia ou controle sobre o seu capital, que permanece integralmente nas exchanges escolhidas por você. Consulte um profissional habilitado antes de qualquer decisão financeira.
+      </p>
+    </div>
   </footer>
 
+  <!-- ===== Schema.org structured data ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "AURA",
+    "name": "Aura",
     "url": "https://aurabot.com.br/",
     "logo": "https://aurabot.com.br/images/product/mockupoficial.png"
   }
@@ -582,12 +808,9 @@
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "AURA",
-    "description": "Bot de arbitragem de criptomoedas que opera 24h por dia simultaneamente em Gate.io, BingX, MEXC e Bitget. Não usa chaves de API: roda como extensão no navegador via Tampermonkey. Teste por 7 dias por R$49,90 e, após o teste, mensalidade de R$197/mês — cancele quando quiser.",
-    "brand": {
-      "@type": "Brand",
-      "name": "AURA"
-    },
+    "name": "Método Dólar Automático",
+    "description": "Método de acumulação automática de USDT via arbitragem entre Gate.io, BingX, MEXC, Bitget e OurBit. A execução é feita pela Aura, sem chave de API: roda como extensão no navegador via Tampermonkey. Pagamento único de R$49,90 por 7 dias de acesso — sem renovação automática, sem cobrança recorrente.",
+    "brand": { "@type": "Brand", "name": "Aura" },
     "image": "https://aurabot.com.br/images/product/mockupoficial.png",
     "url": "https://aurabot.com.br/",
     "offers": {
@@ -596,7 +819,7 @@
       "priceCurrency": "BRL",
       "availability": "https://schema.org/InStock",
       "url": "https://aurabot.com.br/",
-      "description": "Acesso completo ao AURA por 7 dias. Após o teste, mensalidade de R$197/mês. Cancele quando quiser, sem multa."
+      "description": "Pagamento único de R$49,90 por 7 dias de acesso completo ao Método Dólar Automático. Sem renovação automática, sem cobrança recorrente."
     }
   }
   </script>
@@ -606,94 +829,12 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Quanto preciso ter pra começar a operar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Recomendamos no mínimo R$500 distribuídos entre as 4 exchanges. Esse é o valor que permite o bot identificar e executar operações com folga, considerando as taxas envolvidas. Você pode começar com mais, mas abaixo disso a quantidade de oportunidades viáveis cai bastante e o bot fica parado boa parte do tempo. O capital fica sempre nas suas próprias contas das exchanges — o AURA não tem acesso ao seu saldo, ele só executa as ordens dentro do seu próprio navegador."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quanto posso ganhar com o AURA?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Não prometemos valores fixos porque seria desonesto. O resultado depende de três coisas: quanto capital você tem operando, quantas oportunidades o mercado oferece naquele período e a sua configuração de risco no Scanner. O que podemos mostrar são os prints reais dos nossos clientes (você vê alguns na seção Resultados reais desta página, e dezenas no nosso Discord), com operações de spread variando entre 1% e 4% em média. Multiplique isso pelo seu capital e pela frequência de operações pra ter uma noção. Quem quer promessa de ganho garantido não é nosso cliente — quem quer uma ferramenta séria rodando por conta própria, é."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Como funciona o teste de 7 dias?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Você paga R$49,90 hoje e recebe acesso completo ao AURA pelos próximos 7 dias: Scanner liberado, bot rodando nas 4 exchanges, suporte do nosso time, aulas gravadas e mentoria comigo após o setup. É exatamente a mesma ferramenta que os clientes mensalistas usam — sem versão limitada, sem recursos travados. Após os 7 dias, se quiser continuar, a mensalidade de R$197 entra automaticamente. Se não quiser, é só cancelar antes do fim do período — não cobramos nada além dos R$49,90 iniciais. Sem multa, sem burocracia, sem ligação de retenção."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Preciso entender de criptomoedas pra usar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Não. O AURA foi construído justamente pra quem não entende de cripto e não quer aprender. Você não precisa saber ler gráfico, prever mercado ou escolher moeda — o bot faz tudo isso. O que você precisa fazer é seguir o passo a passo das aulas gravadas (cerca de 20 minutos de configuração com suporte do nosso time via AnyDesk) e depois acompanhar os resultados. Quem nunca operou cripto na vida consegue rodar o AURA sem problema."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Meu capital fica seguro? Vocês têm acesso ao meu dinheiro?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Seu dinheiro nunca sai das suas contas nas exchanges, e o AURA nunca tem acesso a ele. Diferente da maioria dos bots do mercado, o AURA não usa chaves de API — ele roda como uma extensão no seu próprio navegador (via Tampermonkey) e executa as operações dentro das exchanges que você já está logado, como se fosse você clicando. Nós não temos acesso ao seu saldo, ao seu login, às suas senhas ou a qualquer dado da sua conta. Você mantém controle total a qualquer momento."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "É uma estratégia arriscada?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, justamente porque você não está apostando se o preço vai subir ou cair — está capturando a diferença de preço entre exchanges, que é matemática pura. Dito isso, nenhuma operação no mercado financeiro tem risco zero: pode haver lentidão de exchange, problemas técnicos pontuais ou variação de spread no meio da operação. O AURA tem mecanismos pra mitigar tudo isso (cálculo automático de taxas, execução em milissegundos, anti-liquidação ativo), mas é importante você entrar entendendo que existe risco — só que muito menor do que trade direcional."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "O AURA executa as operações automaticamente?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim, totalmente. Você configura uma vez no Scanner (capital disponível, percentual mínimo de lucro por operação, exchanges ativas) e o bot identifica e executa sozinho, 24 horas por dia. Você pode acompanhar o histórico no Scanner a qualquer momento, mas não precisa fazer nada manualmente — nem aprovar operação, nem decidir nada."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "O bot opera enquanto eu não estou no computador?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim. Basta deixar o navegador aberto com o Scanner rodando e o AURA continua operando sozinho, 24 horas por dia. Você pode trabalhar, dormir, viajar ou simplesmente viver sua vida — o bot trabalha em segundo plano, identificando e executando as operações automaticamente. A maioria dos clientes deixa rodando direto no PC e só checa os resultados quando quer."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quais exchanges são suportadas?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Atualmente o AURA opera simultaneamente em Gate.io, BingX, MEXC e Bitget. São 4 das maiores exchanges globais, todas com alta liquidez e bom volume de oportunidades. Você precisa ter conta nas 4 pra aproveitar o máximo do bot — o setup em cada uma é simples e nosso time guia você no processo."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Posso cancelar a qualquer momento?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim. Não tem fidelidade, não tem multa, não tem burocracia. Você cancela a qualquer momento e o acesso permanece até o fim do período já pago. Sem ligação de retenção, sem perguntas, sem dificuldade."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "E se eu não conseguir configurar sozinho?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Não vai precisar. Logo após a confirmação do pagamento, você é encaminhado pro nosso time de onboarding. O Kevin (nosso especialista) faz uma sessão remota com você via AnyDesk e configura tudo em tempo real — desde a instalação da extensão Tampermonkey até os ajustes finais no Scanner. Você só precisa estar disponível pra acompanhar. Após o setup, eu mesmo (Matheus, fundador do AURA) faço uma call de mentoria pra alinhar a estratégia que faz sentido pro seu capital e perfil. Ninguém é deixado sozinho."
-        }
-      }
+      { "@type": "Question", "name": "Quanto preciso ter pra começar?", "acceptedAnswer": { "@type": "Answer", "text": "Recomendamos no mínimo R$500 distribuídos entre as 5 exchanges. O capital fica sempre nas suas próprias contas das exchanges — o Método não tem acesso ao seu saldo." } },
+      { "@type": "Question", "name": "Como funciona o teste de 7 dias?", "acceptedAnswer": { "@type": "Answer", "text": "Pagamento único de R$49,90. Acesso completo ao Método por 7 dias. Sem cartão salvo, sem renovação automática, sem cobrança recorrente." } },
+      { "@type": "Question", "name": "E depois dos 7 dias?", "acceptedAnswer": { "@type": "Answer", "text": "Acabou. Sem cobrança automática, sem cartão salvo, sem renovação. Se quiser entrar de novo, é só fazer uma nova compra de R$49,90." } },
+      { "@type": "Question", "name": "Tem mensalidade?", "acceptedAnswer": { "@type": "Answer", "text": "Não. R$49,90 é pagamento único pelos 7 dias de acesso. Sem mensalidade, sem taxa de execução, sem percentual sobre operação." } },
+      { "@type": "Question", "name": "Meu capital fica seguro?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O Método não usa chaves de API — roda como extensão no seu navegador via Tampermonkey. Nunca temos acesso ao seu saldo, login ou senhas." } },
+      { "@type": "Question", "name": "Quais exchanges são suportadas?", "acceptedAnswer": { "@type": "Answer", "text": "Gate.io, BingX, MEXC, Bitget e OurBit." } }
     ]
   }
   </script>

@@ -1,25 +1,32 @@
-export function initFaq() {
-  const questions = document.querySelectorAll('.faq-question');
-  if (!questions.length) return;
+// =========================================================================
+// faq.js — acordeão exclusivo (abrir um fecha os outros) com aria-expanded.
+// =========================================================================
 
-  questions.forEach((btn) => {
-    const item = btn.parentElement;
-    const answer = item.querySelector('.faq-answer');
-    if (answer && !answer.id) {
-      answer.id = `faq-answer-${Math.random().toString(36).slice(2, 9)}`;
-    }
+export function init() {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  items.forEach((item, idx) => {
+    const btn    = item.querySelector('.faq-question');
+    const panel  = item.querySelector('.faq-answer');
+    if (!btn || !panel) return;
+
+    const panelId = `faq-panel-${idx}`;
+    panel.id = panelId;
+    btn.setAttribute('aria-controls', panelId);
     btn.setAttribute('aria-expanded', 'false');
-    if (answer) btn.setAttribute('aria-controls', answer.id);
 
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
 
-      document.querySelectorAll('.faq-item').forEach((i) => {
-        i.classList.remove('open');
-        const q = i.querySelector('.faq-question');
-        if (q) q.setAttribute('aria-expanded', 'false');
+      // Fecha todos
+      items.forEach((other) => {
+        other.classList.remove('open');
+        const b = other.querySelector('.faq-question');
+        if (b) b.setAttribute('aria-expanded', 'false');
       });
 
+      // Abre o atual (se não estava aberto)
       if (!isOpen) {
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
