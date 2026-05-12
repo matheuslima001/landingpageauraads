@@ -1,1772 +1,463 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA — Bot de Arbitragem de Criptomoedas | Teste por R$49,90</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #0a0a0a;
-            --surface-1: #111111;
-            --surface-2: #1a1a1a;
-            --green: #00ff88;
-            --green-dark: #00cc6a;
-            --text: #ffffff;
-            --text-secondary: #a0a0a0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 16px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.3s, backdrop-filter 0.3s;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .navbar-logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .navbar-logo .dot {
-            color: var(--green);
-            margin-right: 2px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-            opacity: 0.9;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-            color: #0a0a0a;
-            font-weight: 700;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.35), 0 0 60px rgba(0, 255, 136, 0.18);
-            animation: pulse-glow 2.5s ease-in-out infinite;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn-primary::after {
-            content: '→';
-            display: inline-block;
-            margin-left: 10px;
-            transition: transform 0.2s ease;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
-            transform: skewX(-20deg);
-            animation: shimmer 5s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px) scale(1.03);
-            opacity: 1;
-            box-shadow: 0 0 50px rgba(0, 255, 136, 0.55), 0 0 100px rgba(0, 255, 136, 0.3);
-        }
-
-        .btn-primary:hover::after {
-            transform: translateX(4px);
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.35), 0 0 60px rgba(0, 255, 136, 0.18); }
-            50% { box-shadow: 0 0 45px rgba(0, 255, 136, 0.5), 0 0 90px rgba(0, 255, 136, 0.28); }
-        }
-
-        @keyframes shimmer {
-            0% { left: -75%; }
-            22% { left: 125%; }
-            100% { left: 125%; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .btn-primary {
-                animation: none;
-            }
-            .btn-primary::before {
-                display: none;
-            }
-            .bot-panel {
-                transform: none;
-            }
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-outline:hover {
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .btn-large {
-            padding: 16px 40px;
-            font-size: 1.05rem;
-        }
-
-        /* Sections common */
-        section {
-            padding: 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(1.7rem, 3vw + 0.8rem, 2.8rem);
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -0.03em;
-            line-height: 1.0;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 48px;
-            max-width: 600px;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .fade-in.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hero */
-        .hero {
-            padding-top: 160px;
-            padding-bottom: 80px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero > *:not(.hero-grid) {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Tron grid background */
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            perspective: 600px;
-            perspective-origin: 50% 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 30%, transparent 85%);
-            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 30%, transparent 85%);
-        }
-
-        .hero-grid-plane {
-            position: absolute;
-            left: -50%;
-            right: -50%;
-            top: -50%;
-            bottom: -50%;
-            transform-origin: 50% 50%;
-            will-change: background-position;
-        }
-
-        .hero-grid-plane.plane-1 {
-            background-image:
-                linear-gradient(rgba(0, 255, 136, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.15) 1px, transparent 1px);
-            background-size: 60px 60px;
-            transform: rotateX(68deg);
-            animation: gridScroll 20s linear infinite;
-        }
-
-        .hero-grid-plane.plane-2 {
-            background-image:
-                linear-gradient(rgba(0, 255, 136, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.08) 1px, transparent 1px);
-            background-size: 120px 120px;
-            background-position: 30px 30px;
-            transform: rotateX(68deg);
-            animation: gridScrollSlow 28s linear infinite;
-        }
-
-        @keyframes gridScroll {
-            from { background-position: 0 0; }
-            to { background-position: 0 60px; }
-        }
-
-        @keyframes gridScrollSlow {
-            from { background-position: 30px 30px; }
-            to { background-position: 30px 150px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-grid-plane.plane-1,
-            .hero-grid-plane.plane-2 {
-                animation: none;
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(0, 255, 136, 0.08);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 100px;
-            color: var(--green);
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 32px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
-            font-weight: 800;
-            line-height: 0.95;
-            max-width: 920px;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            text-wrap: balance;
-        }
-
-        .hero-sub {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            line-height: 1.7;
-            max-width: 640px;
-            margin-bottom: 28px;
-        }
-
-        .hero-stat {
-            color: var(--green);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 36px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 60px;
-        }
-
-        /* Bot panel */
-        .bot-panel {
-            width: 100%;
-            max-width: 860px;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 255, 136, 0.18);
-            box-shadow:
-                0 30px 80px rgba(0, 255, 136, 0.22),
-                0 15px 40px rgba(0, 0, 0, 0.6);
-            transform: perspective(1500px) rotateX(2deg);
-        }
-
-        .bot-panel::before {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.4) 0%, transparent 70%);
-            filter: blur(80px);
-            z-index: -1;
-            pointer-events: none;
-            border-radius: 24px;
-        }
-
-        .bot-panel img {
-            width: 100%;
-            display: block;
-            border-radius: 16px;
-        }
-
-        .bot-panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .bot-panel-title {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .bot-panel-status {
-            color: var(--green);
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .bot-panel-status .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .bot-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            color: var(--text-secondary);
-            animation: lineFlash 3s infinite;
-        }
-
-        .bot-line:nth-child(2) { animation-delay: 0.5s; }
-        .bot-line:nth-child(3) { animation-delay: 1s; }
-        .bot-line:nth-child(4) { animation-delay: 1.5s; }
-        .bot-line:nth-child(5) { animation-delay: 2s; }
-
-        @keyframes lineFlash {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        .bot-line .pair { font-weight: 600; color: var(--text); }
-        .bot-line .status-open { color: var(--green); font-weight: 600; }
-        .bot-line .status-closed { color: var(--text-secondary); }
-        .bot-line .profit { color: var(--green); font-weight: 600; }
-
-        /* Magic text block */
-        .magic-block {
-            background: var(--surface-1);
-            padding: 72px 40px;
-            max-width: 100%;
-            text-align: center;
-        }
-
-        .magic-block-inner {
-            max-width: 820px;
-            margin: 0 auto;
-        }
-
-        .magic-block p {
-            font-size: 1.6rem;
-            font-weight: 700;
-            line-height: 1.5;
-            letter-spacing: -0.3px;
-            color: var(--text);
-        }
-
-        .magic-block p span {
-            color: var(--green);
-        }
-
-        /* Social proof bar */
-        .proof-bar {
-            background: var(--surface-1);
-            padding: 40px;
-            max-width: 100%;
-        }
-
-        .proof-bar-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 0;
-        }
-
-        .proof-item {
-            text-align: center;
-            padding: 0 48px;
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .proof-item:last-child {
-            border-right: none;
-        }
-
-        .proof-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--green);
-            margin-bottom: 4px;
-        }
-
-        .proof-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Problem section */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .problem-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: transform 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
-        }
-
-        .problem-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-
-        .problem-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .problem-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Mechanism */
-        .mechanism-steps {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            position: relative;
-        }
-
-        .mech-step {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            text-align: center;
-            position: relative;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: transform 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
-        }
-
-        .mech-step-number {
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--green);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 16px;
-        }
-
-        .mech-step h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .mech-step p {
-            color: var(--text-secondary);
-            font-size: 0.93rem;
-        }
-
-        .mech-arrow {
-            display: flex;
-            align-items: center;
-            color: var(--green);
-            font-size: 1.5rem;
-            padding-top: 50px;
-            flex-shrink: 0;
-        }
-
-        /* Risk section */
-        .risk-section {
-            background: var(--surface-1);
-            padding: 72px 40px;
-            max-width: 100%;
-        }
-
-        .risk-section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .risk-section .section-title {
-            margin-bottom: 12px;
-        }
-
-        .risk-section .section-subtitle {
-            margin-bottom: 48px;
-        }
-
-        .risk-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .risk-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: transform 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
-        }
-
-        .risk-card-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: rgba(0, 255, 136, 0.08);
-            border: 1px solid rgba(0, 255, 136, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .risk-card-content h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .risk-card-content p {
-            color: var(--text-secondary);
-            font-size: 0.93rem;
-            line-height: 1.6;
-        }
-
-        /* Exchanges bar */
-        .exchanges-bar {
-            background: var(--bg);
-            padding: 48px 40px;
-            max-width: 100%;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .exchanges-bar::before,
-        .exchanges-bar::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            pointer-events: none;
-            background:
-                linear-gradient(to right, transparent, rgba(0, 255, 136, 0.7), transparent) -30% 0 / 30% 100% no-repeat,
-                linear-gradient(to right, transparent, rgba(0, 255, 136, 0.12), transparent);
-            animation: dataFlow 6s linear infinite;
-        }
-
-        .exchanges-bar::before { top: 0; }
-        .exchanges-bar::after { bottom: 0; animation-delay: -3s; }
-
-        @keyframes dataFlow {
-            0% { background-position: -30% 0, 0 0; }
-            100% { background-position: 130% 0, 0 0; }
-        }
-
-        .exchanges-bar-label {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 28px;
-        }
-
-        .exchanges-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .exchange-chip {
-            background: var(--surface-2);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 100px;
-            padding: 10px 22px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 8px rgba(0, 255, 136, 0);
-            animation: chipPulse 2.4s ease-in-out infinite;
-        }
-
-        .exchange-chip:nth-child(1) { animation-delay: 0s; }
-        .exchange-chip:nth-child(2) { animation-delay: 0.4s; }
-        .exchange-chip:nth-child(3) { animation-delay: 0.8s; }
-        .exchange-chip:nth-child(4) { animation-delay: 1.2s; }
-
-        @keyframes chipPulse {
-            0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 136, 0); }
-            50% { box-shadow: 0 0 16px rgba(0, 255, 136, 0.35); }
-        }
-
-        @media (hover: hover) {
-            .exchange-chip:hover {
-                color: var(--green);
-                border-color: rgba(0, 255, 136, 0.3);
-                animation: none;
-                box-shadow: 0 0 24px rgba(0, 255, 136, 0.5);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .exchanges-bar::before,
-            .exchanges-bar::after {
-                animation: none;
-            }
-            .exchange-chip {
-                animation: none;
-                box-shadow: none;
-            }
-        }
-
-        /* Testimonials marquee */
-        .carousel-wrapper {
-            position: relative;
-        }
-
-        .carousel-track-outer {
-            overflow: hidden;
-            -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-            mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-        }
-
-        .testimonials-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 40s linear infinite;
-        }
-
-        .testimonial-card {
-            flex: 0 0 320px;
-            margin-right: 20px;
-            background: var(--surface-2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 12px;
-        }
-
-        .testimonial-card img {
-            width: 100%;
-            border-radius: 8px;
-            display: block;
-        }
-
-        .testimonial-label {
-            color: var(--green);
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        @media (hover: hover) {
-            .carousel-track-outer:hover .testimonials-track {
-                animation-play-state: paused;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .testimonial-card {
-                flex: 0 0 75vw;
-                margin-right: 16px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .testimonials-track {
-                animation: none;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
-            }
-            .testimonial-card {
-                margin-right: 0;
-                flex: 0 0 280px;
-            }
-            .carousel-track-outer {
-                -webkit-mask-image: none;
-                mask-image: none;
-            }
-        }
-
-        /* Features */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: transform 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
-        }
-
-        .feature-icon {
-            font-size: 1.6rem;
-            margin-bottom: 14px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.93rem;
-        }
-
-        /* Steps */
-        .steps-row {
-            display: flex;
-            gap: 32px;
-        }
-
-        .step-card {
-            flex: 1;
-            text-align: center;
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.08);
-            border-radius: 16px;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.05),
-                0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 300ms ease-out, border-color 300ms ease-out, box-shadow 300ms ease-out;
-        }
-
-        .step-number {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--green);
-            font-size: 1.4rem;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .step-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .step-card p {
-            color: var(--text-secondary);
-            font-size: 0.93rem;
-        }
-
-        /* Pricing */
-        #pricing {
-            text-align: center;
-        }
-
-        .pricing-card {
-            max-width: 460px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.03);
-            border: 2px solid rgba(0, 255, 136, 0.25);
-            border-radius: 20px;
-            padding: 48px 40px;
-            position: relative;
-            isolation: isolate;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 12px 40px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(0, 255, 136, 0.12);
-        }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            inset: -40px;
-            background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.08) 0%, transparent 60%);
-            filter: blur(40px);
-            z-index: -1;
-            pointer-events: none;
-            border-radius: 40px;
-        }
-
-        .pricing-label {
-            display: inline-block;
-            background: var(--green);
-            color: #0a0a0a;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 100px;
-            margin-bottom: 24px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .pricing-price {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .pricing-period {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 32px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 32px;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--green);
-            font-weight: 700;
-        }
-
-        .pricing-guarantee {
-            background: rgba(0, 255, 136, 0.06);
-            border: 1px solid rgba(0, 255, 136, 0.15);
-            border-radius: 10px;
-            padding: 14px;
-            margin-bottom: 28px;
-            font-size: 0.9rem;
-            color: var(--green);
-            font-weight: 500;
-        }
-
-        .pricing-note {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-top: 16px;
-        }
-
-        /* FAQ */
-        .faq-list {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .faq-question {
-            width: 100%;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 600;
-            text-align: left;
-            padding: 24px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question:hover {
-            color: var(--green);
-            background: rgba(0, 255, 136, 0.02);
-        }
-
-        .faq-icon {
-            font-size: 1.3rem;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-            margin-left: 16px;
-        }
-
-        .faq-item.open .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.35s ease;
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 800px;
-        }
-
-        .faq-answer p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            padding-bottom: 24px;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            padding-bottom: 120px;
-        }
-
-        .cta-section .section-subtitle {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-note {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-top: 16px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--surface-1);
-            padding: 40px;
-            max-width: 100%;
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .footer-logo {
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .footer-logo .dot {
-            color: var(--green);
-        }
-
-        .footer-copy {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text);
-        }
-
-        /* Card hovers — só em devices com hover real, evita flash em touch */
-        @media (hover: hover) {
-            .problem-card:hover,
-            .mech-step:hover,
-            .risk-card:hover,
-            .feature-card:hover {
-                transform: translateY(-2px);
-                border-color: rgba(0, 255, 136, 0.3);
-                box-shadow:
-                    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-                    0 12px 40px rgba(0, 0, 0, 0.5),
-                    0 0 30px rgba(0, 255, 136, 0.1);
-            }
-
-            .step-card:hover {
-                transform: translateY(-2px);
-                border-color: rgba(0, 255, 136, 0.2);
-                box-shadow:
-                    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                    0 6px 24px rgba(0, 0, 0, 0.4),
-                    0 0 20px rgba(0, 255, 136, 0.08);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            section {
-                padding: 60px 20px;
-            }
-
-            .navbar {
-                padding: 14px 20px;
-            }
-
-            .hero {
-                padding-top: 120px;
-            }
-
-            .hero-sub {
-                font-size: 1rem;
-            }
-
-            .proof-bar-inner {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .proof-item {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-                padding: 12px 0;
-            }
-
-            .proof-item:last-child {
-                border-bottom: none;
-            }
-
-            .problem-grid,
-            .features-grid,
-            .risk-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .mechanism-steps {
-                flex-direction: column;
-            }
-
-            .mech-arrow {
-                padding-top: 0;
-                justify-content: center;
-                transform: rotate(90deg);
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-row {
-                flex-direction: column;
-            }
-
-            .pricing-card {
-                padding: 36px 24px;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .bot-panel {
-                transform: none;
-            }
-
-            .magic-block {
-                padding: 48px 20px;
-            }
-
-            .magic-block p {
-                font-size: 1.2rem;
-            }
-
-            .risk-section {
-                padding: 48px 20px;
-            }
-
-            .exchanges-bar {
-                padding: 40px 20px;
-            }
-        }
-    </style>
-    <noscript>
-        <style>.fade-in { opacity: 1; transform: none; }</style>
-    </noscript>
-    <script
-      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-      data-utmify-prevent-xcod-sck
-      data-utmify-prevent-subids
-      async
-      defer
-    ></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA — Bot de Arbitragem de Criptomoedas | Teste por R$49,90</title>
+  <meta name="description" content="O AURA opera arbitragem automática em 4 exchanges (Gate, BingX, MEXC, Bitget) 24h por dia. Configure uma vez e o bot trabalha por você. Teste por 7 dias por R$49,90.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="AURA — Bot de Arbitragem de Criptomoedas">
+  <meta property="og:description" content="Bot de arbitragem operando 24h em 4 exchanges. Sem chave de API, sem acesso ao seu saldo. Teste por 7 dias por R$49,90.">
+  <meta property="og:image" content="images/product/mockupoficial.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AURA — Bot de Arbitragem de Criptomoedas">
+  <meta name="twitter:description" content="Bot de arbitragem operando 24h em 4 exchanges. Teste por 7 dias por R$49,90.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+
+  <noscript>
+    <style>.fade-in { opacity: 1; transform: none; }</style>
+  </noscript>
+
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+
+  <script type="module" src="assets/js/main.js"></script>
 </head>
 <body>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-grid" aria-hidden="true">
-            <div class="hero-grid-plane plane-1"></div>
-            <div class="hero-grid-plane plane-2"></div>
-        </div>
-        <h1 class="fade-in">Coloque um bot pra operar criptomoedas por você, <span style="color: var(--green);">sem depender da moeda subir</span></h1>
-        <p class="hero-sub fade-in" style="margin-bottom: 60px;">O AURA opera arbitragem automática em 4 exchanges ao mesmo tempo, identificando diferenças de preço e executando em milissegundos. Você <span style="color: var(--green);">não precisa entender de cripto</span>, <span style="color: var(--green);">não precisa estar online</span>, <span style="color: var(--green);">não precisa fazer nada</span>. Configure uma vez e o <span style="color: var(--green);">bot trabalha por você 24 horas por dia</span>.</p>
+  <main>
 
-        <div class="bot-panel fade-in">
-            <img src="images/mockupoficial.png" alt="Scanner de Operações do AURA">
-        </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true">
+        <div class="hero-grid-plane plane-1"></div>
+        <div class="hero-grid-plane plane-2"></div>
+      </div>
+      <h1 id="hero-title" class="fade-in">Coloque um bot pra operar criptomoedas por você, <span class="text-green">sem depender da moeda subir</span></h1>
+      <p class="hero-sub fade-in">O AURA opera arbitragem automática em 4 exchanges ao mesmo tempo, identificando diferenças de preço e executando em milissegundos. Você <span class="text-green">não precisa entender de cripto</span>, <span class="text-green">não precisa estar online</span>, <span class="text-green">não precisa fazer nada</span>. Configure uma vez e o <span class="text-green">bot trabalha por você 24 horas por dia</span>.</p>
+
+      <div class="bot-panel fade-in">
+        <img src="images/product/mockupoficial.png" alt="Scanner de operações do AURA mostrando oportunidades de arbitragem em tempo real" fetchpriority="high">
+      </div>
     </section>
 
-    <!-- Magic text block -->
-    <div class="magic-block">
-        <div class="magic-block-inner fade-in">
-            <p>Enquanto você trabalha, dorme ou viaja, o AURA <span>já identificou e executou dezenas de operações</span> na sua conta. Sem você precisar abrir uma exchange. Sem acompanhar gráfico. Sem entender de mercado. <span>É renda passiva de verdade, rodando 24 horas por dia.</span></p>
+    <aside class="magic-block" aria-label="Resumo do produto">
+      <div class="magic-block-inner fade-in">
+        <p>Enquanto você trabalha, dorme ou viaja, o AURA <span>já identificou e executou dezenas de operações</span> na sua conta. Sem você precisar abrir uma exchange. Sem acompanhar gráfico. Sem entender de mercado. <span>É renda passiva de verdade, rodando 24 horas por dia.</span></p>
+      </div>
+    </aside>
+
+    <section class="proof-bar" aria-label="Indicadores de operação do bot">
+      <div class="proof-bar-inner fade-in">
+        <div class="proof-item" aria-label="1.200 operações esta semana">
+          <div class="proof-number" data-target="1200" data-suffix="+" data-format="thousands" aria-hidden="true">1.200+</div>
+          <div class="proof-label">Operações esta semana</div>
         </div>
+        <div class="proof-item" aria-label="Tempo de execução menor que 300 milissegundos">
+          <div class="proof-number" data-target="300" data-prefix="&lt; " data-suffix="ms" aria-hidden="true">&lt; 300ms</div>
+          <div class="proof-label">Tempo de execução</div>
+        </div>
+        <div class="proof-item" aria-label="4 exchanges conectadas">
+          <div class="proof-number" data-target="4" aria-hidden="true">4</div>
+          <div class="proof-label">Exchanges conectadas</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-number">24/7</div>
+          <div class="proof-label">Operando sem parar</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos" aria-labelledby="depoimentos-title">
+      <h2 id="depoimentos-title" class="section-title fade-in">Resultados reais, clientes reais</h2>
+      <p class="section-subtitle fade-in">Estes são prints do nosso Discord. Clientes reais, resultados reais, enviados por eles mesmos sem nenhum incentivo.</p>
+      <div class="carousel-wrapper fade-in" role="region" aria-label="Depoimentos de clientes do AURA">
+        <div class="carousel-track-outer">
+          <div class="testimonials-track">
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-01.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-02.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-03.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-04.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-05.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-06.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-07.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-08.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-09.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-10.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-11.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-12.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-13.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-14.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-15.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <img src="images/testimonials/testimonial-16.png" alt="Print de depoimento de cliente do AURA enviado no Discord" loading="lazy">
+              <figcaption class="testimonial-label">Depoimento real · AURA</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-mid" aria-label="Chamada para iniciar o teste">
+      <div class="hero-buttons fade-in">
+        <a href="#" data-checkout class="btn btn-primary btn-large">Testar por 7 dias — R$49,90</a>
+        <a href="#mecanismo" class="btn btn-outline btn-large">Ver como funciona</a>
+      </div>
+      <div class="fade-in cta-mid-note">Após o teste, mensalidade de R$197/mês. Cancele quando quiser.</div>
+    </section>
+
+    <section id="problema" aria-labelledby="problema-title">
+      <h2 id="problema-title" class="section-title fade-in">Por que a maioria perde dinheiro tentando arbitrar manualmente</h2>
+      <p class="section-subtitle fade-in">Não é falta de capital. É falta de velocidade e disponibilidade.</p>
+      <div class="problem-grid">
+        <article class="problem-card fade-in">
+          <div class="problem-icon" aria-hidden="true">⚡</div>
+          <h3>Janelas duram segundos</h3>
+          <p>A diferença de preço entre corretoras some antes de você conseguir executar. Operar manualmente significa sempre chegar tarde.</p>
+        </article>
+        <article class="problem-card fade-in">
+          <div class="problem-icon" aria-hidden="true">🕐</div>
+          <h3>Você não pode monitorar 24h</h3>
+          <p>As melhores oportunidades aparecem de madrugada, no fim de semana, enquanto você trabalha. O mercado não tem horário.</p>
+        </article>
+        <article class="problem-card fade-in">
+          <div class="problem-icon" aria-hidden="true">🔒</div>
+          <h3>Complexidade afasta quem poderia lucrar</h3>
+          <p>Calcular taxas, spreads e timing em tempo real é impossível sem automação. A maioria desiste antes de entender o mecanismo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mecanismo" aria-labelledby="mecanismo-title">
+      <h2 id="mecanismo-title" class="section-title fade-in">A lógica por trás do lucro</h2>
+      <p class="section-subtitle fade-in">Arbitragem não é especulação. É matemática.</p>
+      <div class="mechanism-steps">
+        <article class="mech-step fade-in">
+          <div class="mech-step-number" aria-hidden="true">1</div>
+          <h3>Identificação</h3>
+          <p>O bot monitora o preço do mesmo ativo em Gate, BingX, MEXC e Bitget ao mesmo tempo, em tempo real.</p>
+        </article>
+        <div class="mech-arrow fade-in" aria-hidden="true">→</div>
+        <article class="mech-step fade-in">
+          <div class="mech-step-number" aria-hidden="true">2</div>
+          <h3>Execução</h3>
+          <p>Ao detectar uma diferença lucrativa acima das taxas, compra na exchange mais barata e vende na mais cara, em milissegundos.</p>
+        </article>
+        <div class="mech-arrow fade-in" aria-hidden="true">→</div>
+        <article class="mech-step fade-in">
+          <div class="mech-step-number" aria-hidden="true">3</div>
+          <h3>Resultado</h3>
+          <p>A diferença de preço, descontadas as taxas, vai direto para o seu saldo. Repetido centenas de vezes por semana.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="risk-section" aria-labelledby="risk-title">
+      <div class="risk-section-inner">
+        <h2 id="risk-title" class="section-title fade-in">Uma das estratégias de menor risco no mercado cripto</h2>
+        <p class="section-subtitle fade-in">Você não está apostando na alta ou na queda de nenhum ativo. Está capturando ineficiências de mercado que existem independente da direção do preço.</p>
+        <p class="fade-in risk-section-lead">A maior parte das pessoas que entra em cripto perde dinheiro porque tenta adivinhar o mercado. <span>Arbitragem é diferente: você lucra com a diferença de preço entre exchanges, não com a direção do preço.</span> Se Bitcoin sobe, você lucra. Se cai, você lucra também. É matemática, não aposta.</p>
+        <div class="risk-grid">
+          <article class="risk-card fade-in">
+            <div class="risk-card-icon" aria-hidden="true">📊</div>
+            <div class="risk-card-content">
+              <h3>Sem dependência de direção de mercado</h3>
+              <p>O lucro vem da diferença entre corretoras, não da valorização do ativo. Bitcoin subindo ou caindo não importa, a diferença de preço entre exchanges sempre existe.</p>
+            </div>
+          </article>
+          <article class="risk-card fade-in">
+            <div class="risk-card-icon" aria-hidden="true">⚡</div>
+            <div class="risk-card-content">
+              <h3>Operações rápidas e fechadas</h3>
+              <p>Cada operação abre e fecha em questão de segundos. Você não fica exposto ao mercado por horas ou dias esperando o preço mover.</p>
+            </div>
+          </article>
+          <article class="risk-card fade-in">
+            <div class="risk-card-icon" aria-hidden="true">🧮</div>
+            <div class="risk-card-content">
+              <h3>Cálculo automático de taxas</h3>
+              <p>O bot só executa quando o lucro supera todas as taxas envolvidas, comissões das exchanges e custos de transferência calculados automaticamente.</p>
+            </div>
+          </article>
+          <article class="risk-card fade-in">
+            <div class="risk-card-icon" aria-hidden="true">🛡️</div>
+            <div class="risk-card-content">
+              <h3>Sem acesso ao seu dinheiro</h3>
+              <p>Diferente da maioria dos bots, o AURA não usa chaves de API. Ele roda como extensão no seu próprio navegador, dentro das exchanges que você já está logado. Nós nunca temos acesso ao seu saldo, login ou senhas.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="exchanges-bar" aria-label="Exchanges suportadas">
+      <div class="exchanges-bar-label fade-in">Exchanges monitoradas simultaneamente</div>
+      <div class="exchanges-row fade-in">
+        <div class="exchange-chip">Gate.io</div>
+        <div class="exchange-chip">BingX</div>
+        <div class="exchange-chip">MEXC</div>
+        <div class="exchange-chip">Bitget</div>
+      </div>
+    </section>
+
+    <section id="funcionalidades" aria-labelledby="funcionalidades-title">
+      <h2 id="funcionalidades-title" class="section-title fade-in">Construído para não perder nenhuma janela</h2>
+      <p class="section-subtitle fade-in">Cada funcionalidade existe para que o bot seja mais rápido e preciso do que qualquer operador humano.</p>
+      <div class="features-grid">
+        <article class="feature-card fade-in">
+          <div class="feature-icon" aria-hidden="true">⚙️</div>
+          <h3>Operação autônoma 24/7</h3>
+          <p>Roda em servidor próprio, independente do seu dispositivo. Trabalha enquanto você dorme, viaja ou descansa.</p>
+        </article>
+        <article class="feature-card fade-in">
+          <div class="feature-icon" aria-hidden="true">🚀</div>
+          <h3>Setup em menos de 20 minutos</h3>
+          <p>Instale o AURA no seu navegador via Tampermonkey e o bot já começa a operar. Passo a passo guiado no Scanner.</p>
+        </article>
+        <article class="feature-card fade-in">
+          <div class="feature-icon" aria-hidden="true">🛡️</div>
+          <h3>Estratégia de baixo risco</h3>
+          <p>Arbitragem não depende de previsão de mercado. O lucro vem da diferença matemática de preço entre corretoras.</p>
+        </article>
+        <article class="feature-card fade-in">
+          <div class="feature-icon" aria-hidden="true">👤</div>
+          <h3>Sem conhecimento técnico</h3>
+          <p>Feito para quem quer resultado, não para desenvolvedores. Você configura uma vez e o bot faz o resto.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="como-comecar" class="section-centered" aria-labelledby="como-comecar-title">
+      <h2 id="como-comecar-title" class="section-title fade-in">Do zero ao bot operando em 3 passos</h2>
+      <p class="section-subtitle fade-in">Em menos de 20 minutos você já está com o AURA rodando nas suas exchanges.</p>
+      <div class="steps-row">
+        <article class="step-card fade-in">
+          <div class="step-number" aria-hidden="true">1</div>
+          <h3>Comece com R$49,90</h3>
+          <p>Acesso imediato ao Scanner e às aulas gravadas que ensinam a configurar e operar com o AURA. Sem fidelidade, sem compromisso.</p>
+        </article>
+        <article class="step-card fade-in">
+          <div class="step-number" aria-hidden="true">2</div>
+          <h3>Instale a extensão</h3>
+          <p>Instale o AURA no seu navegador via Tampermonkey e o bot já começa a operar nas suas exchanges. Sem API, sem chaves, sem acesso ao seu saldo. Guia passo a passo incluso.</p>
+        </article>
+        <article class="step-card fade-in">
+          <div class="step-number" aria-hidden="true">3</div>
+          <h3>O bot opera por você</h3>
+          <p>A partir daí é só acompanhar os resultados. O bot identifica e executa as operações automaticamente.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title" class="section-title fade-in">Teste por 7 dias antes de assinar</h2>
+      <p class="section-subtitle fade-in">Pague R$49,90 hoje e tenha o AURA rodando na sua conta pelos próximos 7 dias. Tempo suficiente pra ver o bot operando, gerar suas primeiras operações e decidir se faz sentido continuar. Se fizer, a mensalidade de R$197 entra automaticamente. Se não, é só cancelar — sem multa, sem perguntas.</p>
+      <div class="pricing-card fade-in">
+        <div class="pricing-label">Acesso completo por 7 dias</div>
+        <div class="pricing-price">R$49,90</div>
+        <div class="pricing-period">pagamento único · sem renovação automática nos primeiros 7 dias</div>
+        <ul class="pricing-features">
+          <li>Scanner e bot rodando nas suas exchanges desde o primeiro dia</li>
+          <li>4 exchanges conectadas simultaneamente (Gate, BingX, MEXC, Bitget)</li>
+          <li>Aulas gravadas com passo a passo de configuração e uso</li>
+          <li>Setup guiado com nosso time via AnyDesk</li>
+          <li>Suporte direto no Discord</li>
+          <li>Mentoria comigo após o setup</li>
+        </ul>
+        <div class="pricing-guarantee">Após os 7 dias, mensalidade de R$197 pra continuar usando o bot. Cancele quando quiser, sem multa.</div>
+        <a href="#" data-checkout class="btn btn-primary btn-large btn-block">Começar agora por R$49,90</a>
+        <div class="pricing-note">Acesso liberado em até 5 minutos após o pagamento.</div>
+      </div>
+    </section>
+
+    <section id="faq" class="section-centered" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="section-title fade-in">Perguntas frequentes</h2>
+      <p class="section-subtitle fade-in">Tudo que você precisa saber antes de começar.</p>
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Quanto preciso ter pra começar a operar?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Recomendamos no mínimo R$500 distribuídos entre as 4 exchanges. Esse é o valor que permite o bot identificar e executar operações com folga, considerando as taxas envolvidas. Você pode começar com mais, mas abaixo disso a quantidade de oportunidades viáveis cai bastante e o bot fica parado boa parte do tempo. O capital fica sempre nas suas próprias contas das exchanges — o AURA não tem acesso ao seu saldo, ele só executa as ordens dentro do seu próprio navegador.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Quanto posso ganhar com o AURA?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Não prometemos valores fixos porque seria desonesto. O resultado depende de três coisas: quanto capital você tem operando, quantas oportunidades o mercado oferece naquele período e a sua configuração de risco no Scanner. O que podemos mostrar são os prints reais dos nossos clientes (você vê alguns na seção "Resultados reais" desta página, e dezenas no nosso Discord), com operações de spread variando entre 1% e 4% em média. Multiplique isso pelo seu capital e pela frequência de operações pra ter uma noção. Quem quer promessa de ganho garantido não é nosso cliente — quem quer uma ferramenta séria rodando por conta própria, é.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Como funciona o teste de 7 dias?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Você paga R$49,90 hoje e recebe acesso completo ao AURA pelos próximos 7 dias: Scanner liberado, bot rodando nas 4 exchanges, suporte do nosso time, aulas gravadas e mentoria comigo após o setup. É exatamente a mesma ferramenta que os clientes mensalistas usam — sem versão limitada, sem recursos travados. Após os 7 dias, se quiser continuar, a mensalidade de R$197 entra automaticamente. Se não quiser, é só cancelar antes do fim do período — não cobramos nada além dos R$49,90 iniciais. Sem multa, sem burocracia, sem ligação de retenção.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Preciso entender de criptomoedas pra usar?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Não. O AURA foi construído justamente pra quem não entende de cripto e não quer aprender. Você não precisa saber ler gráfico, prever mercado ou escolher moeda — o bot faz tudo isso. O que você precisa fazer é seguir o passo a passo das aulas gravadas (cerca de 20 minutos de configuração com suporte do nosso time via AnyDesk) e depois acompanhar os resultados. Quem nunca operou cripto na vida consegue rodar o AURA sem problema.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Meu capital fica seguro? Vocês têm acesso ao meu dinheiro?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Seu dinheiro nunca sai das suas contas nas exchanges, e o AURA nunca tem acesso a ele. Diferente da maioria dos bots do mercado, o AURA não usa chaves de API — ele roda como uma extensão no seu próprio navegador (via Tampermonkey) e executa as operações dentro das exchanges que você já está logado, como se fosse você clicando. Nós não temos acesso ao seu saldo, ao seu login, às suas senhas ou a qualquer dado da sua conta. Você mantém controle total a qualquer momento.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            É uma estratégia arriscada?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, justamente porque você não está apostando se o preço vai subir ou cair — está capturando a diferença de preço entre exchanges, que é matemática pura. Dito isso, nenhuma operação no mercado financeiro tem risco zero: pode haver lentidão de exchange, problemas técnicos pontuais ou variação de spread no meio da operação. O AURA tem mecanismos pra mitigar tudo isso (cálculo automático de taxas, execução em milissegundos, anti-liquidação ativo), mas é importante você entrar entendendo que existe risco — só que muito menor do que trade direcional.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            O AURA executa as operações automaticamente?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim, totalmente. Você configura uma vez no Scanner (capital disponível, percentual mínimo de lucro por operação, exchanges ativas) e o bot identifica e executa sozinho, 24 horas por dia. Você pode acompanhar o histórico no Scanner a qualquer momento, mas não precisa fazer nada manualmente — nem aprovar operação, nem decidir nada.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            O bot opera enquanto eu não estou no computador?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim. Basta deixar o navegador aberto com o Scanner rodando e o AURA continua operando sozinho, 24 horas por dia. Você pode trabalhar, dormir, viajar ou simplesmente viver sua vida — o bot trabalha em segundo plano, identificando e executando as operações automaticamente. A maioria dos clientes deixa rodando direto no PC e só checa os resultados quando quer.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Quais exchanges são suportadas?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Atualmente o AURA opera simultaneamente em Gate.io, BingX, MEXC e Bitget. São 4 das maiores exchanges globais, todas com alta liquidez e bom volume de oportunidades. Você precisa ter conta nas 4 pra aproveitar o máximo do bot — o setup em cada uma é simples e nosso time guia você no processo.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            Posso cancelar a qualquer momento?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim. Não tem fidelidade, não tem multa, não tem burocracia. Você cancela a qualquer momento e o acesso permanece até o fim do período já pago. Sem ligação de retenção, sem perguntas, sem dificuldade.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" type="button">
+            E se eu não conseguir configurar sozinho?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Não vai precisar. Logo após a confirmação do pagamento, você é encaminhado pro nosso time de onboarding. O Kevin (nosso especialista) faz uma sessão remota com você via AnyDesk e configura tudo em tempo real — desde a instalação da extensão Tampermonkey até os ajustes finais no Scanner. Você só precisa estar disponível pra acompanhar. Após o setup, eu mesmo (Matheus, fundador do AURA) faço uma call de mentoria pra alinhar a estratégia que faz sentido pro seu capital e perfil. Ninguém é deixado sozinho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="section-title fade-in">Seu bot já poderia estar operando agora</h2>
+      <p class="section-subtitle fade-in">Cada hora sem o AURA é uma janela de arbitragem que passa sem você. Configure em menos de 20 minutos.</p>
+      <div class="fade-in">
+        <a href="#" data-checkout class="btn btn-primary btn-large">Começar agora por R$49,90</a>
+        <div class="cta-note">7 dias de acesso completo · Após o teste, R$197/mês · Cancele quando quiser</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="dot" aria-hidden="true">●</span> AURA</div>
+      <div class="footer-copy">&copy; 2026 AURA. Todos os direitos reservados.</div>
+      <nav class="footer-links" aria-label="Links institucionais">
+        <a href="#">Termos de uso</a>
+        <a href="#">Política de privacidade</a>
+      </nav>
     </div>
-
-    <!-- Social proof bar -->
-    <div class="proof-bar">
-        <div class="proof-bar-inner fade-in">
-            <div class="proof-item" aria-label="1.200 operações esta semana">
-                <div class="proof-number" data-target="1200" data-suffix="+" data-format="thousands" aria-hidden="true">1.200+</div>
-                <div class="proof-label">Operações esta semana</div>
-            </div>
-            <div class="proof-item" aria-label="Tempo de execução menor que 300 milissegundos">
-                <div class="proof-number" data-target="300" data-prefix="&lt; " data-suffix="ms" aria-hidden="true">&lt; 300ms</div>
-                <div class="proof-label">Tempo de execução</div>
-            </div>
-            <div class="proof-item" aria-label="4 exchanges conectadas">
-                <div class="proof-number" data-target="4" aria-hidden="true">4</div>
-                <div class="proof-label">Exchanges conectadas</div>
-            </div>
-            <div class="proof-item">
-                <div class="proof-number">24/7</div>
-                <div class="proof-label">Operando sem parar</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Prova social (carrossel) -->
-    <section id="depoimentos">
-        <h2 class="section-title fade-in">Resultados reais, clientes reais</h2>
-        <p class="section-subtitle fade-in">Estes são prints do nosso Discord. Clientes reais, resultados reais, enviados por eles mesmos sem nenhum incentivo.</p>
-        <div class="carousel-wrapper fade-in" role="region" aria-label="Depoimentos de clientes do AURA">
-            <div class="carousel-track-outer">
-                <div class="testimonials-track">
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.39.44.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.41.27.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.41.58.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.42.21.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.42.48.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.43.06.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.43.39.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.43.49.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.44.14.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.44.46.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.45.10.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.45.23.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.45.38.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.45.48.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/Captura de Tela 2026-04-07 às 06.46.11.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="images/depoimento 04.png" alt="Depoimento de cliente" loading="lazy">
-                        <div class="testimonial-label">Depoimento real · AURA</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA pós-depoimentos -->
-    <section style="text-align: center; padding-top: 40px; padding-bottom: 80px;">
-        <div class="hero-buttons fade-in" style="margin-bottom: 14px;">
-            <a href="#" data-checkout class="btn btn-primary btn-large">Testar por 7 dias — R$49,90</a>
-            <a href="#mecanismo" class="btn btn-outline btn-large">Ver como funciona</a>
-        </div>
-        <div class="fade-in" style="color: var(--text-secondary); font-size: 0.85rem;">Após o teste, mensalidade de R$197/mês. Cancele quando quiser.</div>
-    </section>
-
-    <!-- Problema -->
-    <section id="problema">
-        <h2 class="section-title fade-in">Por que a maioria perde dinheiro tentando arbitrar manualmente</h2>
-        <p class="section-subtitle fade-in">Não é falta de capital. É falta de velocidade e disponibilidade.</p>
-        <div class="problem-grid">
-            <div class="problem-card fade-in">
-                <div class="problem-icon">⚡</div>
-                <h3>Janelas duram segundos</h3>
-                <p>A diferença de preço entre corretoras some antes de você conseguir executar. Operar manualmente significa sempre chegar tarde.</p>
-            </div>
-            <div class="problem-card fade-in">
-                <div class="problem-icon">🕐</div>
-                <h3>Você não pode monitorar 24h</h3>
-                <p>As melhores oportunidades aparecem de madrugada, no fim de semana, enquanto você trabalha. O mercado não tem horário.</p>
-            </div>
-            <div class="problem-card fade-in">
-                <div class="problem-icon">🔒</div>
-                <h3>Complexidade afasta quem poderia lucrar</h3>
-                <p>Calcular taxas, spreads e timing em tempo real é impossível sem automação. A maioria desiste antes de entender o mecanismo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mecanismo -->
-    <section id="mecanismo">
-        <h2 class="section-title fade-in">A lógica por trás do lucro</h2>
-        <p class="section-subtitle fade-in">Arbitragem não é especulação. É matemática.</p>
-        <div class="mechanism-steps">
-            <div class="mech-step fade-in">
-                <div class="mech-step-number">1</div>
-                <h3>Identificação</h3>
-                <p>O bot monitora o preço do mesmo ativo em Gate, BingX, MEXC e Bitget ao mesmo tempo, em tempo real.</p>
-            </div>
-            <div class="mech-arrow fade-in">→</div>
-            <div class="mech-step fade-in">
-                <div class="mech-step-number">2</div>
-                <h3>Execução</h3>
-                <p>Ao detectar uma diferença lucrativa acima das taxas, compra na exchange mais barata e vende na mais cara, em milissegundos.</p>
-            </div>
-            <div class="mech-arrow fade-in">→</div>
-            <div class="mech-step fade-in">
-                <div class="mech-step-number">3</div>
-                <h3>Resultado</h3>
-                <p>A diferença de preço, descontadas as taxas, vai direto para o seu saldo. Repetido centenas de vezes por semana.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Por que é diferente de especulação -->
-    <div class="risk-section">
-        <div class="risk-section-inner">
-            <h2 class="section-title fade-in">Uma das estratégias de menor risco no mercado cripto</h2>
-            <p class="section-subtitle fade-in">Você não está apostando na alta ou na queda de nenhum ativo. Está capturando ineficiências de mercado que existem independente da direção do preço.</p>
-            <p class="fade-in" style="color: var(--text-secondary); font-size: 1rem; line-height: 1.7; max-width: 820px; margin-bottom: 48px;">A maior parte das pessoas que entra em cripto perde dinheiro porque tenta adivinhar o mercado. <span style="color: var(--green);">Arbitragem é diferente: você lucra com a diferença de preço entre exchanges, não com a direção do preço.</span> Se Bitcoin sobe, você lucra. Se cai, você lucra também. É matemática, não aposta.</p>
-            <div class="risk-grid">
-                <div class="risk-card fade-in">
-                    <div class="risk-card-icon">📊</div>
-                    <div class="risk-card-content">
-                        <h3>Sem dependência de direção de mercado</h3>
-                        <p>O lucro vem da diferença entre corretoras, não da valorização do ativo. Bitcoin subindo ou caindo não importa, a diferença de preço entre exchanges sempre existe.</p>
-                    </div>
-                </div>
-                <div class="risk-card fade-in">
-                    <div class="risk-card-icon">⚡</div>
-                    <div class="risk-card-content">
-                        <h3>Operações rápidas e fechadas</h3>
-                        <p>Cada operação abre e fecha em questão de segundos. Você não fica exposto ao mercado por horas ou dias esperando o preço mover.</p>
-                    </div>
-                </div>
-                <div class="risk-card fade-in">
-                    <div class="risk-card-icon">🧮</div>
-                    <div class="risk-card-content">
-                        <h3>Cálculo automático de taxas</h3>
-                        <p>O bot só executa quando o lucro supera todas as taxas envolvidas, comissões das exchanges e custos de transferência calculados automaticamente.</p>
-                    </div>
-                </div>
-                <div class="risk-card fade-in">
-                    <div class="risk-card-icon">🛡️</div>
-                    <div class="risk-card-content">
-                        <h3>Sem acesso ao seu dinheiro</h3>
-                        <p>Diferente da maioria dos bots, o AURA não usa chaves de API. Ele roda como extensão no seu próprio navegador, dentro das exchanges que você já está logado. Nós nunca temos acesso ao seu saldo, login ou senhas.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Exchanges -->
-    <div class="exchanges-bar">
-        <div class="exchanges-bar-label fade-in">Exchanges monitoradas simultaneamente</div>
-        <div class="exchanges-row fade-in">
-            <div class="exchange-chip">Gate.io</div>
-            <div class="exchange-chip">BingX</div>
-            <div class="exchange-chip">MEXC</div>
-            <div class="exchange-chip">Bitget</div>
-        </div>
-    </div>
-
-    <!-- Funcionalidades -->
-    <section id="funcionalidades">
-        <h2 class="section-title fade-in">Construído para não perder nenhuma janela</h2>
-        <p class="section-subtitle fade-in">Cada funcionalidade existe para que o bot seja mais rápido e preciso do que qualquer operador humano.</p>
-        <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
-            <div class="feature-card fade-in">
-                <div class="feature-icon">⚙️</div>
-                <h3>Operação autônoma 24/7</h3>
-                <p>Roda em servidor próprio, independente do seu dispositivo. Trabalha enquanto você dorme, viaja ou descansa.</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🚀</div>
-                <h3>Setup em menos de 20 minutos</h3>
-                <p>Instale o AURA no seu navegador via Tampermonkey e o bot já começa a operar. Passo a passo guiado no Scanner.</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">🛡️</div>
-                <h3>Estratégia de baixo risco</h3>
-                <p>Arbitragem não depende de previsão de mercado. O lucro vem da diferença matemática de preço entre corretoras.</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">👤</div>
-                <h3>Sem conhecimento técnico</h3>
-                <p>Feito para quem quer resultado, não para desenvolvedores. Você configura uma vez e o bot faz o resto.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Como começar -->
-    <section id="como-comecar">
-        <h2 class="section-title fade-in" style="text-align:center;">Do zero ao bot operando em 3 passos</h2>
-        <p class="section-subtitle fade-in" style="text-align:center; margin-left:auto; margin-right:auto;">Em menos de 20 minutos você já está com o AURA rodando nas suas exchanges.</p>
-        <div class="steps-row">
-            <div class="step-card fade-in">
-                <div class="step-number">1</div>
-                <h3>Comece com R$49,90</h3>
-                <p>Acesso imediato ao Scanner e às aulas gravadas que ensinam a configurar e operar com o AURA. Sem fidelidade, sem compromisso.</p>
-            </div>
-            <div class="step-card fade-in">
-                <div class="step-number">2</div>
-                <h3>Instale a extensão</h3>
-                <p>Instale o AURA no seu navegador via Tampermonkey e o bot já começa a operar nas suas exchanges. Sem API, sem chaves, sem acesso ao seu saldo. Guia passo a passo incluso.</p>
-            </div>
-            <div class="step-card fade-in">
-                <div class="step-number">3</div>
-                <h3>O bot opera por você</h3>
-                <p>A partir daí é só acompanhar os resultados. O bot identifica e executa as operações automaticamente.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Preço -->
-    <section id="pricing">
-        <h2 class="section-title fade-in">Teste por 7 dias antes de assinar</h2>
-        <p class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;">Pague R$49,90 hoje e tenha o AURA rodando na sua conta pelos próximos 7 dias. Tempo suficiente pra ver o bot operando, gerar suas primeiras operações e decidir se faz sentido continuar. Se fizer, a mensalidade de R$197 entra automaticamente. Se não, é só cancelar — sem multa, sem perguntas.</p>
-        <div class="pricing-card fade-in">
-            <div class="pricing-label">Acesso completo por 7 dias</div>
-            <div class="pricing-price">R$49,90</div>
-            <div class="pricing-period">pagamento único · sem renovação automática nos primeiros 7 dias</div>
-            <ul class="pricing-features">
-                <li>Scanner e bot rodando nas suas exchanges desde o primeiro dia</li>
-                <li>4 exchanges conectadas simultaneamente (Gate, BingX, MEXC, Bitget)</li>
-                <li>Aulas gravadas com passo a passo de configuração e uso</li>
-                <li>Setup guiado com nosso time via AnyDesk</li>
-                <li>Suporte direto no Discord</li>
-                <li>Mentoria comigo após o setup</li>
-            </ul>
-            <div class="pricing-guarantee">Após os 7 dias, mensalidade de R$197 pra continuar usando o bot. Cancele quando quiser, sem multa.</div>
-            <a href="#" data-checkout class="btn btn-primary btn-large" style="width:100%;">Começar agora por R$49,90</a>
-            <div class="pricing-note">Acesso liberado em até 5 minutos após o pagamento.</div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-        <h2 class="section-title fade-in" style="text-align:center;">Perguntas frequentes</h2>
-        <p class="section-subtitle fade-in" style="text-align:center; margin-left:auto; margin-right:auto;">Tudo que você precisa saber antes de começar.</p>
-        <div class="faq-list">
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Quanto preciso ter pra começar a operar?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Recomendamos no mínimo R$500 distribuídos entre as 4 exchanges. Esse é o valor que permite o bot identificar e executar operações com folga, considerando as taxas envolvidas. Você pode começar com mais, mas abaixo disso a quantidade de oportunidades viáveis cai bastante e o bot fica parado boa parte do tempo. O capital fica sempre nas suas próprias contas das exchanges — o AURA não tem acesso ao seu saldo, ele só executa as ordens dentro do seu próprio navegador.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Quanto posso ganhar com o AURA?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Não prometemos valores fixos porque seria desonesto. O resultado depende de três coisas: quanto capital você tem operando, quantas oportunidades o mercado oferece naquele período e a sua configuração de risco no Scanner. O que podemos mostrar são os prints reais dos nossos clientes (você vê alguns na seção "Resultados reais" desta página, e dezenas no nosso Discord), com operações de spread variando entre 1% e 4% em média. Multiplique isso pelo seu capital e pela frequência de operações pra ter uma noção. Quem quer promessa de ganho garantido não é nosso cliente — quem quer uma ferramenta séria rodando por conta própria, é.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Como funciona o teste de 7 dias?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Você paga R$49,90 hoje e recebe acesso completo ao AURA pelos próximos 7 dias: Scanner liberado, bot rodando nas 4 exchanges, suporte do nosso time, aulas gravadas e mentoria comigo após o setup. É exatamente a mesma ferramenta que os clientes mensalistas usam — sem versão limitada, sem recursos travados. Após os 7 dias, se quiser continuar, a mensalidade de R$197 entra automaticamente. Se não quiser, é só cancelar antes do fim do período — não cobramos nada além dos R$49,90 iniciais. Sem multa, sem burocracia, sem ligação de retenção.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Preciso entender de criptomoedas pra usar?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Não. O AURA foi construído justamente pra quem não entende de cripto e não quer aprender. Você não precisa saber ler gráfico, prever mercado ou escolher moeda — o bot faz tudo isso. O que você precisa fazer é seguir o passo a passo das aulas gravadas (cerca de 20 minutos de configuração com suporte do nosso time via AnyDesk) e depois acompanhar os resultados. Quem nunca operou cripto na vida consegue rodar o AURA sem problema.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Meu capital fica seguro? Vocês têm acesso ao meu dinheiro?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Seu dinheiro nunca sai das suas contas nas exchanges, e o AURA nunca tem acesso a ele. Diferente da maioria dos bots do mercado, o AURA não usa chaves de API — ele roda como uma extensão no seu próprio navegador (via Tampermonkey) e executa as operações dentro das exchanges que você já está logado, como se fosse você clicando. Nós não temos acesso ao seu saldo, ao seu login, às suas senhas ou a qualquer dado da sua conta. Você mantém controle total a qualquer momento.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    É uma estratégia arriscada?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Arbitragem é considerada uma das estratégias de menor risco no mercado cripto, justamente porque você não está apostando se o preço vai subir ou cair — está capturando a diferença de preço entre exchanges, que é matemática pura. Dito isso, nenhuma operação no mercado financeiro tem risco zero: pode haver lentidão de exchange, problemas técnicos pontuais ou variação de spread no meio da operação. O AURA tem mecanismos pra mitigar tudo isso (cálculo automático de taxas, execução em milissegundos, anti-liquidação ativo), mas é importante você entrar entendendo que existe risco — só que muito menor do que trade direcional.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    O AURA executa as operações automaticamente?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Sim, totalmente. Você configura uma vez no Scanner (capital disponível, percentual mínimo de lucro por operação, exchanges ativas) e o bot identifica e executa sozinho, 24 horas por dia. Você pode acompanhar o histórico no Scanner a qualquer momento, mas não precisa fazer nada manualmente — nem aprovar operação, nem decidir nada.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    O bot opera enquanto eu não estou no computador?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Sim. Basta deixar o navegador aberto com o Scanner rodando e o AURA continua operando sozinho, 24 horas por dia. Você pode trabalhar, dormir, viajar ou simplesmente viver sua vida — o bot trabalha em segundo plano, identificando e executando as operações automaticamente. A maioria dos clientes deixa rodando direto no PC e só checa os resultados quando quer.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Quais exchanges são suportadas?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Atualmente o AURA opera simultaneamente em Gate.io, BingX, MEXC e Bitget. São 4 das maiores exchanges globais, todas com alta liquidez e bom volume de oportunidades. Você precisa ter conta nas 4 pra aproveitar o máximo do bot — o setup em cada uma é simples e nosso time guia você no processo.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    Posso cancelar a qualquer momento?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Sim. Não tem fidelidade, não tem multa, não tem burocracia. Você cancela a qualquer momento e o acesso permanece até o fim do período já pago. Sem ligação de retenção, sem perguntas, sem dificuldade.</p>
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    E se eu não conseguir configurar sozinho?
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Não vai precisar. Logo após a confirmação do pagamento, você é encaminhado pro nosso time de onboarding. O Kevin (nosso especialista) faz uma sessão remota com você via AnyDesk e configura tudo em tempo real — desde a instalação da extensão Tampermonkey até os ajustes finais no Scanner. Você só precisa estar disponível pra acompanhar. Após o setup, eu mesmo (Matheus, fundador do AURA) faço uma call de mentoria pra alinhar a estratégia que faz sentido pro seu capital e perfil. Ninguém é deixado sozinho.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA final -->
-    <section class="cta-section">
-        <h2 class="section-title fade-in">Seu bot já poderia estar operando agora</h2>
-        <p class="section-subtitle fade-in" style="margin-left:auto; margin-right:auto;">Cada hora sem o AURA é uma janela de arbitragem que passa sem você. Configure em menos de 20 minutos.</p>
-        <div class="fade-in">
-            <a href="#" data-checkout class="btn btn-primary btn-large">Começar agora por R$49,90</a>
-            <div class="cta-note">7 dias de acesso completo · Após o teste, R$197/mês · Cancele quando quiser</div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-logo"><span class="dot">●</span> AURA</div>
-            <div class="footer-copy">&copy; 2026 AURA. Todos os direitos reservados.</div>
-            <div class="footer-links">
-                <a href="#">Termos de uso</a>
-                <a href="#">Política de privacidade</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Checkout URL — atualize aqui pra mudar em todos os CTAs de compra
-        const CHECKOUT_URL = 'https://pay.kirvano.com/1bac6fe8-7b87-4c81-a80e-fef8de4db39d';
-        document.querySelectorAll('a[data-checkout]').forEach(el => {
-            el.href = CHECKOUT_URL;
-            el.target = '_blank';
-            el.rel = 'noopener noreferrer';
-        });
-
-        // Scroll reveal com stagger por irmãos do mesmo parent
-        (function () {
-            const elements = document.querySelectorAll('.fade-in');
-            if (!elements.length) return;
-
-            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduced) {
-                elements.forEach(el => el.classList.add('revealed'));
-                return;
-            }
-
-            const revealObserver = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    const el = entry.target;
-                    const siblings = Array.from(el.parentNode.children)
-                        .filter(c => c.classList.contains('fade-in'));
-                    const index = siblings.indexOf(el);
-                    const delay = Math.min(index * 100, 500);
-                    el.style.transitionDelay = delay + 'ms';
-                    el.classList.add('revealed');
-                    obs.unobserve(el);
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
-            elements.forEach(el => revealObserver.observe(el));
-        })();
-
-        // Testimonials marquee — clona os cards no fim pra criar loop seamless
-        (function () {
-            const track = document.querySelector('.testimonials-track');
-            if (!track) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            Array.from(track.children).forEach(child => {
-                const clone = child.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                track.appendChild(clone);
-            });
-        })();
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.parentElement;
-                const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                if (!isOpen) item.classList.add('open');
-            });
-        });
-
-        // Animated counters na proof-bar
-        (function () {
-            const counters = document.querySelectorAll('.proof-number[data-target]');
-            if (!counters.length) return;
-
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            function format(value, fmt) {
-                if (fmt === 'thousands') return value.toLocaleString('pt-BR');
-                return String(value);
-            }
-
-            function render(el, value) {
-                const prefix = el.dataset.prefix || '';
-                const suffix = el.dataset.suffix || '';
-                el.textContent = prefix + format(value, el.dataset.format) + suffix;
-            }
-
-            if (reducedMotion) return; // mantém HTML original, sem reset
-
-            // Reset inicial pra evitar flicker quando entra na viewport
-            counters.forEach(el => render(el, 0));
-
-            const proofBar = document.querySelector('.proof-bar');
-            if (!proofBar) return;
-
-            const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
-            const duration = 1800;
-
-            function animate(el) {
-                const target = parseInt(el.dataset.target, 10);
-                const start = performance.now();
-                function tick(now) {
-                    const elapsed = now - start;
-                    const t = Math.min(elapsed / duration, 1);
-                    const value = Math.round(target * easeOutQuart(t));
-                    render(el, value);
-                    if (t < 1) requestAnimationFrame(tick);
-                    else render(el, target);
-                }
-                requestAnimationFrame(tick);
-            }
-
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        counters.forEach(animate);
-                        obs.disconnect();
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            observer.observe(proofBar);
-        })();
-    </script>
+  </footer>
 
 </body>
 </html>

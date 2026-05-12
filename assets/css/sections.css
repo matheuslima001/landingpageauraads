@@ -1,0 +1,765 @@
+/* ===== Hero ===== */
+.hero {
+  padding-top: 160px;
+  padding-bottom: 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero > *:not(.hero-grid) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grid estilo Tron no fundo do hero */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  perspective: 600px;
+  perspective-origin: 50% 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 30%, transparent 85%);
+}
+
+.hero-grid-plane {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: -50%;
+  bottom: -50%;
+  transform-origin: 50% 50%;
+  will-change: background-position;
+}
+
+.hero-grid-plane.plane-1 {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: rotateX(68deg);
+  animation: gridScroll 20s linear infinite;
+}
+
+.hero-grid-plane.plane-2 {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: 30px 30px;
+  transform: rotateX(68deg);
+  animation: gridScrollSlow 28s linear infinite;
+}
+
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to { background-position: 0 60px; }
+}
+
+@keyframes gridScrollSlow {
+  from { background-position: 30px 30px; }
+  to { background-position: 30px 150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-grid-plane.plane-1,
+  .hero-grid-plane.plane-2 {
+    animation: none;
+  }
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 100px;
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  max-width: 920px;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+
+.hero-sub {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 60px;
+}
+
+.hero-stat {
+  color: var(--green);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 36px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+/* Painel do bot (mockup do produto no hero) */
+.bot-panel {
+  width: 100%;
+  max-width: 860px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 255, 136, 0.18);
+  box-shadow:
+    0 30px 80px rgba(0, 255, 136, 0.22),
+    0 15px 40px rgba(0, 0, 0, 0.6);
+  transform: perspective(1500px) rotateX(2deg);
+}
+
+.bot-panel::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.4) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 24px;
+}
+
+.bot-panel img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bot-panel {
+    transform: none;
+  }
+}
+
+/* ===== Magic block ===== */
+.magic-block {
+  background: var(--surface-1);
+  padding: 72px 40px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.magic-block-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.magic-block p {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+.magic-block p span {
+  color: var(--green);
+}
+
+/* ===== Proof bar ===== */
+.proof-bar {
+  background: var(--surface-1);
+  padding: 40px;
+  max-width: 100%;
+}
+
+.proof-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+
+.proof-item {
+  text-align: center;
+  padding: 0 48px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proof-item:last-child {
+  border-right: none;
+}
+
+.proof-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.proof-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Problema ===== */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.problem-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.problem-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.problem-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ===== Mecanismo ===== */
+.mechanism-steps {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.mech-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.mech-step-number {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--green);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.mech-step h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.mech-step p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+}
+
+.mech-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--green);
+  font-size: 1.5rem;
+  padding-top: 50px;
+  flex-shrink: 0;
+}
+
+/* ===== Risco / diferencial ===== */
+.risk-section {
+  background: var(--surface-1);
+  padding: 72px 40px;
+  max-width: 100%;
+}
+
+.risk-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.risk-section .section-title {
+  margin-bottom: 12px;
+}
+
+.risk-section .section-subtitle {
+  margin-bottom: 48px;
+}
+
+.risk-section-lead {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 820px;
+  margin-bottom: 48px;
+}
+
+.risk-section-lead span {
+  color: var(--green);
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.risk-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.risk-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.risk-card-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.risk-card-content p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+/* ===== Barra de exchanges ===== */
+.exchanges-bar {
+  background: var(--bg);
+  padding: 48px 40px;
+  max-width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.exchanges-bar::before,
+.exchanges-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, transparent, rgba(0, 255, 136, 0.7), transparent) -30% 0 / 30% 100% no-repeat,
+    linear-gradient(to right, transparent, rgba(0, 255, 136, 0.12), transparent);
+  animation: dataFlow 6s linear infinite;
+}
+
+.exchanges-bar::before { top: 0; }
+.exchanges-bar::after  { bottom: 0; animation-delay: -3s; }
+
+@keyframes dataFlow {
+  0%   { background-position: -30% 0, 0 0; }
+  100% { background-position: 130% 0, 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exchanges-bar::before,
+  .exchanges-bar::after {
+    animation: none;
+  }
+}
+
+.exchanges-bar-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+}
+
+.exchanges-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== Carrossel de depoimentos ===== */
+.carousel-wrapper {
+  position: relative;
+}
+
+.carousel-track-outer {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.testimonials-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.testimonial-card {
+  flex: 0 0 320px;
+  margin-right: 20px;
+  background: var(--surface-2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.testimonial-card img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.testimonial-label {
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (hover: hover) {
+  .carousel-track-outer:hover .testimonials-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .testimonial-card {
+    margin-right: 0;
+    flex: 0 0 280px;
+  }
+  .carousel-track-outer {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* ===== Funcionalidades ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.feature-icon {
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+}
+
+/* ===== Como começar ===== */
+.steps-row {
+  display: flex;
+  gap: 32px;
+}
+
+.step-card {
+  flex: 1;
+  text-align: center;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 255, 136, 0.08);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 300ms ease-out,
+    border-color 300ms ease-out,
+    box-shadow 300ms ease-out;
+}
+
+.step-number {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--green);
+  font-size: 1.4rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.step-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.step-card p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+}
+
+@media (hover: hover) {
+  .step-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 255, 136, 0.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 6px 24px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(0, 255, 136, 0.08);
+  }
+}
+
+/* ===== Pricing ===== */
+#pricing {
+  text-align: center;
+}
+
+.pricing-card {
+  max-width: 460px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(0, 255, 136, 0.25);
+  border-radius: 20px;
+  padding: 48px 40px;
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 255, 136, 0.12);
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.08) 0%, transparent 60%);
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 40px;
+}
+
+.pricing-label {
+  display: inline-block;
+  background: var(--green);
+  color: #0a0a0a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pricing-price {
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.pricing-period {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 32px;
+}
+
+.pricing-features {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.pricing-features li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-features li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+}
+
+.pricing-guarantee {
+  background: rgba(0, 255, 136, 0.06);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 28px;
+  font-size: 0.9rem;
+  color: var(--green);
+  font-weight: 500;
+}
+
+.pricing-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* ===== CTA pós-depoimentos ===== */
+.cta-mid {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.cta-mid .hero-buttons {
+  margin-bottom: 14px;
+}
+
+.cta-mid-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ===== CTA final ===== */
+.cta-section {
+  text-align: center;
+  padding-bottom: 120px;
+}
+
+.cta-section .section-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 120px;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bot-panel {
+    transform: none;
+  }
+
+  .magic-block {
+    padding: 48px 20px;
+  }
+
+  .magic-block p {
+    font-size: 1.2rem;
+  }
+
+  .proof-bar-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .proof-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 12px 0;
+  }
+
+  .proof-item:last-child {
+    border-bottom: none;
+  }
+
+  .problem-grid,
+  .features-grid,
+  .risk-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mechanism-steps {
+    flex-direction: column;
+  }
+
+  .mech-arrow {
+    padding-top: 0;
+    justify-content: center;
+    transform: rotate(90deg);
+  }
+
+  .steps-row {
+    flex-direction: column;
+  }
+
+  .risk-section {
+    padding: 48px 20px;
+  }
+
+  .exchanges-bar {
+    padding: 40px 20px;
+  }
+
+  .pricing-card {
+    padding: 36px 24px;
+  }
+}
