@@ -1,0 +1,33 @@
+# Configuração do lychee (link checker).
+# Docs: https://github.com/lycheeverse/lychee
+
+# Esquemas permitidos.
+scheme = ["https", "http"]
+
+# Não falhar por links externos que devolvam 429/Timeout — focar em links quebrados de verdade.
+accept = [200, 201, 202, 203, 204, 206, 301, 302, 303, 304, 307, 308, 403, 429]
+
+# Timeouts e retries para sites lentos / CDNs.
+timeout = 20
+max_retries = 2
+retry_wait_time = 2
+
+# Concurrency baixa pra ser amigável com hosts externos.
+max_concurrency = 8
+
+# Honra robots / cabeçalho de user-agent identificável.
+user_agent = "lychee-action/ci (+https://github.com/lycheeverse/lychee)"
+
+# Ignora ancoras vazias e mailto: (não é o foco da validação).
+exclude_mail = true
+
+# Ignora hosts que sabidamente bloqueiam bots ou exigem auth.
+exclude = [
+  # CDN do tracker — só responde a requests reais do navegador.
+  "^https?://cdn\\.utmify\\.com\\.br",
+  # Checkout externo (provedor pago, pode rate-limitar HEAD requests).
+  "^https?://pay\\.kirvano\\.com"
+]
+
+# Falha em links com schemes não suportados pra evitar typos silenciosos.
+require_https = false

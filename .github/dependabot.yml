@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Mantém as actions usadas nos workflows do GitHub Actions atualizadas.
+  # Não há package.json no projeto (filosofia "sem toolchain"), por isso
+  # nenhum ecosystem extra é configurado aqui.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "07:00"
+      timezone: "America/Sao_Paulo"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"

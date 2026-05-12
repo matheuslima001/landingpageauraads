@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Permissões mínimas (read-only por padrão); cada job pode subir o necessário.
+permissions:
+  contents: read
+
+# Cancela runs antigos em PRs (mas não na main — não queremos perder o sinal de regressão).
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  html-validate:
+    name: Valida HTML (html-validate)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npx-htmlvalidate-v9
+
+      - name: html-validate index.html
+        run: npx --yes html-validate@9 index.html
+
+  link-check:
+    name: Valida links (lychee)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ github.sha }}
+          restore-keys: cache-lychee-
+
+      - name: lychee link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # --no-progress: log limpo no CI. --cache: reaproveita entre runs.
+          args: >-
+            --config .github/lychee.toml
+            --cache
+            --max-cache-age 1d
+            --no-progress
+            --verbose
+            index.html
+          fail: true
+          # GITHUB_TOKEN auto-provido — não é segredo do usuário, evita rate limit em links pra github.com.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  accessibility:
+    name: Acessibilidade (axe-core)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npx-axe-v1
+
+      - name: Sobe servidor estático
+        # http-server escuta na porta 8080 em background.
+        run: npx --yes http-server@14 . -p 8080 -s &
+
+      - name: Aguarda servidor responder
+        run: npx --yes wait-on@7 http://127.0.0.1:8080 --timeout 30000
+
+      - name: Roda axe-core/cli
+        # --exit garante falha quando há violações.
+        # Tags: wcag2a, wcag2aa, best-practice — cobrem os critérios padrão de A11Y.
+        run: >-
+          npx --yes @axe-core/cli@4
+          http://127.0.0.1:8080
+          --exit
+          --tags wcag2a,wcag2aa,best-practice
