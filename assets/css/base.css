@@ -1,3 +1,10 @@
+/*
+  Fonte canônica do CSS crítico (reset, tokens, tipografia base, .fade-in).
+  Por performance, esse conteúdo é espelhado inline no <head> do index.html
+  para eliminar 1 round-trip e garantir tokens/cores no first paint. Ao editar
+  aqui, lembre-se de propagar a mudança ao bloco <style> inline no index.html.
+*/
+
 /* Reset */
 *,
 *::before,
@@ -49,6 +56,19 @@ body {
 .fade-in.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Movimento reduzido: animations.js já aplica .revealed direto, mas o transition
+   declarado acima ainda dispararia 600ms. Cortamos o transition aqui. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
 }
 
 /* Utilitários de cor inline antes ficavam em style="color:var(--green)" */
