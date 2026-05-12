@@ -53,9 +53,9 @@
 }
 
 /* Layout 2-col em desktop: texto à esquerda, notificação à direita */
-@media (min-width: 960px) {
+@media (min-width: 1180px) {
   .hero-inner {
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1.05fr 1fr;
     gap: 56px;
     text-align: left;
     align-items: center;
@@ -199,19 +199,26 @@
   display: grid;
   grid-template-columns: 1fr auto auto auto 1fr;
   align-items: stretch;
+  justify-items: stretch;
   gap: 14px;
+}
+
+.flow-node, .flow-engine {
+  /* nodes preenchem suas células 1fr; engine fica auto-sized */
+  width: 100%;
 }
 
 /* ---- Nodes (exchanges) -------------------------------------- */
 .flow-node {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   background: rgba(255,255,255,0.015);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  text-align: left;
+  text-align: center;
   min-width: 0;
 }
 
@@ -222,6 +229,7 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-faint);
+  white-space: nowrap;
 }
 
 .flow-node-name {
@@ -230,17 +238,19 @@
   color: var(--text);
   letter-spacing: -0.005em;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .flow-node-price {
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--text);
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1, 'zero' 1;
   letter-spacing: -0.01em;
   line-height: 1;
   margin-top: 4px;
+  white-space: nowrap;
 }
 
 .flow-node-pair {
@@ -249,6 +259,7 @@
   color: var(--text-faint);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Micro-tick animation no preço (a última casa "respira" via JS) */
@@ -314,6 +325,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
   padding: 16px 18px;
   background:
@@ -321,8 +333,8 @@
     rgba(255,255,255,0.02);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  text-align: left;
-  min-width: 100px;
+  text-align: center;
+  min-width: 110px;
 }
 
 /* Hairline interior do engine, mais brilhante no topo */
@@ -342,6 +354,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-faint);
+  white-space: nowrap;
 }
 
 .flow-engine-name {
@@ -353,6 +366,7 @@
   color: var(--text);
   letter-spacing: -0.005em;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .flow-engine-dot {
@@ -372,6 +386,7 @@
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   margin-top: 2px;
+  white-space: nowrap;
 }
 
 /* ---- Caption (chave de leitura) ----------------------------- */
