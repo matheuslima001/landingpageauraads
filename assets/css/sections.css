@@ -127,6 +127,66 @@
   background: var(--text-faint);
 }
 
+/* ── Hero showcase (switcher de screenshots) ── */
+.hero-showcase {
+  margin-top: 56px;
+}
+
+.showcase-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+
+.showcase-tab {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.showcase-tab:hover {
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+.showcase-tab.active {
+  background: rgba(0,255,136,0.1);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.showcase-panels {
+  width: 100%;
+}
+
+.showcase-panel {
+  display: none;
+}
+
+.showcase-panel.active {
+  display: block;
+}
+
+.showcase-panel img {
+  width: 100%;
+  display: block;
+  border-radius: 0 0 13px 13px;
+}
+
+@media (max-width: 768px) {
+  .hero-showcase {
+    margin-top: 40px;
+  }
+}
+
 /* Mockup do produto, em "browser window" */
 /* Notification card "Aura · agora" — sub do hero */
 .hero-product {
