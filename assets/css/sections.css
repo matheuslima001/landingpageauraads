@@ -1207,6 +1207,8 @@
   width: max-content;
   gap: 16px;
   animation: marquee 80s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .testimonials-row.reverse {
