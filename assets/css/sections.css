@@ -1311,47 +1311,6 @@
     scroll-snap-align: center;
   }
 
-  /* Botões de nav */
-  .testimonials-carousel-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .testimonials-nav-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--surface-1);
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: border-color 180ms, background 180ms;
-  }
-
-  .testimonials-nav-btn:hover {
-    border-color: var(--green);
-    background: rgba(0,255,136,0.08);
-    color: var(--green);
-  }
-
-  .testimonials-nav-counter {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    min-width: 48px;
-    text-align: center;
-  }
-}
-
-/* Esconde nav em desktop */
-@media (min-width: 769px) {
-  .testimonials-carousel-nav { display: none; }
 }
 
 @media (max-width: 768px) {
