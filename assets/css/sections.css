@@ -1207,7 +1207,8 @@
   width: max-content;
   gap: 16px;
   animation: marquee 80s linear infinite;
-  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .testimonials-row.reverse {
@@ -1260,12 +1261,12 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(calc(-50% - 8px)); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-50% - 8px), 0, 0); }
 }
 @keyframes marqueeReverse {
-  from { transform: translateX(calc(-50% - 8px)); }
-  to   { transform: translateX(0); }
+  from { transform: translate3d(calc(-50% - 8px), 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
 }
 
 @media (hover: hover) {
@@ -1279,6 +1280,11 @@
 
 /* ===== Responsivo ===== */
 @media (max-width: 768px) {
+  .testimonials-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
   .hero { padding: 56px 0 56px; }
   .hero h1 { font-size: 2.2rem; }
   .hero-sub { font-size: 1rem; }
