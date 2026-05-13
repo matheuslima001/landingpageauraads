@@ -4,14 +4,9 @@
 
 /* ===== Navbar ===== */
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  position: static;
   background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
   border-bottom: 1px solid transparent;
-  transition: border-color 240ms var(--ease), background 240ms var(--ease);
 }
 
 .navbar.scrolled {
