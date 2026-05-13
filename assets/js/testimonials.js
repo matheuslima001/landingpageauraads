@@ -6,34 +6,39 @@ export function init() {
 
   if (!row || !btnPrev || !btnNext) return;
 
-  // Só ativa em mobile
-  const mq = window.matchMedia('(max-width: 768px)');
-  if (!mq.matches) return;
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
 
-  // Conta apenas os cards reais (não os duplicados aria-hidden)
-  const cards = Array.from(row.querySelectorAll('.testimonial-card:not([aria-hidden])'));
+  const cards = Array.from(row.querySelectorAll('.testimonial-card:not([aria-hidden="true"])'));
   const total = cards.length;
   let current = 0;
 
-  function scrollTo(idx) {
-    current = Math.max(0, Math.min(idx, total - 1));
-    cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  function cardWidth() {
+    return cards[0].offsetWidth + 12; // 12px = gap
+  }
+
+  function updateCounter() {
     if (counter) counter.textContent = `${current + 1} / ${total}`;
   }
 
-  btnPrev.addEventListener('click', () => scrollTo(current - 1));
-  btnNext.addEventListener('click', () => scrollTo(current + 1));
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, total - 1));
+    row.scrollTo({ left: current * cardWidth(), behavior: 'smooth' });
+    updateCounter();
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
 
   // Atualiza contador ao deslizar com o dedo
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const idx = cards.indexOf(entry.target);
-      if (idx === -1) return;
-      current = idx;
-      if (counter) counter.textContent = `${current + 1} / ${total}`;
-    });
-  }, { root: row, threshold: 0.6 });
+  let scrollTimer;
+  row.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      current = Math.round(row.scrollLeft / cardWidth());
+      current = Math.max(0, Math.min(current, total - 1));
+      updateCounter();
+    }, 80);
+  }, { passive: true });
 
-  cards.forEach(card => io.observe(card));
+  updateCounter();
 }
