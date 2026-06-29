@@ -29,7 +29,7 @@ jobs:
           node-version: "20"
 
       - name: Cache npm
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npx-lhci-v12
